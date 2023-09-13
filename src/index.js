@@ -4,10 +4,17 @@ const express = require('express');
 const app = express();
 app.set('view engine', 'ejs');
 app.set("views", "./src/views");
-app.use(express.static('../public'));
+app.use(express.static('public'));
+const helpers = require('./until/helper');
+const sql = require("mssql/msnodesqlv8");
 
-app.get('/', (req, res) => {
-    res.render("home");
+app.get('/', async (req, res) => {
+    
+    const query = "SELECT * from Account";
+    var a = await helpers.query(query);
+    // console.log(a.recordset);
+    res.render("home", {result: a});
+    // 
 });
 
 app.listen(3000, () => {

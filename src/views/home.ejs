@@ -1,3 +1,15 @@
 <%- include('./layouts/header.ejs') %>
-home
+
+<link rel="stylesheet" href="css/test.css">
+<P id="home">home</P>
+<% for(var i = 0; i < result.recordset.length; i++) { %>
+    <br>
+    <p><%= result.recordset[i].ID  %></p>
+    <p><%= result.recordset[i].Ma  %></p>
+    <p><%= result.recordset[i].User  %></p>
+    <p><%= result.recordset[i].Rank  %></p>
+<% } %>
 <%- include('./layouts/footer.ejs') %>
+<script src="scripts/testjs.js">
+    
+</script>
