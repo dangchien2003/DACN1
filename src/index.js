@@ -9,7 +9,7 @@ const helpers = require('./until/helper');
 const sql = require("mssql/msnodesqlv8");
 
 app.get('/', async (req, res) => {
-    
+    chien
     const query = "SELECT * from Account";
     var a = await helpers.query(query);
     // console.log(a.recordset);
