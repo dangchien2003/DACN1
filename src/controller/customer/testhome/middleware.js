@@ -1,5 +1,5 @@
 
-const helpers = require('../../until/helper');
+const helpers = require('../../../until/helper');
 
 async function test(req, res) {
     try {

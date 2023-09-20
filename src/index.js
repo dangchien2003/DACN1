@@ -6,7 +6,7 @@ app.set('view engine', 'ejs');
 app.set("views", "./src/views");
 app.use(express.static('public'));
 
-app.use('/test', require('./controller/testhome/api'));
+app.use('/test', require('./controller/customer/testhome/api'));
 
 app.get('/', async (req, res) => {
     chien
