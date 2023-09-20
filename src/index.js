@@ -8,12 +8,11 @@ app.use(express.static('public'));
 
 app.use('/test', require('./controller/customer/testhome/api'));
 
-app.get('/', async (req, res) => {
-    chien
-    const query = "SELECT * from Account";
-    var a = await helpers.query(query);
-    res.render("home", {result: a});
-});
+// app.get('/', async (req, res) => {
+//     const query = "SELECT * from Account";
+//     var a = await helpers.query(query);
+//     res.render("home", {result: a});
+// });
 
 app.listen(3000, () => {
     console.log(`127.0.0.1:3000`);
