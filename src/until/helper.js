@@ -10,12 +10,12 @@ async function query(stringQuery) {
         const request = new sql.Request();
         const result = await request.query(stringQuery);
         return result;
-    }catch (error) {
+    } catch (error) {
         return undefined;
-    }finally {
+    } finally {
         sql.close();
     }
-    
+
 
 };
 
