@@ -12,6 +12,7 @@ app.get('/', async (req, res) => {
     console.log("trang chủ");
     res.send("trang chủ");
 });
+//thanh
 
 app.listen(3000, () => {
     console.log(`127.0.0.1:3000`);
