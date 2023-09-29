@@ -103,6 +103,7 @@ CREATE TABLE [SanPham] (
   [ten] nvarchar(100) NOT NULL,
   [gia] bigint NOT NULL,
   [hang] varchar(20),
+  [loaiSanPham] nvarchar(50),
   [mauSac] nvarchar(20),
   [soluong] int NOT NULL,
   [moTa] nvarchar(100),
