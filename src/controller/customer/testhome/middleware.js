@@ -5,7 +5,7 @@ async function test(req, res) {
         const query = "SELECT * from Account";
         var a = await helpers.query(query);
         res.render("customer/home", {
-            result: a
+            result: '123'
         });
     } catch (err) {
         console.log(err);
