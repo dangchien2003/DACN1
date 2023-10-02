@@ -4,5 +4,3 @@ console.log(home);
 home.addEventListener("click", function() {
     alert("click");
 });
-
-
