@@ -7,7 +7,7 @@ const fs = require("fs");
 
 function getConfig() {
     return new Promise((resolve, reject) => {
-        fs.readFile('./config/config.json', 'utf8', (err, data) => {
+        fs.readFile('./config/configdb.json', 'utf8', (err, data) => {
 
             if (err) {
                 return reject(err);
