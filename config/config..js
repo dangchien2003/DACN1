@@ -1,6 +1,6 @@
 var config = {
-    database: 'QuanLyCuaHangBanKem',
-    server: 'DANGCHIEN\\SQLEXPRESS',
+    database: 'DACN1_QLBH',
+    server: 'LAPTOP-7A6QKBMH\\SQLEXPRESS',
     driver: 'msnodesqlv8',
     options: {
         trustedConnection: true,
