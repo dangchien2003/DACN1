@@ -1,24 +1,12 @@
-const sql = require("mssql/msnodesqlv8");
-const config = require("../../config/config");
-const {
-    promises
-} = require("msnodesqlv8");
+/** @format */
+
+const sql = require("mssql");
+const config = require("./database");
 
 async function query(stringQuery) {
-    try {
-        await sql.connect(config);
-        const request = new sql.Request();
-        const result = await request.query(stringQuery);
-        return result;
-    } catch (error) {
-        return undefined;
-    } finally {
-        sql.close();
-    }
-
-
-};
-
-module.exports = {
-    query
+  let pool = await sql.connect(config);
+  const result = await pool.request().query(stringQuery);
+  return result.recordsets;
 }
+
+module.exports = query;
