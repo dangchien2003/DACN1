@@ -5,15 +5,17 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set("views", "./src/views");
 app.use(express.static('public'));
+app.use('/test', require('./controller/customer/testhome/api'));
 
-app.use('/test', require('./controller/testhome/api'));
+const routerSCustomer = require("./controller/customer/apiCustomer");
+
+routerSCustomer(app);
+
 
 app.get('/', async (req, res) => {
-    chien
-    const query = "SELECT * from Account";
-    var a = await helpers.query(query);
-    res.render("home", {result: a});
+    res.render('customer/product/root');
 });
+
 
 app.listen(3000, () => {
     console.log(`127.0.0.1:3000`);
