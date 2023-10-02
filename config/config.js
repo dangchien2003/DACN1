@@ -1,5 +1,5 @@
 var config = {
-    database: 'QuanLyCuaHangBanKem',
+    database: 'DACN1_QLBH',
     server: 'DANGCHIEN\\SQLEXPRESS',
     driver: 'msnodesqlv8',
     options: {
