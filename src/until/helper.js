@@ -1,7 +1,7 @@
 /** @format */
 
 const sql = require("mssql");
-const config = require("./database");
+const config = require("../../config/config");
 
 async function query(stringQuery) {
   let pool = await sql.connect(config);
@@ -9,4 +9,4 @@ async function query(stringQuery) {
   return result.recordsets;
 }
 
-module.exports = query;
+module.exports = {query};
