@@ -3,8 +3,7 @@ const helper = require("../../until/helper");
 async function checkBlock(req, res, next) {
 
     try {
-        // const tk =  req.cookies.tk;
-        const tk = 'tk7';
+        const tk = req.cookies.tk;
         if (!tk) {
             // res.redirect('/login');
             res.json("login");
