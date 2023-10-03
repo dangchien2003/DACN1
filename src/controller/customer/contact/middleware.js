@@ -1,5 +1,7 @@
-function returnPageContact (req, res) {
+function returnPageContact(req, res) {
     res.render("customer/contact/formContact")
 }
 
-module.exports = {returnPageContact}
+module.exports = {
+    returnPageContact
+}

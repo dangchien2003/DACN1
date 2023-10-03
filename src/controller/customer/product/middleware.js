@@ -7,8 +7,10 @@ async function returnProducts(req, res) {
         var sql = `select top ${numproduct} idSP, anh, ten, gia from SanPham`;
         var listProduct = await helpers.query(sql)
         console.log(listProduct.recordset);
-        res.render("customer/sale/root.ejs", {products: listProduct.recordset});
-    }catch (err) {
+        res.render("customer/sale/root.ejs", {
+            products: listProduct.recordset
+        });
+    } catch (err) {
         console.log(err);
     }
 }
@@ -21,7 +23,7 @@ async function returnInfoProduct(req, res) {
         var info = await helpers.query(sql)
         const clientIP = req.ip || req.connection.remoteAddress;
         console.log('IP của client:', clientIP);
-        if(info.recordset.length == 0) {
+        if (info.recordset.length == 0) {
             res.status(404).json({
                 message: "not find product",
                 clientIP
@@ -32,13 +34,13 @@ async function returnInfoProduct(req, res) {
             sp: info.recordset,
             clientIP
         });
-    }catch (err) {
+    } catch (err) {
         console.log(err);
     }
 }
 
 async function returnComent(req, res) {
-    
+
 }
 
 module.exports = {
