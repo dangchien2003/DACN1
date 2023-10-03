@@ -13,7 +13,7 @@ routerSCustomer(app);
 
 
 app.get('/', async (req, res) => {
-    res.render('customer/product/root');
+    res.render('customer/sale/root');
 });
 
 
