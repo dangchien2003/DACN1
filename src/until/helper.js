@@ -7,8 +7,7 @@ const fs = require("fs");
 
 function getConfig() {
     return new Promise((resolve, reject) => {
-        fs.readFile('./config/config.json', 'utf8', (err, data) => {
-
+        fs.readFile('./config/configdb.json', 'utf8', (err, data) => {
             if (err) {
                 return reject(err);
             } else {
@@ -28,6 +27,7 @@ async function query(stringQuery) {
         const result = await request.query(stringQuery);
         return result;
     } catch (error) {
+        console.log(error);
         return undefined;
     } finally {
         sql.close();

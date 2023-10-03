@@ -4,10 +4,10 @@ async function returnProducts(req, res) {
 
     try {
         var numproduct = 10;
-        var sql = `select top ${numproduct} idSP, anh, ten, gia from SanPham `;
+        var sql = `select top ${numproduct} idSP, anh, ten, gia from SanPham`;
         var listProduct = await helpers.query(sql)
-        console.log(listProduct);
-        res.json(listProduct);
+        console.log(listProduct.recordset);
+        res.render("customer/sale/root.ejs", {products: listProduct.recordset});
     }catch (err) {
         console.log(err);
     }
