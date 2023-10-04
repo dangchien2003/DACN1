@@ -1,7 +1,7 @@
 const helper = require("../../until/helper");
 
 async function checkBlock(req, res, next) {
-
+    console.log("checkBlock");
     try {
         const tk = req.cookies.tk;
         if (!tk) {
