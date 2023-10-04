@@ -5,8 +5,10 @@ const {
     getOrder,
     cancelOrder
 } = require('./middleware');
-
+// /order
 router.get('/', utilMiddleware.checkBlock, getOrder);
-router.put('/', utilMiddleware.checkBlock, cancelOrder);
+
+// /order/cancel
+router.put('/cancel', utilMiddleware.checkBlock, cancelOrder);
 
 module.exports = router;

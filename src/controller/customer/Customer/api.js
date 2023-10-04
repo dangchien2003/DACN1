@@ -12,7 +12,5 @@ router.get('/', Hienthithongtinkhachhang);
 //  infocustomer/suathongtin
 router.put('/suathongtin', suaThongTin);
 
-//infocustomer/
-
 
 module.exports = router;

@@ -7,11 +7,12 @@ const {
 } = require('./middleware');
 const utilMiddleware = require('../utilMiddleware');
 //  /sale
-router.get("/", utilMiddleware.checkBlock,returnProducts);
+router.get("/", utilMiddleware.checkBlock, returnProducts);
+
 // /sale/more
 router.get("/more", utilMiddleware.checkBlock, moreProducts);
 
-// sale/product/info/:idsp
+// /sale/product/info/:idsp
 router.get("/product/info/:idsp", returnInfoProduct);
 
 module.exports = router;

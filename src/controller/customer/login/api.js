@@ -4,7 +4,8 @@ const {
     login
 } = require("./middleware");
 
-router.post('/login', login);
+// /login
+router.post('/', login);
 // router.post()
 
 module.exports = router;

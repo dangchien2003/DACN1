@@ -3,7 +3,8 @@ const routerContact = require("./contact/api");
 const routerOrder = require("./order/api");
 const routerLogin = require("./login/api");
 const routerInfoCustomer = require("./Customer/api");
-function routerSCustomer(app) {
+
+function routersCustomer(app) {
     app.use("/sale", routerProduct);
     app.use("/contact", routerContact);
     app.use("/order", routerOrder);
@@ -21,4 +22,4 @@ function routerSCustomer(app) {
     });
 }
 
-module.exports = routerSCustomer;
+module.exports = routersCustomer;

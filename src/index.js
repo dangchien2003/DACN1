@@ -2,6 +2,13 @@
 const express = require('express');
 // lấy ra phương thức 
 const app = express();
+const bodyParser = require('body-parser');
+// Sử dụng body-parser middleware để xử lý dữ liệu JSON
+app.use(bodyParser.json());
+// Sử dụng body-parser middleware để xử lý dữ liệu từ biểu mẫu HTML
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.set('view engine', 'ejs');
 app.set("views", "./src/views");
 app.use(express.static('public'));
@@ -9,9 +16,9 @@ app.use(express.static('public'));
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
-const routerSCustomer = require("./controller/customer/apiCustomer");
+const routersCustomer = require("./controller/customer/apiCustomer");
 
-routerSCustomer(app);
+routersCustomer(app);
 
 
 

@@ -4,6 +4,7 @@ const {
     returnPageContact
 } = require('./middleware');
 
+// /contact
 router.get("/", returnPageContact)
 
 module.exports = router;

@@ -18,7 +18,7 @@ async function getOrder(req, res) {
         where DonHang.idKH = '${kh}';`;
         const result = await helper.query(sql);
 
-        
+
         res.json(result.recordset);
     } catch (err) {
         res.json("err");
