@@ -8,7 +8,9 @@ config/configdb.json
 
 package-lock.json
 
+config/configdb.json
 
+template/customer/learning.nentang.vn-frontend-basic-master
 
 .gitignore
 # Logs
