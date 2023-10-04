@@ -6,21 +6,16 @@ app.set('view engine', 'ejs');
 app.set("views", "./src/views");
 app.use(express.static('public'));
 app.use('/test', require('./controller/customer/testhome/api'));
-
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }))
 const routerSCustomer = require("./controller/customer/apiCustomer");
 
 routerSCustomer(app);
 
 
-<<<<<<< Updated upstream
 app.get('/', async (req, res) => {
-    res.render('customer/product/root');
+    res.render('customer/sale/root');
 });
-=======
-// app.get('/', async (req, res) => {
-//     res.render('customer/product/root');
-// });
->>>>>>> Stashed changes
 
 
 app.listen(3000, () => {

@@ -4,7 +4,6 @@ const {
 } = require("msnodesqlv8");
 const fs = require("fs");
 
-
 function getConfig() {
     return new Promise((resolve, reject) => {
         fs.readFile('./config/configdb.json', 'utf8', (err, data) => {
