@@ -1,7 +1,24 @@
-
 const routerProduct = require("./product/api");
-
-function routerSCustomer (app) {
+const routerContact = require("./contact/api");
+const routerOrder = require("./order/api");
+const routerLogin = require("./login/api");
+const routerInfoCustomer = require("./Customer/api");
+function routerSCustomer(app) {
     app.use("/sale", routerProduct);
+    app.use("/contact", routerContact);
+    app.use("/order", routerOrder);
+    app.use("/sale", routerProduct);
+    app.use("/infocustomer", routerInfoCustomer)
+    app.use("/login", routerLogin);
+
+
+
+
+
+
+    app.get('/', async (req, res) => {
+        res.redirect('/sale');
+    });
 }
+
 module.exports = routerSCustomer;

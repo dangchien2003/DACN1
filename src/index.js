@@ -5,16 +5,15 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set("views", "./src/views");
 app.use(express.static('public'));
-app.use('/test', require('./controller/customer/testhome/api'));
+// import thư viện đọc cookies
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 const routerSCustomer = require("./controller/customer/apiCustomer");
 
 routerSCustomer(app);
 
 
-app.get('/', async (req, res) => {
-    res.render('customer/product/root');
-});
 
 
 app.listen(3000, () => {

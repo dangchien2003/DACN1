@@ -1,12 +1,16 @@
 node_modules
 
+config/configdb.json
+
 .vscode
 
 .env
 
 package-lock.json
 
-config\config.js
+config/configdb.json
+
+template/customer/learning.nentang.vn-frontend-basic-master
 
 .gitignore
 # Logs
