@@ -5,14 +5,17 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set("views", "./src/views");
 app.use(express.static('public'));
+// import thư viện đọc cookies
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
-app.use('/test', require('./controller/customer/testhome/api'));
+const routerSCustomer = require("./controller/customer/apiCustomer");
 
-app.get('/', async (req, res) => {
-    console.log("trang chủ");
-    res.send("trang chủ");
-});
-//thanh
+routerSCustomer(app);
+
+
+
+
 
 app.listen(3000, () => {
     console.log(`127.0.0.1:3000`);

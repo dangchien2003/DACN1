@@ -1,10 +1,14 @@
 node_modules
 
+config/configdb.json
+
 .vscode
 
 .env
 
 package-lock.json
+
+
 
 .gitignore
 # Logs

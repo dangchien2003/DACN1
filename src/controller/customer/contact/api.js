@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const {
-    test
-} = require("./middleware");
+    returnPageContact
+} = require('./middleware');
 
-router.get('/', test);
-
+router.get("/", returnPageContact)
 
 module.exports = router;
