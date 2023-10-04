@@ -52,9 +52,7 @@ async function returnInfoProduct(req, res) {
     try {
         var id = req.params.idsp;
         var sql = `select idSP, anh, ten, gia, mota from SanPham where idSP = ${id}`;
-        var info = await helpers.query(sql)
-        const clientIP = req.ip || req.connection.remoteAddress;
-        console.log('IP của client:', clientIP);
+        var info = await helpers.query(sql);
         if (info.recordset.length == 0) {
             res.status(404).json({
                 message: "not find product",
@@ -62,10 +60,14 @@ async function returnInfoProduct(req, res) {
             });
             return;
         }
-        res.json({
-            sp: info.recordset,
-            clientIP
-        });
+
+        console.log(info.recordset);
+
+        res.render("customer/product/root", {info: info.recordset[0]})
+        // res.json({
+        //     sp: info.recordset,
+        //     clientIP
+        // });
     } catch (err) {
         console.log(err);
     }
