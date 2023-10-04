@@ -7,7 +7,9 @@ app.set("views", "./src/views");
 app.use(express.static('public'));
 app.use('/test', require('./controller/customer/testhome/api'));
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
 const routerSCustomer = require("./controller/customer/apiCustomer");
 
 routerSCustomer(app);

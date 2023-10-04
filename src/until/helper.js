@@ -21,7 +21,7 @@ function getConfig() {
 
 async function query(stringQuery) {
     try {
-       const config = await getConfig();
+        const config = await getConfig();
         await sql.connect(config);
         const request = new sql.Request();
         const result = await request.query(stringQuery);
