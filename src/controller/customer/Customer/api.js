@@ -9,11 +9,6 @@ const {
 // infocustomer/
 router.get('/', Hienthithongtinkhachhang);
 
-// infocustomer/dangnhap 
-router.get('/dangnhap', (req, res) => {
-    res.render("file đăng nhập")
-});
-
 //  infocustomer/suathongtin
 router.put('/suathongtin', suaThongTin);
 
