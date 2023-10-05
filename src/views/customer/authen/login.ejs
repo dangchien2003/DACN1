@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
+</head>
+
+<body>
+    <div class="sign-up">
+        <div class="circle circle--red"></div>
+        <div class="circle circle--yellow"></div>
+        <div class="circle circle--green"></div>
+        <div class="circle circle--purple"></div>
+        <form class="sign-up__form" action="/login" method="post">
+            <div class="sign-up__content">
+                <h2 class="sign-up__title">Login</h2>
+                <input class="sign-up__inp" type="text" placeholder="Username" required="required" name="username" />
+                <input class="sign-up__inp" type="password" placeholder="Password" required="required"
+                    name="password" />
+                <a class="forgot__password">Forgot your password</a>
+            </div>
+            <div class="sign-up__buttons">
+                <a class="btn btn--register" href="#register">Register</a>
+                <button class="btn btn--signin" type="submit">Sign in</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

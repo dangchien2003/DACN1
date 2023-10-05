@@ -3,11 +3,10 @@ const helper = require('../../../until/helper');
 
 async function getOrder(req, res) {
     try {
-        const kh = req.cookies.user;
+        const kh = req.cookies.kh;
         console.log(kh);
         if (kh == undefined) {
-            // res.redirect("/login");
-            res.send("về trang đăng nhập");
+            res.redirect("/login");
             return;
         }
 
@@ -17,8 +16,6 @@ async function getOrder(req, res) {
         left join TinhTrangDonHang on DonHang.tinhTrangDonHang = TinhTrangDonHang.id
         where DonHang.idKH = '${kh}';`;
         const result = await helper.query(sql);
-
-
         res.json(result.recordset);
     } catch (err) {
         res.json("err");

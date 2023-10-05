@@ -1,7 +1,7 @@
 const helpers = require('../../../until/helper');
 
 async function returnProducts(req, res) {
-
+    console.log("list products");
     try {
         var numproduct = 6;
         var sql = `select top ${numproduct} idSP, anh, ten, gia from SanPham`;
@@ -48,7 +48,7 @@ async function moreProducts(req, res) {
 }
 
 async function returnInfoProduct(req, res) {
-
+    console.log("info product");
     try {
         var id = req.params.idsp;
         var sql = `select idSP, anh, ten, gia, mota from SanPham where idSP = ${id}`;
@@ -60,14 +60,7 @@ async function returnInfoProduct(req, res) {
             });
             return;
         }
-
-        console.log(info.recordset);
-
         res.render("customer/product/root", {info: info.recordset[0]})
-        // res.json({
-        //     sp: info.recordset,
-        //     clientIP
-        // });
     } catch (err) {
         console.log(err);
     }

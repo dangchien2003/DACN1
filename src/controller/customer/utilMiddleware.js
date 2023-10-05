@@ -3,13 +3,13 @@ const helper = require("../../until/helper");
 async function checkBlock(req, res, next) {
     console.log("checkBlock");
     try {
-        const tk = req.cookies.tk;
+
+        const tk = req.cookies.un;
+        const kh = req.cookies.kh;
         if (!tk) {
-            // res.redirect('/login');
-            res.json("login");
+            res.redirect('/login');
             return;
         }
-
         const sql = `select khoa from TaiKhoan where taiKhoan = '${tk}'`;
         const result = await helper.query(sql);
         if (!result.recordset[0].khoa) next();
