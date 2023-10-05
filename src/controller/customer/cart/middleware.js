@@ -1,6 +1,7 @@
 const helpers = require('../../../until/helper');
 
 async function showCart(req, res) {
+
     console.log("showCart");
     const kh = req.cookies.kh;
     if (!kh) {
