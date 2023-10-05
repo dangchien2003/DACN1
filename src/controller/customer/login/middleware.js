@@ -4,7 +4,7 @@ const {
 const helpers = require('../../../until/helper');
 
 function showLogin(req, res) {
-    res.render('customer/authen/login.ejs')
+    res.render('customer/authen/login.ejs', {title: "login"})
 }
 
 async function login(req, res) {

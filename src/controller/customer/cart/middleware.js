@@ -10,7 +10,6 @@ async function showCart(req, res) {
     } 
     
     const sql = `select ten, gia, GioHang.soLuong, gia*GioHang.soLuong as tong , anh from GioHang left join SanPham on SanPham.idSP = GioHang.idSP where idKH = '${kh}'`;
-    console.log(sql);
     var cart = await helpers.query(sql);
     var cartTotals = 0;
     cart.recordset.forEach(e=> {
@@ -18,7 +17,8 @@ async function showCart(req, res) {
     });
     res.render('customer/cart/root', {
         cart: cart.recordset, 
-        cartTotals
+        cartTotals,
+        title: "cart"
     });
 }
 

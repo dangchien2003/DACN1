@@ -11,7 +11,8 @@ async function returnProducts(req, res) {
             httpOnly: true
         });
         res.render("customer/sale/root.ejs", {
-            products: listProduct.recordset
+            products: listProduct.recordset,
+            title: "Gian hàng"
         });
     } catch (err) {
         console.log(err);
@@ -60,7 +61,10 @@ async function returnInfoProduct(req, res) {
             });
             return;
         }
-        res.render("customer/product/root", {info: info.recordset[0]})
+        res.render("customer/product/root", {
+            info: info.recordset[0],
+            title: "sản phẩm"
+        })
     } catch (err) {
         console.log(err);
     }

@@ -3,6 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- logo -->
+  <link rel="shortcut icon" href="/customer/img/logo.png">
+
+
 		<!-- Bootstrap CSS -->
 		<link href="/customer/css/bootstrap.min.css" rel="stylesheet">
 
@@ -20,7 +24,12 @@
     <link rel="stylesheet" href="/customer/css/custom.css">
     <link rel="stylesheet" href="/customer/css/product_detail.css">
     
-		<title>Shopping</title>
+		<title> <% if(title) { %>
+      <%= title %> 
+    <% }else { %>
+      shopping
+    <% } %>
+    </title>
 	</head>
 <body>
 <header>
