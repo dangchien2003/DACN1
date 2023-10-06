@@ -1,7 +1,7 @@
 <div class="untree_co-section before-footer-section">
     <div class="container">
         <div class="row mb-5">
-            <form class="col-md-12" method="post">
+            <form class="col-md-12" id="form-cart" action="/cart/update" method="post">
                 <div class="site-blocks-table">
                     <table class="table">
                         <thead>
@@ -17,6 +17,8 @@
                         <tbody>
                             <% for(var i = 0; i < cart.length;i++) { %>
                             <tr>
+                                <input type="text" name="idsp" value="<%= cart[i].idsp %>" style="display: none;">
+                                <input type="text" name="ten" value="<%= cart[i].ten %>" style="display: none;">
                                 <td class="product-thumbnail">
                                     <!-- <img src="<%= cart[i].anh %>" alt="Image" class="img-fluid"> -->
                                     <img src="/customer/img/img-grid-2.jpg" alt="Image" class="img-fluid">
@@ -34,7 +36,7 @@
                                         </div>
                                         <input type="text" class="form-control text-center quantity-amount" value="<%= cart[i].soLuong %>"
                                             placeholder="" aria-label="Example text with button addon"
-                                            aria-describedby="button-addon1">
+                                            aria-describedby="button-addon1" name="soluong">
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-black increase" type="button">&plus;</button>
                                         </div>
@@ -56,7 +58,7 @@
             <div class="col-md-6">
                 <div class="row mb-5">
                     <div class="col-md-6 mb-3 mb-md-0">
-                        <a href="/cart/product"><button class="btn btn-black btn-sm btn-block">Lưu giỏ hàng</button></a> 
+                        <a ><button class="btn btn-black btn-sm btn-block" id="update-cart">Lưu giỏ hàng</button></a> 
                     </div>
                     <div class="col-md-6">
                         <a href="/sale"><button class="btn btn-outline-black btn-sm btn-block">Tiếp tục mua sắm</button></a>

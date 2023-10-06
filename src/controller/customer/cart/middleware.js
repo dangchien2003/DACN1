@@ -9,7 +9,7 @@ async function showCart(req, res) {
         return;
     } 
     
-    const sql = `select ten, gia, GioHang.soLuong, gia*GioHang.soLuong as tong , anh from GioHang left join SanPham on SanPham.idSP = GioHang.idSP where idKH = '${kh}'`;
+    const sql = `select GioHang.idSP as idsp,ten, gia, GioHang.soLuong, gia*GioHang.soLuong as tong , anh from GioHang left join SanPham on SanPham.idSP = GioHang.idSP where idKH = '${kh}'`;
     var cart = await helpers.query(sql);
     var cartTotals = 0;
     cart.recordset.forEach(e=> {
@@ -69,7 +69,58 @@ async function addCart(req, res) {
     
 }
 
+async function updateCart(req, res) {
+    try{
+        var kh;
+        try {
+            kh = req.cookies.kh;
+
+        }catch {
+            res.redirect('/login');
+            return;
+        }
+
+        var cart = req.body;
+
+        // chuyển string thành array
+        if(!Array.isArray(cart.idsp)) {
+            cart.idsp = [cart.idsp]
+            cart.ten = [cart.ten]
+            cart.soluong = [cart.soluong]
+        }
+
+        // lấy chuỗi sql
+        var sql = "";
+        for(var i = 0; i < cart.idsp.length; i++) {
+            sql += `update GioHang set soLuong = ${cart.soluong[i]} where idSP = ${cart.idsp[i]} and idKH = '${kh}';`;
+        }
+        // truy vấn
+        var result = await helpers.query(sql);
+
+        var response = {
+            fail:[]
+        };
+
+        var count = 0;
+
+        // lấy sản phẩm update lỗi
+        result.rowsAffected.forEach(e=> {
+            if(e == 0) {
+                response.fail.push(req.body.ten[count]);
+            }
+            count++;
+        })
+        res.redirect('/cart/product');
+
+    }catch(e) {
+        console.log(e);
+        res.render('customer/err/err', helpers.err(500));
+    }
+}
+
+
 module.exports = {
     showCart,
-    addCart
+    addCart,
+    updateCart
 }
