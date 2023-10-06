@@ -10,22 +10,22 @@
             background-image: url('<%= background %>');
             background-size: 100%;
             background-repeat: no-repeat;
-            height: 350px;
-            background-color: #0281B6;
+            height: 690px;
+            background-color: <%= bgColor %>;
         }
-        h3 {
-            color: white;
+        a {
+            display: block;
             text-align: center;
+            font-size: 30px;
+            text-decoration: none;
+            color: <%= color %>;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body id="body">
-    <h3>Nhấn để về trang chủ</h3>
+    <a href="/sale">Nhấn tại đây để về trang chủ</a>
 </body>
-<script>
-    var body = document.getElementById("body");
-    body.addEventListener('click', ()=>{
-        window.location.href = "/sale";
-    })
-</script>
 </html>

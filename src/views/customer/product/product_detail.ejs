@@ -10,7 +10,7 @@
         <div class="card">
             <div class="container-fliud">
                 <form name="frmsanphamchitiet" id="frmsanphamchitiet" method="post"
-                    action="/sale">
+                    action="/cart/add">
                     <input type="hidden" name="sp_ma" id="sp_ma" value="<%= info.idSP%>">
                     <input type="hidden" name="sp_ten" id="sp_ten" value="<%= info.ten%>">
                     <input type="hidden" name="sp_gia" id="sp_gia" value="<%= info.gia%>">
@@ -76,10 +76,10 @@
                             </h5>
                             <div class="form-group">
                                 <label for="soluong">Số lượng đặt mua:</label>
-                                <input type="number" class="form-control" id="soluong" name="soluong">
+                                <input type="number" class="form-control" id="soluong" name="soluong" value="1">
                             </div>
                             <div class="action">
-                                <a class="add-to-cart btn btn-default" id="btnThemVaoGioHang">Thêm vào giỏ hàng</a>
+                                <button class="add-to-cart btn btn-default" id="btnThemVaoGioHang">Thêm vào giỏ hàng</button>
                                 <a class="like btn btn-default" href="#"><span class="fa fa-heart"></span></a>
                             </div>
                         </div>

@@ -35,6 +35,42 @@ async function query(stringQuery) {
 
 };
 
+
+function err(status) {
+    try {
+        var result;
+        switch(status) {
+            case 404: 
+                result = {
+                    background: "/customer/img/404.jpg",
+                    bgColor: "#C1DEEE",
+                    color: "#0281b6"
+                }
+                break;
+            case 500:
+                result = {
+                    background: "/customer/img/500.jpg",
+                    bgColor: "#48BBF1",
+                    color: "white"
+                }
+                break;
+            default:
+                result = {
+                    background: "/customer/img/404.jpg",
+                    bgColor: "#D7ECFD",
+                    color: "#0281b6"
+                }
+        }
+
+        return result;
+    }catch(e) {
+
+    }
+    
+}
+
+
 module.exports = {
-    query
+    query,
+    err
 }
