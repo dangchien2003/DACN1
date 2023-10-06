@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/customer/img/logo.png" type="image/x-icon">
+    <title>ERROR</title>
+    <style>
+        body {
+            background-image: url('<%= background %>');
+            background-size: 100%;
+            background-repeat: no-repeat;
+            height: 350px;
+            background-color: #0281B6;
+        }
+        h3 {
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body id="body">
+    <h3>Nhấn để về trang chủ</h3>
+</body>
+<script>
+    var body = document.getElementById("body");
+    body.addEventListener('click', ()=>{
+        window.location.href = "/sale";
+    })
+</script>
+</html>
