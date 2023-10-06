@@ -21,7 +21,6 @@ async function login(req, res) {
         //taạ 1 biên hấng kết qua cua hamf truy vấn bằng helper
         var kq = await helpers.query(sql);
         // ếu kết quả bằng 1 thì trả về đăng nhpậ thành công
-        console.log(kq.recordset);
         var idKH = kq.recordset[0].idKH;
         if (idKH) {
             res.cookie('un',user );
@@ -39,6 +38,14 @@ async function login(req, res) {
     
 }
 async function register(req, res) {
+    //b1 lấy dữ liệu form đăng ký // username, password, comfirm password, email
+    // b2 check đủ dữ liệu cần thiết nếu không đủ dữ liệu thì thông báo nhập thông tin cần thiết
+    //b3 check trùng mk nếu không trùng trả về mật khẩu không trùng khớp
+    //b4 check tồn tại của username nếu tồn tại trả về username đã tồn tại
+    //b5 render ra idtk và idkh
+    // b6 thêm dữ liệu vào bảng tk và thông tin khách hàng
+    // nếu thêm thành công thì thông báo tạo thành công và chuyển về trang đăng nhập
+    // nếu không thì thông báo có lỗi trong quá trình tạo
 
 }
 module.exports = {
