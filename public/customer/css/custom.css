@@ -9,5 +9,10 @@
     font-size: 25px;
     text-align: center;
     line-height: 40px;
+    background-color: #eee9e9;
 }
 
+
+.trash-product {
+    font-size: 300px;
+}

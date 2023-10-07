@@ -51,8 +51,15 @@ async function moreProducts(req, res) {
 async function returnInfoProduct(req, res) {
     console.log("info product");
     try {
-        var id = req.params.idsp;
-        var sql = `select idSP, anh, ten, gia, mota from SanPham where idSP = ${id}`;
+        var idsp = req.params.idsp;
+        var sql = `
+        select idSP, anh, ten, gia, mota, 
+        (select AVG(soSao) from DanhGia 
+        where DanhGia.idSP = ${idsp}
+        group by idSP) as sosao,
+        (select count(*) from ThongTinTuiHang
+        where ThongTinTuiHang.idSP = ${idsp} ) as luotmua
+        from SanPham where idSP = ${idsp}`;
         var info = await helpers.query(sql);
         if (info.recordset.length == 0) {
             res.status(404).json({
@@ -61,8 +68,10 @@ async function returnInfoProduct(req, res) {
             });
             return;
         }
+        var comments = await returnComment(idsp);
         res.render("customer/product/root", {
             info: info.recordset[0],
+            comments,
             title: "sản phẩm"
         })
     } catch (err) {
@@ -70,13 +79,23 @@ async function returnInfoProduct(req, res) {
     }
 }
 
-async function returnComent(req, res) {
-
+async function returnComment(idsp) {
+    var sql = `
+    select danhGia, traLoiDG, ten, traLoiDG, soSao from DanhGia 
+    left join DonHang on DonHang.id = DanhGia.idDH
+    left join ThongTinKhachHang on ThongTinKhachHang.idKH = DonHang.idKH
+    where DanhGia.idsp = ${idsp}`;
+    var result = await helpers.query(sql);
+    return result.recordset;
 }
+
+// async function returnComment(req, res) {
+    
+// }
 
 module.exports = {
     returnProducts,
     returnInfoProduct,
-    returnComent,
     moreProducts
+    ,returnComment
 }
