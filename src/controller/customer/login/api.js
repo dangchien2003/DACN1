@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const {
     login,
-    showLogin
+    showLogin,
+    register
 } = require("./middleware");
 
 
@@ -12,6 +13,7 @@ router.get('/', showLogin);
 // /login
 router.post('/', login);
 
-// router.post()
+// .login/register
+router.post('/register', register);
 
 module.exports = router;
