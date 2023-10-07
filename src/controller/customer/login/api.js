@@ -3,7 +3,8 @@ const router = express.Router();
 const {
     login,
     showLogin,
-    register
+    register,
+    showRegister
 } = require("./middleware");
 
 
@@ -15,5 +16,8 @@ router.post('/', login);
 
 // .login/register
 router.post('/register', register);
+
+//login/register
+router.get('/register', showRegister);
 
 module.exports = router;

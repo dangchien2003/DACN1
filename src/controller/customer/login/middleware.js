@@ -46,16 +46,15 @@ async function register(req, res) {
         var email = req.body.email;
         // b2 check đủ dữ liệu cần thiết nếu không đủ dữ liệu thì thông báo nhập thông tin cần thiết
         if(!user|| !password || !confirmPassword || !email){
-            res.json({
-                message: "Thiếu thông tin",
-            });
+            res.render('customer/authen/register.ejs', {message: "Thiếu thông tin"})
+                
             return;
         }
         //b3 check trùng mk nếu không trùng trả về mật khẩu không trùng khớp
         if(password != confirmPassword){
-            res.json({
-                message: "mật khẩu không trùng khớp"
-            });
+           
+            res.render('customer/authen/register.ejs', {message: "Mật khẩu không trùng khớp"})
+                
             return;
         } 
         
@@ -77,10 +76,13 @@ async function register(req, res) {
         //b4 check tồn tại của username nếu tồn tại trả về username đã tồn tại
         var sql = `SELECT count(*) as exits from TaiKhoan where taiKhoan = '${user}'`;
         var kq = await helpers.query(sql);
-        if (kq.recordset[0] == 1) {
-            res.json( {
-                message: "Tài khoản đã tồn tại"
-            })
+        console.log(kq)
+        if (kq.recordset[0].exits == 1) {
+            res.render('customer/authen/register.ejs', {message: "Tài khoản đã tồn tại"})
+            // res.json( {
+                
+            //     message: "Tài khoản đã tồn tại"
+            // })
         }
         else {
             sql = `INSERT INTO TaiKhoan (idTK, taikhoan, matKhau, capBac, ngayTao ) values ('${idTK}', '${user}', '${password}', 1, '${ntn}');
@@ -90,18 +92,16 @@ async function register(req, res) {
             console.log(insert);
             try {
                 if(insert.rowsAffected[0] == 1 && insert.rowsAffected[1] == 1) {
-                    res.json({
-                        message: "Đăng ký thành công"
-                    })
+                    
+                    
+                    res.render('customer/authen/register.ejs', {message: "Đăng ký thành công"})
                 }else {
-                    res.json({
-                        message: "Đăng ký thất bại"
-                    })
+                    res.render('customer/authen/register.ejs', {message: "Đăng ký thất bại"})
+                
                 }
             }catch(e) {
-                res.json({
-                    message: "Đăng ký thất bại"
-                })
+                res.render('customer/authen/register.ejs', {message: "Đăng ký thất bại"})
+                
             }
             
         }
@@ -113,10 +113,16 @@ async function register(req, res) {
         res.render('customer/err/err', helpers.err(404))
     }
     
-
 }
+
+
+function showRegister(request, response){
+    response.render('customer/authen/register.ejs', {message: null})
+}
+
 module.exports = {
     login,
     showLogin,
-    register
+    register,
+    showRegister
 }
