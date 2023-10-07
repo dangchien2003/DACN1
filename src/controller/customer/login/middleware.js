@@ -58,6 +58,7 @@ async function register(req, res) {
             });
             return;
         } 
+        
         //b5 render ra idtk và idkh
         var date = new Date();
         var hours = date.getHours();
