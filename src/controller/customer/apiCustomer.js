@@ -22,6 +22,9 @@ function routersCustomer(app) {
     app.get('/', async (req, res) => {
         res.redirect('/sale');
     });
+    app.get('/test', async (req, res) => {
+        res.render('customer/err/err' ,{background: "/customer/img/500.jpg"});
+    });
 }
 
 module.exports = routersCustomer;
