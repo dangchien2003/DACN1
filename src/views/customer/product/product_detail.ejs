@@ -49,13 +49,24 @@
                             <h3 class="product-title"><%= info.ten%></h3>
                             <div class="rating">
                                 <div class="stars">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
+                                    <% 
+                                    var count = 1;
+                                    for(var i = 1; i <= 5; i++) { 
+                                        if(count <= info.sosao || !info.sosao) { %>
+                                            <span class="fa fa-star checked"></span>
+                                        <% } else {%>
+                                            <span class="fa fa-star"></span>
+                                    <%} count ++; } %>
                                 </div>
-                                <span class="review-no">999 reviews</span>
+                                <span class="review-no">
+                                    <% if(info.luotmua) { %> 
+                                    <%=  info.luotmua %>
+                                    <% } else { %>
+                                        0
+                                    <% } %>
+                                    
+                                    
+                                    lượt mua</span>
                             </div>
                             <!-- <small class="text-muted">Giá cũ: <s><span>10,990,000.00 vnđ</span></s></small> -->
                             <h4 class="price">Giá hiện tại: <span><%= info.gia%> vnđ</span></h4>
@@ -83,7 +94,6 @@
                                 <a class="like btn btn-default" href="#"><span class="fa fa-heart"></span></a>
                             </div>
                         </div>
-
                     </div>
                 </form>
             </div>
