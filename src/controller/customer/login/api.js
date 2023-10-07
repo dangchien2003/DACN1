@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const {
     login,
-    showLogin
+    showLogin,
+    register,
+    showRegister
 } = require("./middleware");
 
 
@@ -12,6 +14,10 @@ router.get('/', showLogin);
 // /login
 router.post('/', login);
 
-// router.post()
+// .login/register
+router.post('/register', register);
+
+//login/register
+router.get('/register', showRegister);
 
 module.exports = router;
