@@ -1,25 +1,30 @@
 const helpers = require('../../../until/helper');
 
 async function showCart(req, res) {
-
-    console.log("showCart");
-    const kh = req.cookies.kh;
-    if (!kh) {
-        res.redirect('/login');
-        return;
-    } 
     
-    const sql = `select GioHang.idSP as idsp,ten, gia, GioHang.soLuong, gia*GioHang.soLuong as tong , anh from GioHang left join SanPham on SanPham.idSP = GioHang.idSP where idKH = '${kh}'`;
-    var cart = await helpers.query(sql);
-    var cartTotals = 0;
-    cart.recordset.forEach(e=> {
-        cartTotals += e.tong
-    });
-    res.render('customer/cart/root', {
-        cart: cart.recordset, 
-        cartTotals,
-        title: "cart"
-    });
+    try {
+        console.log("showCart");
+        const kh = req.cookies.kh;
+        if (!kh) {
+            res.redirect('/login');
+            return;
+        } 
+        
+        const sql = `select GioHang.idSP as idsp,ten, gia, GioHang.soLuong, gia*GioHang.soLuong as tong , anh from GioHang left join SanPham on SanPham.idSP = GioHang.idSP where idKH = '${kh}'`;
+        var cart = await helpers.query(sql);
+        var cartTotals = 0;
+        cart.recordset.forEach(e=> {
+            cartTotals += e.tong
+        });
+        res.render('customer/cart/root', {
+            cart: cart.recordset, 
+            cartTotals,
+            title: "cart"
+        });
+    }catch(e) {
+        console.log(e);
+        res.render('customer/err/err', helpers.err(500))
+    }
 }
 
 async function addCart(req, res) {

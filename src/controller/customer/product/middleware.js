@@ -57,8 +57,8 @@ async function returnInfoProduct(req, res) {
         (select AVG(soSao) from DanhGia 
         where DanhGia.idSP = ${idsp}
         group by idSP) as sosao,
-        (select count(*) from ThongTinTuiHang
-        where ThongTinTuiHang.idSP = ${idsp} ) as luotmua
+        (select count(*) from ThongTinDonHang
+        where ThongTinDonHang.idSP = ${idsp} ) as luotmua
         from SanPham where idSP = ${idsp}`;
         var info = await helpers.query(sql);
         if (info.recordset.length == 0) {

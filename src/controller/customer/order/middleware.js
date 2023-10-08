@@ -1,23 +1,37 @@
 
 const helper = require('../../../until/helper');
 
+async function getTongGia(idkh) {
+    try {
+        var sql = `SELECT ThongTinTuiHang.idTH, count(gia) as gia 
+        FROM ThongTinTuiHang
+        LEFT JOIN DonHang ON ThongTinTuiHang.idTH = DonHang.idTH
+        WHERE DonHang.idKH = '${idkh}'
+        GROUP BY ThongTinTuiHang.idTH;`
+
+        
+    }catch(err) {
+
+    }
+    
+}
+
 async function getOrder(req, res) {
     try {
         const kh = req.cookies.kh;
-        console.log(kh);
         if (kh == undefined) {
             res.redirect("/login");
             return;
         }
-
-        const sql = `select 
-        DonHang.id, maVanDon, DonHang.donViVanChuyen, TinhTrangDonHang, TinhTrangDonHang.tinhTrang, ngayTao, TuiHang.soLuong from DonHang 
-        left join TuiHang on DonHang.idTH = TuiHang.id
-        left join TinhTrangDonHang on DonHang.tinhTrangDonHang = TinhTrangDonHang.id
-        where DonHang.idKH = '${kh}';`;
-        console.log(sql);
+        const sql = `select DISTINCT 
+        DonHang.id, maVanDon, DonHang.donViVanChuyen, 
+        TinhTrangDonHang, TinhTrangDonHang.tinhTrang, ngayTao, soLuongMatHang as soLuong
+        from DonHang 
+        left join ThongTinDonHang on DonHang.id = ThongTinDonHang.idDH
+        left join TinhTrangDonHang 
+        on DonHang.tinhTrangDonHang = TinhTrangDonHang.id
+         where DonHang.idKH = '${kh}';`;
         const order = await helper.query(sql);
-        console.log(order.recordset);
         res.render('customer/order/root.ejs', {
             order: order.recordset,
             title: "Đơn hàng"})
