@@ -9,6 +9,6 @@ const {
 router.get('/', utilMiddleware.checkBlock, getOrder);
 
 // /order/cancel
-router.put('/cancel', utilMiddleware.checkBlock, cancelOrder);
+router.post('/cancel', utilMiddleware.checkBlock, cancelOrder);
 
 module.exports = router;

@@ -81,7 +81,7 @@ async function returnInfoProduct(req, res) {
 
 async function returnComment(idsp) {
     var sql = `
-    select danhGia, traLoiDG, ten, traLoiDG, soSao from DanhGia 
+    select danhGia, traLoiDG, ten, soSao from DanhGia 
     left join DonHang on DonHang.id = DanhGia.idDH
     left join ThongTinKhachHang on ThongTinKhachHang.idKH = DonHang.idKH
     where DanhGia.idsp = ${idsp}`;

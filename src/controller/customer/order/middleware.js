@@ -1,4 +1,4 @@
-const e = require('express');
+
 const helper = require('../../../until/helper');
 
 async function getOrder(req, res) {
@@ -11,19 +11,24 @@ async function getOrder(req, res) {
         }
 
         const sql = `select 
-        DonHang.id, maVanDon, TinhTrangDonHang.tinhTrang, ngayTao, TuiHang.soLuong from DonHang 
+        DonHang.id, maVanDon, DonHang.donViVanChuyen, TinhTrangDonHang, TinhTrangDonHang.tinhTrang, ngayTao, TuiHang.soLuong from DonHang 
         left join TuiHang on DonHang.idTH = TuiHang.id
         left join TinhTrangDonHang on DonHang.tinhTrangDonHang = TinhTrangDonHang.id
         where DonHang.idKH = '${kh}';`;
-        const result = await helper.query(sql);
-        res.json(result.recordset);
+        console.log(sql);
+        const order = await helper.query(sql);
+        console.log(order.recordset);
+        res.render('customer/order/root.ejs', {
+            order: order.recordset,
+            title: "Đơn hàng"})
     } catch (err) {
-        res.json("err");
+        res.render('customer/err/err.ejs', helper.err(500));
     }
 }
 
 
 async function cancelOrder(req, res) {
+    console.log("cancelOrder");
     try {
         // var idDH = req.body.idDH;
         // var idKH = req.cookies.user;
