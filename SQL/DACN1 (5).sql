@@ -43,7 +43,8 @@ GO
 
 CREATE TABLE [GioHang] (
   [idKH] varchar(30) NOT NULL,
-  [idSP] int NOT NULL
+  [idSP] int NOT NULL,
+  soLuong int not null
 )
 GO
 
@@ -194,11 +195,11 @@ INSERT [dbo].[DonHang] ([id], [vanChuyen], [idKH], [maVanDon], [donViVanChuyen],
 INSERT [dbo].[DonHang] ([id], [vanChuyen], [idKH], [maVanDon], [donViVanChuyen], [tinhTrangDonHang], [ngayTao], [ngayHuy], [nguoiDuyet]) VALUES (N'DH7', 2, N'KH2', N'ma7', 'vnpost' ,3, CAST(N'2023-10-01T00:00:00.000' AS DateTime), NULL, N'Admin1')
 
 
-INSERT [dbo].[GioHang] ([idKH], [idSP]) VALUES (N'KH1', 2)
-INSERT [dbo].[GioHang] ([idKH], [idSP]) VALUES (N'KH1', 3)
-INSERT [dbo].[GioHang] ([idKH], [idSP]) VALUES (N'KH2', 5)
-INSERT [dbo].[GioHang] ([idKH], [idSP]) VALUES (N'KH2', 4)
-INSERT [dbo].[GioHang] ([idKH], [idSP]) VALUES (N'KH3', 3)
+INSERT [dbo].[GioHang] ([idKH], [idSP], soLuong) VALUES (N'KH1', 2, 1)
+INSERT [dbo].[GioHang] ([idKH], [idSP], soLuong) VALUES (N'KH1', 3, 2)
+INSERT [dbo].[GioHang] ([idKH], [idSP], soLuong) VALUES (N'KH2', 5, 3)
+INSERT [dbo].[GioHang] ([idKH], [idSP], soLuong) VALUES (N'KH2', 4, 3)
+INSERT [dbo].[GioHang] ([idKH], [idSP], soLuong) VALUES (N'KH3', 3, 5)
 
 INSERT [dbo].[ThongtinDonHang] ([idDH], [idSP], [gia], [soLuong]) VALUES ('DH1', 2, 1, 1)
 INSERT [dbo].[ThongtinDonHang] ([idDH], [idSP], [gia], [soLuong]) VALUES ('DH2', 2, 1, 1)
