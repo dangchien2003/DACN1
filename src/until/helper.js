@@ -1,41 +1,24 @@
-const sql = require("mssql/msnodesqlv8");
-const {
-    promises
-} = require("msnodesqlv8");
-const fs = require("fs");
+const sql = require("mssql");
 
+const dbConfig = require('../../config/config.json');
+//Hàm hết nối sql server 
 
-function getConfig() {
-    return new Promise((resolve, reject) => {
-        fs.readFile('./config/config.json', 'utf8', (err, data) => {
-
-            if (err) {
-                return reject(err);
-            } else {
-                const config = JSON.parse(data);
-                resolve(config);
-            }
-        })
-    })
-}
-
-
+// Hàm thực hiện truy vấn SQL
 async function query(stringQuery) {
     try {
-       const config = await getConfig();
-        await sql.connect(config);
+        await sql.connect(dbConfig);
+        console.log("Kết nối thành công!")
         const request = new sql.Request();
         const result = await request.query(stringQuery);
         return result;
     } catch (error) {
-        return undefined;
+        console.error("Lỗi truy vấn SQL:", error);
+        throw error; // Nếu bạn muốn xử lý lỗi ở lớp gọi, bạn có thể bắt lỗi ở đây và xử lý nó sau đó.
     } finally {
         sql.close();
     }
-
-
-};
+}
 
 module.exports = {
     query
-}
+};

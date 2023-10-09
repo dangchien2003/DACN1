@@ -1,0 +1,143 @@
+<div class="right_col" role="main">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Quản lý tài khoản</h3>
+    </div>
+  </div>
+  <div class="admin my-2 col-md-12">
+    <h4>Tài khoản admin</h4>
+    <div class="mt-3 mb-2 col-md-12">
+      <button type="button" class="add-product btn rounded-pill btn-primary btn-sm mr-2" data-toggle="tooltip"
+        data-placement="bottom" title="Thêm mới sản phẩm">
+        <i class="fa-regular fa-circle-plus"></i>
+        <span>Thêm mới</span>
+      </button>
+    </div>
+    <table class="admins table table-hover table-bordered table-responsive">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Họ</th>
+          <th>Tên</th>
+          <th>SĐT</th>
+          <th>Email</th>
+          <th>Ngày Sinh</th>
+          <th>Giới Tính</th>
+          <th>Địa chỉ</th>
+          <th>Trạng thái</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each admins}}
+        <tr>
+          <td>{{idAdmin}}</td>
+          <td>{{idTK}}</td>
+          <td>{{ho}}</td>
+          <td>{{ten}}</td>
+          <td>{{sdt}}</td>
+          <td>{{email}}</td>
+          <td>{{ ngaySinh}}</td>
+          {{#if gioiTinh }}
+          <td>Nam</td>
+          {{else}}
+          <td>Nữ</td>
+          {{/if }}
+          <td>{{diaChi}}</td>
+          {{#if khoa }}
+          <td><span class="badge rounded-pill text-bg-danger">Bị khóa</span></td>
+          {{else}}
+          <td><span class="badge rounded-pill text-bg-success">Hoạt động</span></td>
+          {{/if}}
+          <td>
+            <div class="actions">  
+              {{#if khoa }}
+                <button link="/admin/accounts/band/{{idTK}}" status="{{ khoa }}" type="button"
+                class="btn btn-icon btn-primary btn-sm btn-fab band-item" data-toggle="tooltip"
+                data-placement="bottom" title="Mở khóa"><i class="fa-light fa-user-unlock"></i></button>
+                {{else }}
+                <button link="/admin/accounts/band/{{idTK}}" status="{{ khoa }}" type="button"
+                class="btn btn-icon btn-primary btn-sm btn-fab band-item" data-toggle="tooltip"
+                data-placement="bottom" title="Khóa tài khoản"><i class="fa-light fa-user-xmark"></i></button>            
+                {{/if}}
+              <button link="/admin/accounts/delete/admin/{{ idAdmin }}" type="button"
+                class="btn btn-icon btn-secondary btn-sm btn-fab delete-item" data-toggle="tooltip"
+                data-placement="bottom" title="Xóa Admin"><i class="fa-regular fa-trash-xmark"></i></button>                
+            </div>
+          </td>
+        </tr>
+        {{/each }}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="admin my-3 col-md-12">
+    <h4>Tài khoản khách hàng</h3>
+    <div class="mt-4">
+       <table class="customers table table-hover table-bordered table-responsive">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Họ</th>
+          <th>Tên</th>
+          <th>Tài khoản</th>
+          <th>SĐT</th>
+          <th>Email</th>
+          <th>Ngày Sinh</th>
+          <th>Giới Tính</th>
+          <th>Địa chỉ</th>
+          <th>Trạng thái</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each customers}}
+        <tr>
+          <td>{{idTK}}</td>
+          <td>{{idTK}}</td>
+          <td>{{ho}}</td>
+          <td>{{ten}}</td>
+          <td>{{taiKhoan}}</td>
+          <td>{{sdt}}</td>
+          <td>{{email}}</td>
+          {{#if ngaySinh}}
+          <td>{{ format ngaySinh 'dd/MM/yyyy' }}</td>
+          {{else}}
+            <td>{{  ngaySinh }}</td>
+            {{/if}}
+          {{#if gioiTinh }}
+          <td>Nam</td>
+          {{else}}
+          <td>Nữ</td>
+          {{/if }}
+          <td>{{diaChi}}</td>
+          {{#if khoa }}
+          <td><span class="badge rounded-pill text-bg-danger">Bị khóa</span></td>
+          {{else}}
+          <td><span class="badge rounded-pill text-bg-success">Hoạt động</span></td>
+          {{/if}}
+          <td>
+            <div class="actions">              
+              <button link="/admin/accounts/delete/customer/{{idKH}}" type="button"
+                class="btn btn-icon btn-secondary btn-sm btn-fab delete-item" data-toggle="tooltip"
+                data-placement="bottom" title="Xóa Khách hàng"><i class="fa-regular fa-trash-xmark"></i></button>
+               {{#if khoa }}
+                <button link="/admin/accounts/band/{{idTK}}" type="button" status ="{{ khoa }}"
+                class="btn btn-icon btn-primary btn-sm btn-fab band-item" data-toggle="tooltip"
+                data-placement="bottom" title="Mở khóa"><i class="fa-light fa-user-unlock"></i></button>
+                {{else }}
+                <button link="/admin/accounts/band/{{idTK}}" type="button" status ="{{ khoa }}"
+                class="btn btn-icon btn-primary btn-sm btn-fab band-item" data-toggle="tooltip"
+                data-placement="bottom" title="Khóa tài khoản"><i class="fa-light fa-user-xmark"></i></button>            
+                {{/if}}
+            </div>
+          </td>
+        </tr>
+        {{/each }}
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
