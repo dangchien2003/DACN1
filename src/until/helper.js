@@ -1,6 +1,6 @@
 const sql = require("mssql");
 
-const dbConfig = require('../../config/config.json');
+const dbConfig = require('../../config/configdb.json');
 //Hàm hết nối sql server 
 
 // Hàm thực hiện truy vấn SQL
