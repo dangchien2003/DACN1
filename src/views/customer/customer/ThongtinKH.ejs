@@ -9,11 +9,11 @@
             <!-- Text input-->
 
             <div class="form-group">
-                <label class="col-md-4 control-label">Tên đăng nhập</label>
+                <label class="col-md-4 control-label">ID khách hàng</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="idkh" class="form-control" type="text" value="KH1">
+                        <input name="idkh" class="form-control" type="text" value="<%= info.idKH %>">
                     </div>
                 </div>
             </div>
@@ -23,59 +23,80 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="first_name" class="form-control" type="text">
+                        <input name="ho" class="form-control" type="text" value="<%= info.ho %>">
                     </div>
                 </div>
             </div>
-
-
-            <!-- Text input-->
 
             <div class="form-group">
                 <label class="col-md-4 control-label">Tên</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="last_name" placeholder="Last Name" class="form-control" type="text">
+                        <input name="ten" class="form-control" type="text" value="<%= info.ten %>">
                     </div>
                 </div>
             </div>
 
+
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Biệt danh</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="bietDanh" class="form-control" type="text" value="<%= info.bietDanh %>">
+                    </div>
+                </div>
+            </div>
+
+
             <!-- Text input-->
+
+
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Địa chỉ</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="diaChi" class="form-control" type="text" value="<%= info.diaChi %>">
+                    </div>
+                </div>
+            </div>
             <div class="form-group">
                 <label class="col-md-4 control-label">E-Mail</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input name="email" placeholder="E-Mail Address" class="form-control" type="text">
+                        <input name="email" class="form-control" type="email" value="<%= info.email %>">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Ngày sinh</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input name="ngaysinh" class="form-control" type="date" value="<%= info.ngaySinh %>">
                     </div>
                 </div>
             </div>
 
-
             <!-- Text input-->
 
             <div class="form-group">
-                <label class="col-md-4 control-label">SDT #</label>
+                <label class="col-md-4 control-label">SDT</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                        <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
+                        <input name="phone" class="form-control" type="text" value="<%= info.sdt %>">
                     </div>
                 </div>
             </div>
 
-            <!-- Text input-->
-
-            <div class="form-group">
-                <label class="col-md-4 control-label">Địa Chỉ</label>
-                <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input name="address" placeholder="Address" class="form-control" type="text">
-                    </div>
-                </div>
-            </div>
 
 
             <!-- radio checks -->
@@ -84,28 +105,20 @@
                 <div class="col-md-4">
                     <div class="radio">
                         <label>
-                            <input type="radio" name="hosting" value="Nam" /> Nam
+                            <% if(info.gioiTinh){ %>
+                                <input type="radio" name="hosting" value="Nam" checked /> Nam
+                                <input type="radio" name="hosting" value="Nữ" /> Nữ
+                                <% }else{ %>
+                                    <input type="radio" name="hosting" value="Nam" /> Nam
+                                    <input type="radio" name="hosting" value="Nữ" checked /> Nữ
+                                    <% } %>
                         </label>
                     </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="hosting" value="Nữ" /> Nữ
-                        </label>
-                    </div>
+
                 </div>
             </div>
 
             <!-- Text area -->
-
-            <div class="form-group">
-                <label class="col-md-4 control-label">Project Description</label>
-                <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                        <textarea class="form-control" name="comment" placeholder="Project Description"></textarea>
-                    </div>
-                </div>
-            </div>
 
             <!-- Success message -->
             <div class="alert alert-success" role="alert" id="success_message" style="display: none">Success <i

@@ -1,15 +1,41 @@
 const helpers = require('../../../until/helper');
 
 async function Hienthithongtinkhachhang(req, res) {
+    var idkh = null;
+    var idtk = null;
+    try {
+        idkh = req.cookies.kh;
+        idtk = req.cookies.un;
+    }catch {
+        res.redirect('/login');
+        return;
+    }
 
-    const idkh = req.query.idkh; // sau này idkh ấy từ cookie chứ k truyền bằng url
-    const idtk = req.query.idtk; //username
-    const sql = `select bietDanh, ten, ho, diaChi, email, ngaySinh, gioiTinh, sdt from ThongTinKhachHang Where idKH = '${idkh}' `;
-    var kq = await helpers.query(sql);
-    res.render('customer/customer/root.ejs', {title: "Thông tin"})
-    // res.json({
-    //     info: kq.recordset
-    // })
+    try {
+        const sql = `select idKH, bietDanh, ten, ho, diaChi, email, ngaySinh, gioiTinh, sdt from ThongTinKhachHang Where idKH = '${idkh}' `;
+        var info = await helpers.query(sql);
+        info = info.recordset.map(row =>  {
+            if(row.ngaySinh) {
+                return ({
+                    ...row,
+                    ngaySinh: row.ngaySinh.toISOString().slice(0,10)
+                } )
+            }else {
+                return row
+            }
+            
+        })
+        
+        console.log(info);
+        res.render('customer/customer/root.ejs', {
+            title: "Thông tin",
+            info: info[0]
+        })
+    }catch(e) {
+        console.log(e);
+        res.render('customer/err/err', helpers.err(500)); 
+    }
+    
 }
 
 
