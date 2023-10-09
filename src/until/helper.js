@@ -2,8 +2,11 @@ const sql = require("mssql/msnodesqlv8");
 const {
     promises
 } = require("msnodesqlv8");
+
 const fs = require("fs");
 
+
+// không dùng đến nữa
 function getConfig() {
     return new Promise((resolve, reject) => {
         fs.readFile('./config/configdb.json', 'utf8', (err, data) => {
@@ -16,7 +19,6 @@ function getConfig() {
         })
     })
 }
-const sql = require("mssql");
 
 const dbConfig = require('../../config/configdb.json');
 //Hàm hết nối sql server 
@@ -24,18 +26,13 @@ const dbConfig = require('../../config/configdb.json');
 // Hàm thực hiện truy vấn SQL
 async function query(stringQuery) {
     try {
-        const config = await getConfig();
-        await sql.connect(config);
         await sql.connect(dbConfig);
-        console.log("Kết nối thành công!")
         const request = new sql.Request();
         const result = await request.query(stringQuery);
         return result;
     } catch (error) {
-        console.log(error);
-        return undefined;
         console.error("Lỗi truy vấn SQL:", error);
-        throw error; // Nếu bạn muốn xử lý lỗi ở lớp gọi, bạn có thể bắt lỗi ở đây và xử lý nó sau đó.
+        throw error; // Nếu bạn muốn xử lý lỗi ở lớp gọi, bạn có thể bắt lỗi ở đây và xử lý nó sau đó. //OK
     } finally {
         sql.close();
     }
@@ -61,10 +58,16 @@ async function getOrder(idkh) {
 };
 
 function formatDate(date, format) {
-    var value = date.split('-');
-    if(format == 'dd/mm/yyy')
-        var newValue = `${value[1]}/${value[2]}/${value[0]}`;
-    return newValue
+    try {
+        var value = date.split('-');
+        if(format == 'dd/mm/yyy')
+            var newValue = `${value[1]}/${value[2]}/${value[0]}`;
+        return newValue
+    }catch(err) {
+        console.log(err);
+        throw err;
+    }
+    
 }
 
 function err(status) {
@@ -107,5 +110,3 @@ module.exports = {
     getOrder,
     formatDate
 }
-    query
-};

@@ -25,7 +25,6 @@ routersCustomer(app);
 
 const route = require('./routes');
 const {format, addHours} = require('date-fns');
-const bodyParser = require('body-parser')
 const multer = require('multer');
 
 //Cấu hình nơi lưu trữ tải file lên
