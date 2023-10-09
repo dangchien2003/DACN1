@@ -16,3 +16,9 @@
 .trash-product {
     font-size: 300px;
 }
+
+
+.product-item > img {
+    height: 260px;
+    width: 100%;
+}

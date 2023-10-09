@@ -21,9 +21,8 @@ app.use(cookieParser());
 const routersCustomer = require("./controller/customer/apiCustomer");
 
 routersCustomer(app);
-
-
-const route = require('./routes');
+// const route = require('./routes');
+const routeAdmin = require('./routes');
 const {format, addHours} = require('date-fns');
 const multer = require('multer');
 
@@ -42,14 +41,14 @@ const upload = multer({storage:storage});
 app.use(upload.single('anh'));
 
 //Cấu hình body request
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  }),
-);
+// app.use(bodyParser.json());
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: true,
+//   }),
+// );
 //Cấu hình file tĩnh
-app.use(express.static('./public'));
+// app.use(express.static('./public'));
 
 //Cấu hình handlebars template engine
 app.engine('hbs', exphbs.engine({extname: '.hbs', defaultLayout: 'main', helpers: {
@@ -66,7 +65,11 @@ app.set('views', [path.join(__dirname, 'views/admin'), path.join(__dirname, 'vie
 
 
 // Route init
-route(app);
+// route(app);
+routeAdmin(app);
+
+
+
 
 app.listen(3000, () => {
   console.log(`127.0.0.1:3000`);

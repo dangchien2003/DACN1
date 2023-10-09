@@ -4,7 +4,8 @@ const routerOrder = require("./order/api");
 const routerLogin = require("./login/api");
 const routerInfoCustomer = require("./Customer/api");
 const routerCart = require("./cart/api");
-
+const multer = require("multer");
+const upload = multer();
 function routersCustomer(app) {
     app.use("/sale", routerProduct);
     app.use("/contact", routerContact);
