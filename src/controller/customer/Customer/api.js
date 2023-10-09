@@ -10,7 +10,7 @@ const {
 router.get('/', Hienthithongtinkhachhang);
 
 //  infocustomer/suathongtin
-router.put('/suathongtin', suaThongTin);
+router.post('/suathongtin', suaThongTin);
 
 
 module.exports = router;

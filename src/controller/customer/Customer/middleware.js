@@ -6,9 +6,10 @@ async function Hienthithongtinkhachhang(req, res) {
     const idtk = req.query.idtk; //username
     const sql = `select bietDanh, ten, ho, diaChi, email, ngaySinh, gioiTinh, sdt from ThongTinKhachHang Where idKH = '${idkh}' `;
     var kq = await helpers.query(sql);
-    res.json({
-        info: kq.recordset
-    })
+    res.render('customer/customer/root.ejs', {title: "Thông tin"})
+    // res.json({
+    //     info: kq.recordset
+    // })
 }
 
 
