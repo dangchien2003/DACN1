@@ -1,0 +1,12 @@
+{
+    "database": "DACN1_QLBH",
+    "server": "WINDOWS-11\\SQLEXPRESS",
+    "driver": "msnodesqlv8",
+   "user" : "qlbh",
+    "password": "a",
+    "options": {
+        "trustedConnection": true,
+        "trustServerCertificate":true
+    }
+}
+

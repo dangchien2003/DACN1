@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
+    <title>SHOP ĐT | </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="css/style.css">
+<!-- Latest compiled and minified CSS -->
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<!-- jQuery library -->
+<!--===============================================================================================-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<!--===============================================================================================-->
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+<!--===============================================================================================-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script type="text/javascript">
+    //Phân Trang Cho Table
+    function Pager(tableName, itemsPerPage) {
+        this.tableName = tableName;
+        this.itemsPerPage = itemsPerPage;
+        this.currentPage = 1;
+        this.pages = 0;
+        this.inited = false;
+
+        this.showRecords = function (from, to) {
+            var rows = document.getElementById(tableName).rows;
+            for (var i = 1; i < rows.length; i++) {
+                if (i < from || i > to)
+                    rows[i].style.display = 'none';
+                else
+                    rows[i].style.display = '';
+            }
+        }
+
+        this.showPage = function (pageNumber) {
+            if (!this.inited) {
+                alert("not inited");
+                return;
+            }
+            var oldPageAnchor = document.getElementById('pg' + this.currentPage);
+            oldPageAnchor.className = 'pg-normal';
+
+            this.currentPage = pageNumber;
+            var newPageAnchor = document.getElementById('pg' + this.currentPage);
+            newPageAnchor.className = 'pg-selected';
+
+            var from = (pageNumber - 1) * itemsPerPage + 1;
+            var to = from + itemsPerPage - 1;
+            this.showRecords(from, to);
+        }
+
+        this.prev = function () {
+            if (this.currentPage > 1)
+                this.showPage(this.currentPage - 1);
+        }
+
+        this.next = function () {
+            if (this.currentPage < this.pages) {
+                this.showPage(this.currentPage + 1);
+            }
+        }
+
+        this.init = function () {
+            var rows = document.getElementById(tableName).rows;
+            var records = (rows.length - 1);
+            this.pages = Math.ceil(records / itemsPerPage);
+            this.inited = true;
+        }
+        this.showPageNav = function (pagerName, positionId) {
+            if (!this.inited) {
+                alert("not inited");
+                return;
+            }
+            var element = document.getElementById(positionId);
+
+            var pagerHtml = '<span onclick="' + pagerName +
+                '.prev();" class="pg-normal">&#171</span> | ';
+            for (var page = 1; page <= this.pages; page++)
+                pagerHtml += '<span id="pg' + page + '" class="pg-normal" onclick="' + pagerName +
+                    '.showPage(' + page + ');">' + page + '</span> | ';
+            pagerHtml += '<span onclick="' + pagerName + '.next();" class="pg-normal">&#187;</span>';
+
+            element.innerHTML = pagerHtml;
+        }
+    }
+</script>
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+
+    <!-- Custom styling plus plugins -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    
+    
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>SHOP ĐT</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="images/user.png" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+             
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                
+                <ul class="nav side-menu">
+                  <li><a href="file:///D:/DANC/DACN1/template/admin/templatead/production/trangchuad.html"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                    
+                  </li>
+                  <li><a href="file:///D:/DANC/DACN1/template/admin/templatead/production/formQLTK.html"><i class="fa fa-edit"></i> Quản lý tài khoản <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      
+                    </ul>
+                  </li>
+                  <li><a href="file:///D:/DANC/DACN1/template/admin/templatead/production/formQLSP.html"><i class="fa fa-desktop"></i> Quản lý sản phẩm <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      
+                    </ul>
+                  </li>
+                  <li><a href="file:///D:/DANC/DACN1/template/admin/templatead/production/formQLDH.html"><i class="fa fa-table"></i> Quản lý đơn hàng <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      
+                    </ul>
+                  </li>
+                  <li><a href="file:///D:/DANC/DACN1/template/admin/templatead/production/THONGKE.html"><i class="fa fa-bar-chart-o"></i> Thống kê <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                     
+                    </ul>
+                  </li>
+                  
+                </ul>
+              </div>
+              <div class="menu_section">
+              
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <div class="nav toggle">
+                  <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                </div>
+                <nav class="nav navbar-nav">
+                <ul class=" navbar-right">
+                  <li class="nav-item dropdown open" style="padding-left: 15px;">
+                    <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                      <img src="images/user.png" alt="">
+                    </a>
+                    <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item"  href="javascript:;"> Profile</a>
+                        <a class="dropdown-item"  href="javascript:;">
+                         
+                        </a>
+                
+                      <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a>
+                    </div>
+                  </li>
+  
+                  
+                      
+                     
+                </ul>
+              </nav>
+            </div>
+          </div>
+        <!-- /top navigation -->
+
+       <!-- page content -->
+       <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>  Quản lý tài khoản</h3>
+                </div>
+
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Go!</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Quản lý tài khoản</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <form class="" action="" method="post" novalidate>
+                              
+                            </form>
+                            <nav class="navbar navbar-default navbar-fixed-top">
+                              <div class="container-fluid">
+                                  <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                          <i class="fas fa-bars"></i>
+                                      </button>
+                                  </div>
+                              </div>
+                          </nav>
+                          <div class="container-fluid al">
+                             
+                              <b>CHỨC NĂNG CHÍNH:</b><Br>
+                              <button>
+                                <a href="file:///D:/DANC/DACN1/template/admin/templatead/dacn/doc/Kho%C3%A1TK.html">Khoá tài khoản</a>
+                              </button>
+                              <button>
+                                <a href="file:///D:/DANC/DACN1/template/admin/templatead/dacn/doc/M%E1%BB%9FTK.html">Mở tài khoản</a>
+                              </button>
+                              <button><a href="file:///D:/DANC/DACN1/template/admin/templatead/dacn/doc/T%E1%BA%A1o%20TK.html">Tạo tài khoản</a></button>
+                              <div class="table-title">
+                                  <div class="row">
+                      
+                                  </div>
+                      
+                              </div>
+                              <table class="table table-bordered" id="myTable">
+                                  <thead>
+                                      <tr class="ex">
+                                          <th width="auto">ID Tài Khoản</th>
+                                          <th width="auto">Tài Khoản</th>
+                                          <th with ="auuto">Mật Khẩu</th>
+                                          <th>Cấp Bậc</th>
+                                          <th>Khóa</th>
+                                          <th>Ngày Tạo</th>
+                                          <th>Ngày Khóa</th>
+                                          <th>Người Khóa</th>
+                                         
+                                      </tr>
+                                  </thead>
+                              </table>
+                              <div id="pageNavPosition" class="text-right"></div>
+                              
+
+                          <hr class="hr1">
+                          <div class="container-fluid end">
+                              <div class="row text-center">
+                                  <div class="col-lg-12 link">
+                                      <i class="fab fa-facebook-f"></i>
+                                      <i class="fab fa-instagram"></i>
+                                      <i class="fab fa-youtube"></i>
+                                      <i class="fab fa-google"></i>
+                                  </div>
+                              </div>
+                          </div>
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+
+
+
+        <!-- footer content -->
+        <footer>
+          
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+   <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+    <script src="../vendors/google-code-prettify/src/prettify.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+  </body>
+</html>

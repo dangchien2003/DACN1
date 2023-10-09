@@ -1,0 +1,57 @@
+<div class="modal modal-top fade" data-bs-backdrop="static" id="addProduct" tabindex="-1" aria-modal="true"
+  role="dialog">
+  <div class="modal-dialog">
+    <form class="modal-content" action="/admin/products/add"  enctype="multipart/form-data" method="POST">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalTopTitle">Thêm mới sản phẩm</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="card mx-2 my-2">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="anh">Ảnh:</label>
+            <input type="file" class="form-control-file" id="anh" name="anh" accept="image/*" required/>
+          </div>
+          <div class="form-group">
+            <img id="previewImage" src="#" alt="Ảnh xem trước"
+              style="display: none; max-width: 200px; max-height: 200px;" />
+          </div>
+          <div class="form-group">
+            <label for="ten">Tên:</label>
+            <input type="text" class="form-control" id="ten" name="ten" placeholder="Tên sản phẩm" required />
+          </div>
+          <div class="form-group">
+            <label for="gia">Giá:</label>
+            <input type="number" class="form-control" id="gia" name="gia" placeholder="Giá sản phẩm" required/>
+          </div>
+          <div class="form-group">
+            <label for="hang">Hãng:</label>
+            <input type="text" class="form-control" id="hang" name="hang" placeholder="Hãng sản phẩm" />
+          </div>
+          <div class="form-group">
+            <label for="loaiSanPham">Loại Sản phẩm:</label>
+            <input type="text" class="form-control" id="loaiSanPham" name="loaiSanPham" placeholder="Loại sản phẩm" />
+          </div>
+          <div class="form-group">
+            <label for="mauSac">Màu sắc:</label>
+            <input type="text" class="form-control" id="mauSac" name="mauSac" placeholder="Màu sắc" />
+          </div>
+          <div class="form-group">
+            <label for="soluong">Số lượng:</label>
+            <input type="number" class="form-control" id="soluong" name="soluong" placeholder="Số lượng" required/>
+          </div>
+          <div class="form-group">
+            <label for="moTa">Mô tả:</label>
+            <textarea class="form-control" id="moTa" name="moTa" placeholder="Mô tả sản phẩm"></textarea>
+          </div>
+        </div>
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary waves-effect" data-bs-dismiss="modal">
+            Đóng
+          </button>
+          <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+    </form>
+  </div>
+</div>
