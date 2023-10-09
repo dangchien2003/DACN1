@@ -23,17 +23,16 @@ async function getOrder(req, res) {
             res.redirect("/login");
             return;
         }
-        const sql = `select DISTINCT 
-        DonHang.id, maVanDon, DonHang.donViVanChuyen, 
-        TinhTrangDonHang, TinhTrangDonHang.tinhTrang, ngayTao, soLuongMatHang as soLuong
-        from DonHang 
-        left join ThongTinDonHang on DonHang.id = ThongTinDonHang.idDH
-        left join TinhTrangDonHang 
-        on DonHang.tinhTrangDonHang = TinhTrangDonHang.id
-         where DonHang.idKH = '${kh}';`;
-        const order = await helper.query(sql);
+        var order = await helper.getOrder(kh);
+
+        order = order.recordset.map(row => ({
+            ...row,
+            ngayTao: helper.formatDate(row.ngayTao.toISOString().slice(0, 10),"dd/mm/yyy") +" "+row.ngayTao.toISOString().slice(11, 19)
+        }));
+        console.log(order);
+
         res.render('customer/order/root.ejs', {
-            order: order.recordset,
+            order,
             title: "Đơn hàng"})
     } catch (err) {
         res.render('customer/err/err.ejs', helper.err(500));

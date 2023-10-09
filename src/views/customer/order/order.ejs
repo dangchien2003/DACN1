@@ -5,7 +5,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>check</th>
+                <th>Status</th>
                 <th>Id đơn hàng</th>
                 <th>Ngày đặt hàng</th>
                 <th>Trạng thái</th>
@@ -17,14 +17,37 @@
             </tr>
         </thead>
         <tbody>
-            <% for(var i=0; i < order.length; i++) { if(order[i].TinhTrangDonHang==4) {%>
-                <tr style="background-color: aquamarine;">
-                    <% } else {%>
-                <tr>
-                    <% } %>
-                        <th scope="row"><input type="checkbox" name="check" id=""></th>
+            <% for(var i=0; i < order.length; i++) { 
+                if(order[i].statusDH==1) {%>
+                    <tr >
+                        <td scope="row">
+                            <div class="status" style="background-color: rgb(254, 245, 76);"></div>
+                        </td>
+                <% } else if (order[i].statusDH==2) { %>
+                    <tr >
+                        <td scope="row">
+                            <div class="status" style="background-color: rgb(93, 229, 211);"></div>
+                        </td>
+                <% } else if (order[i].statusDH==3) { %>
+                    <tr >
+                        <td scope="row">
+                            <div class="status " style="background-color: rgb(96, 180, 248);"></div>
+                        </td>
+                <% } else if (order[i].statusDH==4) { %>
+                    <tr >
+                        <td scope="row">
+                            <div class="status" style="background-color: rgb(96, 248, 132);"></div>
+                        </td>
+                <% } else{ %>
+                    <tr >
+                        <td scope="row">
+                            <div class="status" style="background-color: rgb(250, 114, 102);"></div>
+                        </td>
+                <% } %>
+                        
+                        
                         <td>
-                            <%= order[i].id %>
+                            <%= order[i].idDH %>
                         </td>
                         <td>
                             <%= order[i].ngayTao %>
@@ -35,7 +58,7 @@
                         <td>
                             <%= order[i].soLuong %>
                         </td>
-                        <td>20000vnd</td>
+                        <td><%= order[i].gia %> vnd</td>
                         <td>
                             <%= order[i].maVanDon %>
                         </td>
@@ -43,12 +66,12 @@
                             <%= order[i].donViVanChuyen %>
                         </td>
                         <td>
-                            <% if(order[i].TinhTrangDonHang !=4) {%>
+                            <% if(order[i].statusDH ==1) {%>
                                 <i class="fa-solid fa-trash trash" id="cancel_order"></i>
-                                <% } %>
-                        </td>
-                </tr>
-                <% } %>
+                            <% } %>
+                        </td>    
+                    </tr>
+            <% } %>
         </tbody>
     </table>
 </div>

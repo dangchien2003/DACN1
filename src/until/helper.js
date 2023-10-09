@@ -36,6 +36,31 @@ async function query(stringQuery) {
 };
 
 
+async function getOrder(idkh) {
+    try {
+        const config = await getConfig();
+        await sql.connect(config);
+        const request = new sql.Request();
+        request.input('idkh',idkh);
+        const result = await request.execute('getOrder');
+        return result;
+    } catch (error) {
+        console.log(error);
+        return undefined;
+    } finally {
+        sql.close();
+    }
+
+
+};
+
+function formatDate(date, format) {
+    var value = date.split('-');
+    if(format == 'dd/mm/yyy')
+        var newValue = `${value[1]}/${value[2]}/${value[0]}`;
+    return newValue
+}
+
 function err(status) {
     try {
         var result;
@@ -72,5 +97,7 @@ function err(status) {
 
 module.exports = {
     query,
-    err
+    err,
+    getOrder,
+    formatDate
 }
