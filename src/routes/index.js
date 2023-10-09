@@ -1,8 +1,4 @@
 /** @format */
-
-const {
-    VarChar
-} = require("msnodesqlv8");
 const productRouter = require("./products");
 const siteRouter = require("./sites");
 const accountRouter = require("./accounts");
