@@ -57,7 +57,10 @@ CREATE TABLE [DonHang] (
   [tinhTrangDonHang] int,
   [ngayTao] datetime NOT NULL,
   [ngayHuy] datetime,
-  [nguoiDuyet] varchar(30)
+  [nguoiDuyet] varchar(30),
+  soLuong int,
+  diaChi nvarchar(100),
+  sdt varchar(10)
 )
 GO
 
@@ -74,7 +77,7 @@ CREATE TABLE [HinhThucVanChuyen] (
 GO
 
 CREATE TABLE [ThongTinDonHang] (
-  [idDH] varchar(20) NOT NULL,
+  [idDH] varchar(20) NSOT NULL,
   [idSP] int NOT NULL,
   [gia] bigint NOT NULL,
   [soLuong] int NOT NULL
@@ -110,7 +113,7 @@ GO
 ALTER TABLE [GioHang] ADD FOREIGN KEY ([idSP]) REFERENCES [SanPham] ([idSP])
 GO
 
-ALTER TABLE [DonHang] ADD FOREIGN KEY ([vanChuyen]) REFERENCES [HinhThucVanChuyen] ([id])
+ALTER TABLE [DonHang] ADD FOREIGN KEY ([thanhToan]) REFERENCES [HinhThucThanhToan] ([id])
 GO
 
 ALTER TABLE [DanhGia] ADD FOREIGN KEY ([idSP]) REFERENCES [SanPham] ([idSP])

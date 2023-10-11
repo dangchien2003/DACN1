@@ -123,9 +123,48 @@ async function updateCart(req, res) {
     }
 }
 
+async function showCheckout(req, res) {
+    
+    res.render("customer/pay/root", {
+        title: "Thanh toán"
+    })
+}
+
+async function CheckoutCart(req, res) {
+    try {
+        const kh = req.cookies.kh;
+    const tk = req.cookies.un;
+    var thanhToan = req.body.phuongthucthanhtoan;
+    console.log(thanhToan);
+    var idDH = `DH${Date.now()}_${Math.floor(Math.random() * 90 +10).toString()}`;
+    var input = [
+        {
+            key: 'idKH',
+            value: kh
+        },
+        {
+            key: 'idDH',
+            value: idDH
+        },
+        {
+            key: 'thanhToan',
+            value: thanhToan
+        }
+    ]
+    var a = await helpers.procedureSQL(input,"ThanhToanDonHang")
+    res.json(a);
+    }catch(e) {
+        console.log(e);
+        res.json(e)
+    }
+    
+}
+
 
 module.exports = {
     showCart,
     addCart,
-    updateCart
+    updateCart,
+    CheckoutCart,
+    showCheckout
 }

@@ -23,7 +23,7 @@ function routersCustomer(app) {
         res.redirect('/sale');
     });
     app.get('/test', async (req, res) => {
-        res.render('customer/err/err' ,{background: "/customer/img/500.jpg"});
+        res.render('customer/pay/root' ,{title: "checkout"});
     });
 }
 

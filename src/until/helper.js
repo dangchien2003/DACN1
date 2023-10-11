@@ -46,13 +46,32 @@ async function getOrder(idkh) {
         return result;
     } catch (error) {
         console.log(error);
-        return undefined;
+        throw error;
     } finally {
         sql.close();
     }
 
 
 };
+
+
+async function procedureSQL (input, procedureName) {
+    try {
+        const config = await getConfig();
+        await sql.connect(config);
+        const request = new sql.Request();
+        input.forEach(element => {
+            request.input(element.key, element.value)
+        });
+        const result = await request.execute(procedureName);
+        return result;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    } finally {
+        sql.close();
+    }
+}
 
 function formatDate(date, format) {
     var value = date.split('-');
@@ -99,5 +118,6 @@ module.exports = {
     query,
     err,
     getOrder,
-    formatDate
+    formatDate,
+    procedureSQL
 }
