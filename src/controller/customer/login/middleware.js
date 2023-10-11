@@ -65,8 +65,8 @@ async function register(req, res) {
         var year = date.getFullYear();
         var ntn = `${year}-${month}-${day}`;
         var random = Math.floor(Math.random() * 90 +10).toString();
-        var idKH = `kh${date.now()}_${random}`;
-        var idTK = `tk${date.now()}_${random}`;
+        var idKH = `kh${Date.now()}_${random}`;
+        var idTK = `tk${Date.now()}_${random}`;
 
 
         //b4 check tồn tại của username nếu tồn tại trả về username đã tồn tại
@@ -80,7 +80,6 @@ async function register(req, res) {
             insert into ThongTinKhachHang (idKH, idTK, email) values('${idKH}', '${idTK}', '${email}')`;
             console.log(sql);
             var insert = await helpers.query(sql);
-            console.log(insert);
             try {
                 if(insert.rowsAffected[0] == 1 && insert.rowsAffected[1] == 1) {
                     
@@ -91,6 +90,7 @@ async function register(req, res) {
                 
                 }
             }catch(e) {
+                console.log(e);
                 res.render('customer/authen/register.ejs', {message: "Đăng ký thất bại"})
                 
             }
@@ -101,6 +101,7 @@ async function register(req, res) {
         // nếu thêm thành công thì thông báo tạo thành công và chuyển về trang đăng nhập
         // nếu không thì thông báo có lỗi trong quá trình tạo
     }catch(e) {
+        console.log(e);
         res.render('customer/err/err', helpers.err(404))
     }
     

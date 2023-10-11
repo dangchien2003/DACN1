@@ -125,37 +125,61 @@ async function updateCart(req, res) {
 
 async function showCheckout(req, res) {
     
+    const kh = req.cookies.kh;
+    var sql = `select ten, GioHang.soLuong, SanPham.gia, (SanPham.gia * GioHang.soLuong) as tong from GioHang 
+    join SanPham on SanPham.idSP = GioHang.idSP
+    where GioHang.idKH = '${kh}'`;
+    
+    var sanPham = await helpers.query(sql);
+    var phiShip = 30000;
+    var tongGia = phiShip;
+    sanPham.recordset.forEach(e =>  {
+        tongGia += e.tong;
+    })
     res.render("customer/pay/root", {
-        title: "Thanh toán"
+        title: "Thanh toán",
+        tongGia,
+        phiShip,
+        sanPham: sanPham.recordset,
     })
 }
 
 async function CheckoutCart(req, res) {
     try {
         const kh = req.cookies.kh;
-    const tk = req.cookies.un;
-    var thanhToan = req.body.phuongthucthanhtoan;
-    console.log(thanhToan);
-    var idDH = `DH${Date.now()}_${Math.floor(Math.random() * 90 +10).toString()}`;
-    var input = [
-        {
-            key: 'idKH',
-            value: kh
-        },
-        {
-            key: 'idDH',
-            value: idDH
-        },
-        {
-            key: 'thanhToan',
-            value: thanhToan
+        const tk = req.cookies.un;
+        var thanhToan = req.body.phuongthucthanhtoan;
+        console.log(thanhToan);
+        var idDH = `DH${Date.now()}_${Math.floor(Math.random() * 90 +10).toString()}`;
+        var input = [
+            {
+                key: 'idKH',
+                value: kh
+            },
+            {
+                key: 'idDH',
+                value: idDH
+            },
+            {
+                key: 'thanhToan',
+                value: thanhToan
+            }
+        ]
+        var result = await helpers.procedureSQL(input,"ThanhToanDonHang");
+        if(result.returnValue == 0) {
+            res.json({
+                error: true,
+                message: "Có lỗi xảy ra"
+            })
+        }else {
+            res.json({
+                error: false,
+                message: "Thanh toán thành công"
+            })
         }
-    ]
-    var a = await helpers.procedureSQL(input,"ThanhToanDonHang")
-    res.json(a);
     }catch(e) {
         console.log(e);
-        res.json(e)
+        res.render("/customer/err/err", helpers.err(500))
     }
     
 }

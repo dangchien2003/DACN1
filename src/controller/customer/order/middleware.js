@@ -29,7 +29,6 @@ async function getOrder(req, res) {
             ...row,
             ngayTao: helper.formatDate(row.ngayTao.toISOString().slice(0, 10),"dd/mm/yyy") +" "+row.ngayTao.toISOString().slice(11, 19)
         }));
-        console.log(order);
 
         res.render('customer/order/root.ejs', {
             order,
@@ -43,10 +42,8 @@ async function getOrder(req, res) {
 async function cancelOrder(req, res) {
     console.log("cancelOrder");
     try {
-        // var idDH = req.body.idDH;
-        // var idKH = req.cookies.user;
-        var idDH = "DH1";
-        var idKH = 'KH1';
+        var idDH = req.body.idDH;
+        var idKH = req.cookies.kh;
         if (!idKH) {
             res.json(" về trang đăng nhập");
             return;
@@ -59,7 +56,6 @@ async function cancelOrder(req, res) {
         var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + " " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
         const sql = `update [DonHang] set [ngayHuy] = '${time}', [tinhTrangDonHang] = 5 where idKH='${idKH}' and id = '${idDH}';`;
         const result = await helper.query(sql);
-        console.log(result);
         if (result.rowsAffected[0] == 0) {
             res.json("lỗi trong quá trình thực hiện")
             return;

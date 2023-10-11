@@ -20,3 +20,17 @@
 .checkout {
     padding: 20px 0;
 }
+
+
+form.card {
+    border: none;
+}
+
+.input-group-append .btn {
+    margin-left: 10px;
+
+}
+
+input.form-control {
+    border-radius: 10px;
+}
