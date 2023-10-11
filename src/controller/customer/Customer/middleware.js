@@ -46,6 +46,10 @@ async function suaThongTin(req, res) {
 
 }
 
+function customer(req, res) {
+    res.render('customer')
+}
+
 module.exports = {
     Hienthithongtinkhachhang,
     suaThongTin
