@@ -5,11 +5,13 @@ const {
     addCart,
     updateCart,
     showCheckout,
-    CheckoutCart
+    CheckoutCart,
+    deleteCart
 } = require('./middleware');
 
 
 router.get('/product', showCart)
+router.put('/delete', deleteCart)
 router.post('/add', addCart)
 router.post('/update', updateCart)
 router.get('/checkout', showCheckout)

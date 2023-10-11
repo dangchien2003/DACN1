@@ -1,3 +1,5 @@
+<div id="toast">
+</div>
 <div class="untree_co-section before-footer-section">
     <div class="container">
         <div class="row mb-5">
@@ -14,12 +16,23 @@
                                 <th class="product-remove">Xoá</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <% for(var i = 0; i < cart.length;i++) { %>
+                        
+                            <% if(cart.length == 0) { %>
+                                
+                                <tr>
+                                    <td style=""><div class="">Không có sản phẩm</div></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            <% } else { 
+                             for(var i = 0; i < cart.length;i++) { %>
                             <tr>
-                                <input type="text" name="idsp" value="<%= cart[i].idsp %>" style="display: none;">
-                                <input type="text" name="ten" value="<%= cart[i].ten %>" style="display: none;">
+                                
                                 <td class="product-thumbnail">
+                                    
                                     <!-- <img src="<%= cart[i].anh %>" alt="Image" class="img-fluid"> -->
                                     <img src="/customer/img/img-grid-2.jpg" alt="Image" class="img-fluid">
                                 </td>
@@ -44,10 +57,13 @@
 
                                 </td>
                                 <td><%= cart[i].tong %></td>
-                                <td><a href="#" class="btn btn-black btn-sm"><i class="fas fa-trash" class="trash-product"></i></a></td>
+                                <td>
+                                    <input type="text" name="idsp" value="<%= cart[i].idsp %>" style="display: none;" id="idsp">
+                                    <input type="text" name="ten" value="<%= cart[i].ten %>" style="display: none;">
+                                    <a href="#" class="btn btn-black btn-sm btn-delete"><i class="fas fa-trash" class="trash-product"></i></a></td>
                             </tr>
 
-                            <% } %>
+                            <% }} %>
                         </tbody>
                     </table>
                 </div>
@@ -90,15 +106,15 @@
                                 <span class="text-black">Tạm tính</span>
                             </div>
                             <div class="col-md-6 text-right">
-                                <strong class="text-black"><%= cartTotals %> VNĐ</strong>
+                                <strong class="text-black tongGia"><%= cartTotals %> VNĐ</strong>
                             </div>
                         </div>
                         <div class="row mb-5">
                             <div class="col-md-6">
-                                <span class="text-black">Tổng</span>
+                                <span class="text-black ">Tổng</span>
                             </div>
                             <div class="col-md-6 text-right">
-                                <strong class="text-black"><%= cartTotals %> VNĐ</strong>
+                                <strong class="text-black tongGia"><%= cartTotals %> VNĐ</strong>
                             </div>
                         </div>
 

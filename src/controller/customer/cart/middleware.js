@@ -184,11 +184,47 @@ async function CheckoutCart(req, res) {
     
 }
 
+async function deleteCart(req, res) {
+    console.log("deleteCart");
+    try {
+        const kh = req.cookies.kh;
+
+        var idsp = req.body.idsp;
+
+        const sql = `delete from GioHang where idsp = ${idsp} and idKH = '${kh}'; 
+        select sum(GioHang.soLuong*SanPham.gia) as tongGia from GioHang 
+        join SanPham on SanPham.idSP = Giohang.idSP
+        where GioHang.idKH = '${kh}'`;
+        var result = await helpers.query(sql);
+        console.log(result);
+        if(result.rowsAffected[0] == 1) {
+            res.json({
+                status: 1,
+                message: "Xoá thành công",
+                tongGia: result.recordset[0].tongGia
+            })
+        }else {
+            console.log("Xoá không thành công");
+            res.json({
+                status: 2,
+                message: "Xoá không thành công"
+            })
+        }
+    }catch(err) {
+        res.json({
+            status: 2,
+            message: "Lỗi server"
+        })
+    }
+    
+}
+
 
 module.exports = {
     showCart,
     addCart,
     updateCart,
     CheckoutCart,
-    showCheckout
+    showCheckout,
+    deleteCart
 }
