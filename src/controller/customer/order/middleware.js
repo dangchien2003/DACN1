@@ -43,6 +43,7 @@ async function cancelOrder(req, res) {
     console.log("cancelOrder");
     try {
         var idDH = req.body.idDH;
+        var idDH = 0;
         var idKH = req.cookies.kh;
         if (!idKH) {
             res.json(" về trang đăng nhập");
@@ -51,6 +52,7 @@ async function cancelOrder(req, res) {
 
         if (!idDH) {
             res.json("có lỗi xảy ra")
+            return;
         }
         var d = new Date();
         var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + " " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();

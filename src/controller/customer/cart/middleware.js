@@ -179,7 +179,7 @@ async function CheckoutCart(req, res) {
         }
     }catch(e) {
         console.log(e);
-        res.render("/customer/err/err", helpers.err(500))
+        res.render("customer/err/err", helpers.err(500))
     }
     
 }
