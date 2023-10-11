@@ -60,29 +60,20 @@ async function register(req, res) {
         
         //b5 render ra idtk và idkh
         var date = new Date();
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
-        var seconds = date.getSeconds();
         var day = date.getDate();
         var month = date.getMonth() + 1; // Lưu ý: Tháng trong JavaScript bắt đầu từ 0
         var year = date.getFullYear();
         var ntn = `${year}-${month}-${day}`;
-        var time = `${hours}:${minutes}:${seconds}_${day}-${month}-${year}`;
         var random = Math.floor(Math.random() * 90 +10).toString();
-        var idKH = `kh${time}`;
-        var idTK = `tk${time}`;
+        var idKH = `kh${date.now()}_${random}`;
+        var idTK = `tk${date.now()}_${random}`;
 
 
         //b4 check tồn tại của username nếu tồn tại trả về username đã tồn tại
         var sql = `SELECT count(*) as exits from TaiKhoan where taiKhoan = '${user}'`;
         var kq = await helpers.query(sql);
-        console.log(kq)
         if (kq.recordset[0].exits == 1) {
             res.render('customer/authen/register.ejs', {message: "Tài khoản đã tồn tại"})
-            // res.json( {
-                
-            //     message: "Tài khoản đã tồn tại"
-            // })
         }
         else {
             sql = `INSERT INTO TaiKhoan (idTK, taikhoan, matKhau, capBac, ngayTao ) values ('${idTK}', '${user}', '${password}', 1, '${ntn}');
