@@ -25,7 +25,6 @@ btnDeletes.forEach(element => {
                 return response.json(); // Đọc dữ liệu JSON từ phản hồi
             })
             .then(res => {
-                console.log(res);
                 if(res.status == 1) {
                     element.parentNode.parentNode.innerHTML = ""
                     toastSuccess(res.message);

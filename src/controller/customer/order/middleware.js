@@ -43,30 +43,34 @@ async function cancelOrder(req, res) {
     console.log("cancelOrder");
     try {
         var idDH = req.body.idDH;
-        var idDH = 0;
         var idKH = req.cookies.kh;
-        if (!idKH) {
-            res.json(" về trang đăng nhập");
+        if (!idKH || !idDH) {
+            res.json({
+                status: 2,
+                message: "Không tìm thấy thông tin"
+            });
             return;
         }
-
-        if (!idDH) {
-            res.json("có lỗi xảy ra")
-            return;
-        }
-        var d = new Date();
-        var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + " " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
-        const sql = `update [DonHang] set [ngayHuy] = '${time}', [tinhTrangDonHang] = 5 where idKH='${idKH}' and id = '${idDH}';`;
+        const sql = `update [DonHang] set [ngayHuy] = GETDATE(), [tinhTrangDonHang] = 5 where idKH='${idKH}' and id = '${idDH.trim()}';`;
         const result = await helper.query(sql);
         if (result.rowsAffected[0] == 0) {
-            res.json("lỗi trong quá trình thực hiện")
+            res.json({
+                status: 2,
+                message: "Huỷ không thành công"
+            })
             return;
         }
-        res.json("huỷ thành công");
+        res.json({
+            status: 1,
+            message: "Huỷ thành công"
+        })
     } catch (err) {
         console.log(err);
         console.log("order/middleware");
-        res.json("có lỗi xảy ra");
+        res.json({
+            status: 2,
+            message: "Có lỗi xảy ra"
+        });
     }
 
 }
