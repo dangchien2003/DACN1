@@ -6,6 +6,7 @@ const {
     cancelOrder
 } = require('./middleware');
 // /order
+router.post('/', utilMiddleware.checkBlock, getOrder);
 router.get('/', utilMiddleware.checkBlock, getOrder);
 
 // /order/cancel

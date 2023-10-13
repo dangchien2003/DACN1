@@ -1,20 +1,20 @@
-var trash = document.getElementsByClassName('trash');
-var trashArray = Array.from(trash);
-trashArray.forEach(element => {
-    element.addEventListener('click', () => {
-        console.log(element);
-        if (confirm("bạn có muốn xoá không") == true) {
-            var order = element.parentElement.parentElement;
-            var idDH = order.children[1].innerHTML;
+var formCart = document.getElementById('form-cart');
+var btn_updateCart = document.getElementById('update-cart');
 
+var btnDeletes = document.getElementsByClassName("btn-delete");
+btnDeletes = Array.from(btnDeletes);
+btnDeletes.forEach(element => {
+    element.addEventListener("click", () => {
+        var idsp = element.parentNode.querySelector("#idsp").value;
 
-            fetch('/order/cancel', {
-                    method: 'POST', // Đặt phương thức là POST
+        if (confirm("Bạn có muốn xoá sản phẩm") == true) {
+            fetch('/cart/delete', {
+                    method: 'PUT', // Đặt phương thức là POST
                     headers: {
                         'Content-Type': 'application/json' // Đặt loại dữ liệu bạn gửi đi (ví dụ: JSON)
                     },
                     body: JSON.stringify({
-                        idDH
+                        idsp
                     }) // Gửi dữ liệu trong trường hợp POST
                 })
                 .then(response => {
@@ -24,28 +24,37 @@ trashArray.forEach(element => {
                     }
                     return response.json(); // Đọc dữ liệu JSON từ phản hồi
                 })
-                .then(message => {
-                    if (message.status == 1) {
-                        order.querySelector(".status").style.cssText = "background-color: rgb(250, 114, 102)"
-                        order.querySelector("#trangThai").innerHTML = "Đã huỷ đơn"
-                        order.querySelector("#trash").innerHTML = ""
-                        toastSuccess(message.message);
-
+                .then(res => {
+                    if (res.status == 1) {
+                        element.parentNode.parentNode.innerHTML = ""
+                        toastSuccess(res.message);
+                        Array.from(document.getElementsByClassName("tongGia")).forEach(element => {
+                            if (res.tongGia)
+                                element.innerHTML = res.tongGia + " VNĐ";
+                            else
+                                element.innerHTML = "0 VNĐ";
+                        })
+                    } else if (res.status == 2) {
+                        toastError(res.message);
                     } else {
-                        toastError(message.message);
-
+                        toastError(res.message);
                     }
                     // Xử lý dữ liệu đã lấy được
-                    console.log(message);
+                    console.log(res.message);
                 })
                 .catch(error => {
                     // Xử lý lỗi nếu có
-                    console.error('Lỗi: ' + error.message);
+                    toastError(error.message);
                 });
         }
     })
 });
 
+
+btn_updateCart.addEventListener('click', function() {
+
+    formCart.submit();
+})
 
 
 function toasts({

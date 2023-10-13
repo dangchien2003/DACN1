@@ -73,7 +73,15 @@ async function suaThongTin(req, res) {
 
 }
 
+function action(req, res) {
+
+    res.render('customer/customer/root', {
+        title: "Cá nhân"
+    })
+}
+
 module.exports = {
     Hienthithongtinkhachhang,
-    suaThongTin
+    suaThongTin,
+    action
 }

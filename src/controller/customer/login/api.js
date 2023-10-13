@@ -4,12 +4,15 @@ const {
     login,
     showLogin,
     register,
-    showRegister
+    showRegister,
+    logOut
 } = require("./middleware");
 
 
 // /login
 router.get('/', showLogin);
+
+
 
 // /login
 router.post('/', login);

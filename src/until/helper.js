@@ -44,18 +44,37 @@ async function getOrder(idkh) {
         const config = await getConfig();
         await sql.connect(config);
         const request = new sql.Request();
-        request.input('idkh',idkh);
+        request.input('idkh', idkh);
         const result = await request.execute('getOrder');
         return result;
     } catch (error) {
         console.log(error);
-        return undefined;
+        throw error;
     } finally {
         sql.close();
     }
 
 
 };
+
+
+async function procedureSQL(input, procedureName) {
+    try {
+        const config = await getConfig();
+        await sql.connect(config);
+        const request = new sql.Request();
+        input.forEach(element => {
+            request.input(element.key, element.value)
+        });
+        const result = await request.execute(procedureName);
+        return result;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    } finally {
+        sql.close();
+    }
+}
 
 function formatDate(date, format) {
     try {
@@ -73,8 +92,8 @@ function formatDate(date, format) {
 function err(status) {
     try {
         var result;
-        switch(status) {
-            case 404: 
+        switch (status) {
+            case 404:
                 result = {
                     background: "/customer/img/404.jpg",
                     bgColor: "#C1DEEE",
@@ -97,10 +116,10 @@ function err(status) {
         }
 
         return result;
-    }catch(e) {
+    } catch (e) {
 
     }
-    
+
 }
 
 
@@ -108,5 +127,6 @@ module.exports = {
     query,
     err,
     getOrder,
-    formatDate
+    formatDate,
+    procedureSQL
 }

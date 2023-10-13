@@ -2,15 +2,20 @@ const express = require('express');
 const router = express.Router();
 const {
     Hienthithongtinkhachhang,
-    suaThongTin
+    suaThongTin,
+    action
 } = require("./middleware");
 
+const {checkBlock} = require("../utilMiddleware")
 
-// infocustomer/
-router.get('/', Hienthithongtinkhachhang);
+// customer
+router.get('/', checkBlock, action)
 
-//  infocustomer/suathongtin
-router.post('/suathongtin', suaThongTin);
+// customer/info
+router.get('/info', checkBlock,  Hienthithongtinkhachhang);
+
+//  customer/suathongtin
+router.put('/suathongtin',checkBlock, suaThongTin);
 
 
 module.exports = router;
