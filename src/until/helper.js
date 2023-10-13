@@ -41,7 +41,7 @@ async function getOrder(idkh) {
         const config = await getConfig();
         await sql.connect(config);
         const request = new sql.Request();
-        request.input('idkh',idkh);
+        request.input('idkh', idkh);
         const result = await request.execute('getOrder');
         return result;
     } catch (error) {
@@ -55,7 +55,7 @@ async function getOrder(idkh) {
 };
 
 
-async function procedureSQL (input, procedureName) {
+async function procedureSQL(input, procedureName) {
     try {
         const config = await getConfig();
         await sql.connect(config);
@@ -75,7 +75,7 @@ async function procedureSQL (input, procedureName) {
 
 function formatDate(date, format) {
     var value = date.split('-');
-    if(format == 'dd/mm/yyy')
+    if (format == 'dd/mm/yyy')
         var newValue = `${value[1]}/${value[2]}/${value[0]}`;
     return newValue
 }
@@ -83,8 +83,8 @@ function formatDate(date, format) {
 function err(status) {
     try {
         var result;
-        switch(status) {
-            case 404: 
+        switch (status) {
+            case 404:
                 result = {
                     background: "/customer/img/404.jpg",
                     bgColor: "#C1DEEE",
@@ -107,10 +107,10 @@ function err(status) {
         }
 
         return result;
-    }catch(e) {
+    } catch (e) {
 
     }
-    
+
 }
 
 

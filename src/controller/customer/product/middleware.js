@@ -90,12 +90,12 @@ async function returnComment(idsp) {
 }
 
 // async function returnComment(req, res) {
-    
+
 // }
 
 module.exports = {
     returnProducts,
     returnInfoProduct,
-    moreProducts
-    ,returnComment
+    moreProducts,
+    returnComment
 }

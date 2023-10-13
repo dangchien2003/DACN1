@@ -3,33 +3,34 @@
         padding: 0;
         margin: 0
     }
-    .container.action-customer{
+
+    .container.action-customer {
         min-height: 100vh;
         font-family: 'Poppins', sans-serif;
     }
 
     .main {
         display: grid;
-        grid-template-columns: 1.5fr 8.5fr;
+        grid-template-columns: 2fr 8fr;
     }
 
     .menu {
         background-color: rgb(245, 248, 250);
     }
 
-    .content {
-        
-    }
+    .content {}
 
-    ul {
+    .menu-customer {
         list-style: none;
         padding: 0 10px;
     }
-    li {
+
+    .menu-customer li {
         display: block;
         line-height: 35px;
     }
-    li:first-child {
+
+    .menu-customer li:first-child {
         display: flex;
         justify-content: center;
         padding: 5px 0;
@@ -44,8 +45,8 @@
     }
 
     .content {
-        padding:0 10px;
-    }        
+        padding: 0 10px;
+    }
 
     .head-info {
         height: 80px;
@@ -61,29 +62,19 @@
 </style>
 <div class="container md-4  main action-customer">
     <div class="menu">
-        <ul>
+        <ul class="menu-customer">
             <li class="avatar">
                 <img src="/customer/img/img-grid-2.jpg" alt="avatar">
             </li>
-            <li class="my-info">
+            <li class="purpose my-info" id="info">
                 Hồ sơ của tôi
             </li>
-            <li class="don-hang">
-                Đơn hàng
-            </li>
-            <li class="dang-xuat">
-                Đăng xuất
+            <li class="purpose dang-xuat">
+                <a href="/logout">Đăng xuất</a>
             </li>
         </ul>
     </div>
-    <div class="content">
-        <!-- <div class="head-info">
-            <span>
-                Hồ sơ của tôi
-            </span>
-        </div>
-        <div class="content-info">
-            <%- include("../order/order.ejs") %>
-        </div> -->
+    <div id="content">
+
     </div>
 </div>

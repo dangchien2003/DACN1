@@ -1,4 +1,3 @@
-
 const helper = require('../../../until/helper');
 
 async function getTongGia(idkh) {
@@ -9,11 +8,11 @@ async function getTongGia(idkh) {
         WHERE DonHang.idKH = '${idkh}'
         GROUP BY ThongTinTuiHang.idTH;`
 
-        
-    }catch(err) {
+
+    } catch (err) {
 
     }
-    
+
 }
 
 async function getOrder(req, res) {
@@ -27,12 +26,13 @@ async function getOrder(req, res) {
 
         order = order.recordset.map(row => ({
             ...row,
-            ngayTao: helper.formatDate(row.ngayTao.toISOString().slice(0, 10),"dd/mm/yyy") +" "+row.ngayTao.toISOString().slice(11, 19)
+            ngayTao: helper.formatDate(row.ngayTao.toISOString().slice(0, 10), "dd/mm/yyy") + " " + row.ngayTao.toISOString().slice(11, 19)
         }));
 
         res.render('customer/order/root.ejs', {
             order,
-            title: "Đơn hàng"})
+            title: "Đơn hàng"
+        })
     } catch (err) {
         res.render('customer/err/err.ejs', helper.err(500));
     }
