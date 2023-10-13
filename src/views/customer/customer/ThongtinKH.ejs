@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form class="well form-horizontal" action="/infocustomer/suathongtin" method="POST" id="contact_form">
+    <form class="well form-horizontal" action="/customer/suathongtin" method="POST" id="contact_form">
         <fieldset>
 
             <!-- Form Name -->
@@ -13,7 +13,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="idkh" class="form-control" type="text" value="<%= info.idKH %>">
+                        <input name="idkh" class="form-control" type="text" value="<%= info.idKH %>" readonly>
                     </div>
                 </div>
             </div>

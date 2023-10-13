@@ -9,13 +9,13 @@ const {
 const {checkBlock} = require("../utilMiddleware")
 
 // customer
-router.get('/', checkBlock, action)
+// router.get('/', checkBlock, action)
 
-// customer/info
-router.get('/info', checkBlock,  Hienthithongtinkhachhang);
+// customer
+router.get('/', checkBlock,  Hienthithongtinkhachhang);
 
 //  customer/suathongtin
-router.put('/suathongtin',checkBlock, suaThongTin);
+router.post('/suathongtin',checkBlock, suaThongTin);
 
 
 module.exports = router;

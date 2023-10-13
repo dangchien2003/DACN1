@@ -27,7 +27,7 @@ async function Hienthithongtinkhachhang(req, res) {
         })
         
         console.log(info);
-        res.render('customer/customer/root.ejs', {
+        res.render('customer/customer/root', {
             title: "Thông tin",
             info: info[0]
         })
@@ -43,8 +43,8 @@ async function suaThongTin(req, res) {
     console.log("sua tt")
     try {
         var thongTinMoi = {
-            idKH: req.body.idKH,
-            idTK: req.body.idTK,
+            idKH: req.cookies.kh,
+            idTK: req.cookies.un,
             bietDanh: req.body.bietDanh || "",
             ten: req.body.ten || "",
             ho: req.body.ho || "",
