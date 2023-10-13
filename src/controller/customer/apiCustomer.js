@@ -23,7 +23,7 @@ function routersCustomer(app) {
         res.redirect('/sale');
     });
     app.get('/test', async (req, res) => {
-        res.render('customer/pay/root' ,{title: "checkout"});
+        res.render('customer/customer/root' ,{title: "checkout"});
     });
 }
 

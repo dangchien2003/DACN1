@@ -1,0 +1,89 @@
+<style>
+    * {
+        padding: 0;
+        margin: 0
+    }
+    .container.action-customer{
+        min-height: 100vh;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .main {
+        display: grid;
+        grid-template-columns: 1.5fr 8.5fr;
+    }
+
+    .menu {
+        background-color: rgb(245, 248, 250);
+    }
+
+    .content {
+        
+    }
+
+    ul {
+        list-style: none;
+        padding: 0 10px;
+    }
+    li {
+        display: block;
+        line-height: 35px;
+    }
+    li:first-child {
+        display: flex;
+        justify-content: center;
+        padding: 5px 0;
+        border-bottom: 1px solid #cac7c7;
+    }
+
+    img {
+        height: 70px;
+        margin: 0 auto;
+        display: block;
+        border-radius: 50%;
+    }
+
+    .content {
+        padding:0 10px;
+    }        
+
+    .head-info {
+        height: 80px;
+        border-bottom: 1px solid #cac7c7;
+    }
+
+    .head-info span {
+        display: block;
+        width: 100%;
+        line-height: 50px;
+        font-size: 16px;
+    }
+</style>
+<div class="container md-4  main action-customer">
+    <div class="menu">
+        <ul>
+            <li class="avatar">
+                <img src="/customer/img/img-grid-2.jpg" alt="avatar">
+            </li>
+            <li class="my-info">
+                Hồ sơ của tôi
+            </li>
+            <li class="don-hang">
+                Đơn hàng
+            </li>
+            <li class="dang-xuat">
+                Đăng xuất
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <!-- <div class="head-info">
+            <span>
+                Hồ sơ của tôi
+            </span>
+        </div>
+        <div class="content-info">
+            <%- include("../order/order.ejs") %>
+        </div> -->
+    </div>
+</div>
