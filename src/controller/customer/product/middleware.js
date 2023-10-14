@@ -60,6 +60,7 @@ async function returnInfoProduct(req, res) {
         (select count(*) from ThongTinDonHang
         where ThongTinDonHang.idSP = ${idsp} ) as luotmua
         from SanPham where idSP = ${idsp}`;
+        console.log(sql);
         var info = await helpers.query(sql);
         if (info.recordset.length == 0) {
             res.status(404).json({
@@ -76,6 +77,7 @@ async function returnInfoProduct(req, res) {
         })
     } catch (err) {
         console.log(err);
+        res.render("customer/err/err", helpers.err(500))
     }
 }
 

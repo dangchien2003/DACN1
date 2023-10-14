@@ -148,10 +148,26 @@ async function CheckoutCart(req, res) {
     try {
         const kh = req.cookies.kh;
         const tk = req.cookies.un;
-        var thanhToan = req.body.phuongthucthanhtoan;
-        console.log(thanhToan);
+        var thanhToan = req.body.input.phuongthucthanhtoan;
+        var ten = req.body.input.ten;
+        var sdt = req.body.input.sdt;
+        var diachi = req.body.input.diachi;
+
         var idDH = `DH${Date.now()}_${Math.floor(Math.random() * 90 +10).toString()}`;
-        var input = [{
+        var input = [
+            {
+                key: "ten",
+                value: ten
+            },
+            {
+                key: "sdt",
+                value: sdt
+            },
+            {
+                key: "diachi",
+                value: diachi
+            },
+            {
                 key: 'idKH',
                 value: kh
             },
@@ -167,18 +183,24 @@ async function CheckoutCart(req, res) {
         var result = await helpers.procedureSQL(input, "ThanhToanDonHang");
         if (result.returnValue == 0) {
             res.json({
+                status: 2,
                 error: true,
                 message: "Có lỗi xảy ra"
             })
         } else {
             res.json({
+                status:1,
                 error: false,
                 message: "Thanh toán thành công"
             })
         }
     } catch (e) {
         console.log(e);
-        res.render("customer/err/err", helpers.err(500))
+        res.json({
+            status: 2,
+            error: true,
+            message: "Có lỗi xảy ra"
+        })
     }
 
 }
