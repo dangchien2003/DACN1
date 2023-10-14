@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form class="well form-horizontal" action="/customer/suathongtin" method="POST" id="contact_form">
+    <form class="well form-horizontal" id="contact_form">
         <fieldset>
 
             <!-- Form Name -->
@@ -23,7 +23,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="ho" class="form-control" type="text" value="<%= info.ho %>">
+                        <input name="ho" id="ho" class="form-control" type="text" value="<%= info.ho %>">
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="ten" class="form-control" type="text" value="<%= info.ten %>">
+                        <input name="ten" id="ten" class="form-control" type="text" value="<%= info.ten %>">
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="bietDanh" class="form-control" type="text" value="<%= info.bietDanh %>">
+                        <input name="bietDanh" id="bietdanh" class="form-control" type="text" value="<%= info.bietDanh %>">
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="diaChi" class="form-control" type="text" value="<%= info.diaChi %>">
+                        <input name="diaChi" id="diachi" class="form-control" type="text" value="<%= info.diaChi %>">
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input name="email" class="form-control" type="email" value="<%= info.email %>">
+                        <input name="email" id="email" class="form-control" type="email" value="<%= info.email %>">
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input name="ngaysinh" class="form-control" type="date" value="<%= info.ngaySinh %>">
+                        <input name="ngaysinh" id="ngaysinh" class="form-control" type="date" value="<%= info.ngaySinh %>">
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                        <input name="phone" class="form-control" type="text" value="<%= info.sdt %>">
+                        <input name="sdt" id="sdt" class="form-control" type="text" value="<%= info.sdt %>">
                     </div>
                 </div>
             </div>
@@ -106,11 +106,13 @@
                     <div class="radio">
                         <label>
                             <% if(info.gioiTinh){ %>
-                                <input type="radio" name="hosting" value="Nam" checked /> Nam
-                                <input type="radio" name="hosting" value="Nữ" /> Nữ
+                                
+                                <input type="radio" name="gioiTinh" value="0" /> Nữ
+                                <input type="radio" name="gioiTinh" value="1" checked/> Nam
                                 <% }else{ %>
-                                    <input type="radio" name="hosting" value="Nam" /> Nam
-                                    <input type="radio" name="hosting" value="Nữ" checked /> Nữ
+                                    
+                                    <input type="radio" name="gioiTinh" value="0" checked /> Nữ
+                                    <input type="radio" name="gioiTinh" value="1" /> Nam
                                     <% } %>
                         </label>
                     </div>
@@ -129,7 +131,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-warning">Send <span
+                    <button type="submit" class="btn btn-warning" id="luu">Lưu <span
                             class="glyphicon glyphicon-send"></span></button>
                 </div>
             </div>

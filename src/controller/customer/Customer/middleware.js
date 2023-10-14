@@ -25,11 +25,10 @@ async function Hienthithongtinkhachhang(req, res) {
             }
             
         })
-        
-        console.log(info);
         res.render('customer/customer/root', {
             title: "Thông tin",
             info: info[0]
+            
         })
     }catch(e) {
         console.log(e);
@@ -45,30 +44,39 @@ async function suaThongTin(req, res) {
         var thongTinMoi = {
             idKH: req.cookies.kh,
             idTK: req.cookies.un,
-            bietDanh: req.body.bietDanh || "",
-            ten: req.body.ten || "",
-            ho: req.body.ho || "",
-            diaChi: req.body.diaChi || "",
-            email: req.body.email || "",
-            ngaySinh: req.body.ngaySinh || "",
-            gioiTinh: req.body.gioiTinh || "",
-            sdt: req.body.sdt || "",
+            bietDanh: req.body.input.bietdanh || "",
+            ten: req.body.input.ten || "",
+            ho: req.body.input.ho || "",
+            diaChi: req.body.input.diachi || "",
+            email: req.body.input.email || "",
+            ngaySinh: req.body.input.ngaysinh || "",
+            gioiTinh: req.body.input.gioitinh || "",
+            sdt: req.body.input.sdt || "",
         }
 
         // đưa vaà câu lệnh sql
         var sql = `Update ThongTinKhachHang SET bietDanh = N'${thongTinMoi.bietDanh}',ten = N'${thongTinMoi.ten}', ho = N'${thongTinMoi.ho}', diaChi = N'${thongTinMoi.diaChi}', email = '${thongTinMoi.email}', ngaysinh = '${thongTinMoi.ngaySinh}', gioiTinh = '${thongTinMoi.gioiTinh}', sdt = '${thongTinMoi.sdt}' WHERE idKH = '${thongTinMoi.idKH}'`
-        // //truy vấn
-        console.log(sql);
+        
         var result = await helpers.query(sql);
         //câu lệnh tipế thjeo
         var edit = result.rowsAffected[0];
-        if (edit == 0) {
-            res.json("Sua that bai")
+        if (edit == 1) {
+            res.json({
+                status: 1,
+                message: "Sửa thành công"
+            })
+            
         } else {
-            res.json("sua thanh cong")
+            res.json({
+                status: 2,
+                message: "Sửa thất bại"
+            })  
         }
     } catch (e) {
-        res.status(500).json("lỗi:" + e)
+        res.json({
+            status: 2,
+            message: "Có lỗi xảy ra"
+        })  
     }
 
 }

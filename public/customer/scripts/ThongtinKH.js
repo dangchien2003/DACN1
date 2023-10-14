@@ -1,121 +1,61 @@
-$(document).ready(function () {
-    $('#contact_form').bootstrapValidator({
-        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
+
+var form = document.getElementById("contact_form");
+form.addEventListener("submit", function(event) {
+    event.preventDefault()
+})
+var btn_send = document.getElementById("luu");
+btn_send.addEventListener("click", function() {
+    // Lấy tất cả các ô checkbox với cùng name
+    var checkboxes = document.querySelectorAll('input[name="gioiTinh"]');
+    var gioitinh;
+    // Duyệt qua từng ô checkbox và kiểm tra trạng thái của chúng
+    for (var i = 0; i < 2; i++) {
+        if (checkboxes[i].checked) {
+            gioitinh = i;
+        } 
+    }
+    
+    var input = {
+        ho:  document.getElementById("ho").value,
+        ten:  document.getElementById("ten").value,
+        bietdanh:  document.getElementById("bietdanh").value,
+        diachi:  document.getElementById("diachi").value,
+        email:  document.getElementById("email").value,
+        ngaysinh:  document.getElementById("ngaysinh").value,
+        sdt:  document.getElementById("sdt").value,
+        gioitinh
+    }
+    console.log(input);
+    fetch("/customer/suaThongTin", {
+        method: 'POST', // Đặt phương thức là POST
+        headers: {
+            'Content-Type': 'application/json' // Đặt loại dữ liệu bạn gửi đi (ví dụ: JSON)
         },
-        fields: {
-            first_name: {
-                validators: {
-                    stringLength: {
-                        min: 2,
-                    },
-                    notEmpty: {
-                        message: 'Please supply your first name'
-                    }
-                }
-            },
-            last_name: {
-                validators: {
-                    stringLength: {
-                        min: 2,
-                    },
-                    notEmpty: {
-                        message: 'Please supply your last name'
-                    }
-                }
-            },
-            email: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please supply your email address'
-                    },
-                    emailAddress: {
-                        message: 'Please supply a valid email address'
-                    }
-                }
-            },
-            phone: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please supply your phone number'
-                    },
-                    phone: {
-                        country: 'US',
-                        message: 'Please supply a vaild phone number with area code'
-                    }
-                }
-            },
-            address: {
-                validators: {
-                    stringLength: {
-                        min: 8,
-                    },
-                    notEmpty: {
-                        message: 'Please supply your street address'
-                    }
-                }
-            },
-            city: {
-                validators: {
-                    stringLength: {
-                        min: 4,
-                    },
-                    notEmpty: {
-                        message: 'Please supply your city'
-                    }
-                }
-            },
-            state: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please select your state'
-                    }
-                }
-            },
-            zip: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please supply your zip code'
-                    },
-                    zipCode: {
-                        country: 'US',
-                        message: 'Please supply a vaild zip code'
-                    }
-                }
-            },
-            comment: {
-                validators: {
-                    stringLength: {
-                        min: 10,
-                        max: 200,
-                        message: 'Please enter at least 10 characters and no more than 200'
-                    },
-                    notEmpty: {
-                        message: 'Please supply a description of your project'
-                    }
-                }
-            }
+        body: JSON.stringify({
+            input
+        }) // Gửi dữ liệu trong trường hợp POST
+    }).then (response => {
+        if (!response.ok) {
+            throw new Error("Có lỗi xảy ra");
         }
+        return response.json();
+    }).then(message => {
+        if (message.status == 1) {
+            toastSuccess(message.message);
+
+        } else {
+            toastError(message.message);
+        }
+        // Xử lý dữ liệu đã lấy được
+        console.log(message);
     })
-        .on('success.form.bv', function (e) {
-            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-            $('#contact_form').data('bootstrapValidator').resetForm();
+    .catch(error => {
+        // Xử lý lỗi nếu có
+        console.error('Lỗi: ' + error.message);
+        toastError(error.message);
+    });
+    
 
-            // Prevent form submission
-            e.preventDefault();
 
-            // Get the form instance
-            var $form = $(e.target);
 
-            // Get the BootstrapValidator instance
-            var bv = $form.data('bootstrapValidator');
-
-            // Use Ajax to submit form data
-            $.post($form.attr('action'), $form.serialize(), function (result) {
-                console.log(result);
-            }, 'json');
-        });
-});
+})
