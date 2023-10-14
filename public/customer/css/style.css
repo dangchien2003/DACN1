@@ -250,6 +250,7 @@ a {
         -webkit-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%); 
+
     }
     .product-section .product-item:before {
       bottom: 0;
@@ -273,7 +274,10 @@ a {
       visibility: visible; }
     .product-section .product-item:hover:before {
       height: 70%; }
-
+.product-item img {
+  height: 300px;
+  width: 250px;
+}
 .why-choose-section {
   padding: 7rem 0; }
   .why-choose-section .img-wrap {

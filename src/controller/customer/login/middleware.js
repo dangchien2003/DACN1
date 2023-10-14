@@ -13,29 +13,49 @@ async function login(req, res) {
     try {
         // tạo ra 2 biên
         // 1 biến lưu username
-        var user = req.body.username;
+        var user = req.body.input.un;
 
         //    1 biên lưu password
-        var pass = req.body.password;
+        var pass = req.body.input.pass;
         // tao 1 biến sql lưu câu truy vấn
-        var sql = `Select ThongTinKhachHang.idKH from TaiKhoan left join ThongTinKhachHang on TaiKhoan.idTK = ThongTinKhachHang.idTK WHERE taiKhoan = '${user}' and matKhau = '${pass}'`;
+        var sql = `Select ThongTinKhachHang.idKH, TaiKhoan.khoa from TaiKhoan left join ThongTinKhachHang on TaiKhoan.idTK = ThongTinKhachHang.idTK WHERE taiKhoan = '${user}' and matKhau = '${pass}'`;
 
         //taạ 1 biên hấng kết qua cua hamf truy vấn bằng helper
         var kq = await helpers.query(sql);
+
+        if(kq.recordset.length == 0) {
+            res.json({
+                status: 2,
+                message: "Tài khoản hoặc mật khẩu không đúng "
+            })
+            return;
+        }
         // ếu kết quả bằng 1 thì trả về đăng nhpậ thành công
         var idKH = kq.recordset[0].idKH;
-        if (idKH) {
+        var khoa  = kq.recordset[0].khoa;
+
+        if(khoa) {
+            res.json({
+                status: 2,
+                message: "Tài khoản đã bị khoá"
+            })
+        }
+        else {
             res.cookie('un', user);
             res.cookie('kh', idKH);
-
-            res.redirect("/sale")
-        } else {
-            res.json("dang nhap that bai")
+            res.json({
+                status: 1,
+                message: "Đăng nhập thành công"
+            })
         }
+        return;
         // nếu không trả về đăng nập thất bại
     } catch (err) {
 
-        res.json(err);
+        res.json({
+            status: 3,
+            message: "Có lỗi xảy ra: "+ err.message
+        })
     }
 
 }
