@@ -275,8 +275,8 @@ a {
     .product-section .product-item:hover:before {
       height: 70%; }
 .product-item img {
-  height: 300px;
-  width: 250px;
+  height: 250px;
+  width: 200px;
 }
 .why-choose-section {
   padding: 7rem 0; }
@@ -514,7 +514,7 @@ a {
         background-color: #3b5d50; }
 
 .before-footer-section {
-  padding: 7rem 0 12rem 0 !important; }
+  padding: 2rem 0 7rem 0 !important; }
 
 .blog-section {
   padding: 7rem 0 12rem 0; }

@@ -18,7 +18,7 @@
 }
 
 .checkout {
-    padding: 20px 0;
+    padding: 20px 20px;
 }
 
 
@@ -202,3 +202,44 @@ input.form-control {
         font-size: 18px;
     }
     
+
+#end-product {
+    text-align: center;
+    font-size: 18px;
+    display: none;
+}
+
+.before-footer-section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.search {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#input-search {
+    min-height: 35px;
+    min-width: 50%;
+    padding: 0 10px;
+    border-radius: 10px 0 0 10px;
+    outline: none;
+    border: 1px solid #636262;
+    border-right: 0;
+    cursor: text;
+}
+
+#send {
+    background-color: #ffff;
+    min-height: 35px;
+    border: 1px solid #636262;
+    border-left: 0;
+    border-radius: 0 10px 10px 0;
+    padding: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+

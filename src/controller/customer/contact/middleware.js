@@ -1,6 +1,7 @@
 function returnPageContact(req, res) {
     res.render("customer/contact/formContact", {
-        title: "contact"
+        title: "contact",
+        scripts: []
     })
 }
 

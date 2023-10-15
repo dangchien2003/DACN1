@@ -19,7 +19,8 @@ async function showCart(req, res) {
         res.render('customer/cart/root', {
             cart: cart.recordset,
             cartTotals,
-            title: "cart"
+            title: "cart",
+            scripts: ["cart", "custom-dev", "custom"]
         });
     } catch (e) {
         console.log(e);
@@ -124,27 +125,34 @@ async function updateCart(req, res) {
 }
 
 async function showCheckout(req, res) {
+    try {
+        const kh = req.cookies.kh;
+        var sql = `select ten, GioHang.soLuong, SanPham.gia, (SanPham.gia * GioHang.soLuong) as tong from GioHang 
+        join SanPham on SanPham.idSP = GioHang.idSP
+        where GioHang.idKH = '${kh}'`;
 
-    const kh = req.cookies.kh;
-    var sql = `select ten, GioHang.soLuong, SanPham.gia, (SanPham.gia * GioHang.soLuong) as tong from GioHang 
-    join SanPham on SanPham.idSP = GioHang.idSP
-    where GioHang.idKH = '${kh}'`;
-
-    var sanPham = await helpers.query(sql);
-    var phiShip = 30000;
-    var tongGia = phiShip;
-    sanPham.recordset.forEach(e => {
-        tongGia += e.tong;
-    })
-    res.render("customer/pay/root", {
-        title: "Thanh toán",
-        tongGia,
-        phiShip,
-        sanPham: sanPham.recordset,
-    })
+        var sanPham = await helpers.query(sql);
+        var phiShip = 30000;
+        var tongGia = phiShip;
+        sanPham.recordset.forEach(e => {
+            tongGia += e.tong;
+        })
+        res.render("customer/pay/root", {
+            title: "Thanh toán",
+            tongGia,
+            phiShip,
+            sanPham: sanPham.recordset,
+            scripts: ["custom-dev", "thanhtoan"]
+        })
+    }catch(err) {
+        console.log(err.message);
+        res.render("customer/err/err", helpers.err(500))
+    }
+    
 }
 
 async function CheckoutCart(req, res) {
+    console.log("checkout");
     try {
         const kh = req.cookies.kh;
         const tk = req.cookies.un;
@@ -217,7 +225,6 @@ async function deleteCart(req, res) {
         join SanPham on SanPham.idSP = Giohang.idSP
         where GioHang.idKH = '${kh}'`;
         var result = await helpers.query(sql);
-        console.log(result);
         if (result.rowsAffected[0] == 1) {
             res.json({
                 status: 1,

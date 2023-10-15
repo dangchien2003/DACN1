@@ -1,20 +1,5 @@
 const helper = require('../../../until/helper');
 
-async function getTongGia(idkh) {
-    try {
-        var sql = `SELECT ThongTinTuiHang.idTH, count(gia) as gia 
-        FROM ThongTinTuiHang
-        LEFT JOIN DonHang ON ThongTinTuiHang.idTH = DonHang.idTH
-        WHERE DonHang.idKH = '${idkh}'
-        GROUP BY ThongTinTuiHang.idTH;`
-
-
-    } catch (err) {
-
-    }
-
-}
-
 async function getOrder(req, res) {
     try {
         const kh = req.cookies.kh;
@@ -31,7 +16,8 @@ async function getOrder(req, res) {
 
         res.render('customer/order/root.ejs', {
             order,
-            title: "Đơn hàng"
+            title: "Đơn hàng",
+            scripts: ["order", "custom-dev"]
         })
     } catch (err) {
         res.render('customer/err/err.ejs', helper.err(500));

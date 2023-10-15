@@ -27,8 +27,8 @@ async function Hienthithongtinkhachhang(req, res) {
         })
         res.render('customer/customer/root', {
             title: "Thông tin",
-            info: info[0]
-            
+            info: info[0],
+            scripts: ["custom-dev", "thongTinKH"]
         })
     }catch(e) {
         console.log(e);
