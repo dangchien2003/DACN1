@@ -6,16 +6,18 @@ const {
     action
 } = require("./middleware");
 
-const {checkBlock} = require("../utilMiddleware")
+const {
+    checkBlock
+} = require("../utilMiddleware")
 
 // customer
 // router.get('/', checkBlock, action)
 
 // customer
-router.get('/', checkBlock,  Hienthithongtinkhachhang);
+router.get('/', checkBlock, Hienthithongtinkhachhang);
 
 //  customer/suathongtin
-router.post('/suathongtin',checkBlock, suaThongTin);
+router.post('/suathongtin', checkBlock, suaThongTin);
 
 
 module.exports = router;

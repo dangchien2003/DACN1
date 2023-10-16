@@ -6,12 +6,12 @@ async function returnProducts(req, res) {
         var search = req.query.search || "";
         var numproduct = 6;
         var sql = ""
-        if(search) {
+        if (search) {
             sql = `select top ${numproduct} idSP, anh, ten, gia from SanPham where ten LIKE N'%${search}%'`;
-            
-        }else {
+
+        } else {
             sql = `select top ${numproduct} idSP, anh, ten, gia from SanPham`;
-            
+
 
         }
         var listProduct = await helpers.query(sql);
@@ -39,8 +39,8 @@ async function moreProducts(req, res) {
         var page = req.body.page;
         var search = req.cookies.search;
         console.log("🚀 ~ file: middleware.js:41 ~ moreProducts ~ search:", search)
-        
-        if(lp != page) {
+
+        if (lp != page) {
             lp = page
         }
         if (!lp) {
@@ -48,10 +48,10 @@ async function moreProducts(req, res) {
         }
         const numproduct = 6;
         var sql = "";
-       
-        if(search) {
+
+        if (search) {
             sql = `SELECT idSP, anh, ten, gia FROM SanPham where ten LIKE N'%${search}%' ORDER BY idSP OFFSET ${lp*numproduct} ROWS FETCH NEXT ${numproduct} ROWS ONLY;`;
-        }else {
+        } else {
             sql = `SELECT idSP, anh, ten, gia FROM SanPham ORDER BY idSP OFFSET ${lp*numproduct} ROWS FETCH NEXT ${numproduct} ROWS ONLY;`;
         }
         var listProduct = await helpers.query(sql);
@@ -88,7 +88,7 @@ async function returnInfoProduct(req, res) {
         (select count(*) from ThongTinDonHang
         where ThongTinDonHang.idSP = ${idsp} ) as luotmua
         from SanPham where idSP = ${idsp}`;
-        
+
         var info = await helpers.query(sql);
         if (info.recordset.length == 0) {
             res.status(404).json({

@@ -144,11 +144,11 @@ async function showCheckout(req, res) {
             sanPham: sanPham.recordset,
             scripts: ["custom-dev", "thanhtoan"]
         })
-    }catch(err) {
+    } catch (err) {
         console.log(err.message);
         res.render("customer/err/err", helpers.err(500))
     }
-    
+
 }
 
 async function CheckoutCart(req, res) {
@@ -162,8 +162,7 @@ async function CheckoutCart(req, res) {
         var diachi = req.body.input.diachi;
 
         var idDH = `DH${Date.now()}_${Math.floor(Math.random() * 90 +10).toString()}`;
-        var input = [
-            {
+        var input = [{
                 key: "ten",
                 value: ten
             },
@@ -197,7 +196,7 @@ async function CheckoutCart(req, res) {
             })
         } else {
             res.json({
-                status:1,
+                status: 1,
                 error: false,
                 message: "Thanh toán thành công"
             })

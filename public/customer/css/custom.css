@@ -9,7 +9,6 @@
     font-size: 25px;
     text-align: center;
     line-height: 40px;
-    background-color: #eee9e9;
 }
 
 
@@ -231,6 +230,53 @@ input.form-control {
     border-right: 0;
     cursor: text;
 }
+#background {
+    display: none;
+    transform: translateY(-100px);
+    width: 100vw;
+    height: 110vh;
+    position: fixed;
+    opacity: 0.7;
+    background-color: rgb(204, 203, 203);
+}
+
+#cmt {
+    transform: translateY(-100px);
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+}
+
+#send-comment {
+    border-radius: 5px;
+    position: fixed;
+    z-index: 10000;
+    font-size: 16px;
+    padding: 5px 10px 0px 10px ;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    opacity: 1;
+    overflow: scroll;
+    height: 600px;
+}
+
+#send-comment::-webkit-scrollbar {
+    width: 10px;
+    /*background-color: rgb(248, 137, 137);*/
+    border-radius: 100rem
+}
+
+#send-comment::-webkit-scrollbar-thumb {
+    width: 10px;
+    background-image: linear-gradient(to bottom,  red , yellow, rgb(115, 219, 115), blue);
+    border-radius: 100rem;
+    border: 1px solid rgb(157, 146, 146);
+}
 
 #send {
     background-color: #ffff;
@@ -241,5 +287,68 @@ input.form-control {
     padding: 0 10px;
     font-size: 16px;
     cursor: pointer;
+}
+
+#send-comment label,  #send-comment input{
+    display: block;
+}
+
+
+#danhgia {
+    width: 100%;
+    outline: none;
+    padding: 5px 10px;
+    height: 500px;
+    border: 1px solid black;
+    
+}
+.thongtin {
+    display: grid; 
+    grid-template-columns: 7fr 3fr;
+}
+
+.thongtin input {
+    border: 1px Dotted black;
+    outline: none;
+    width: 80%;
+}
+.thongtin img {
+    border: 1px Dotted black;
+    width: 160px;
+    height: 160px;
+}
+
+.thongtin .fa-star {
+    cursor: pointer;
+}
+
+/* .thongtin .fa-star:hover {
+    color: #FF9F1A;
+} */
+
+.close {
+    text-align: right;
+    font-size: 20px;
+    
+}
+
+.fa-x {
+    cursor: pointer;
+}
+
+.cmt-sp {
+    border-bottom: 1px Dashed black;
+    padding-top: 10px
+}
+
+.btn-send-cmt {
+    float: right;
+    padding: 10px
+}
+.btn-send-cmt button {
+    background-color: rgb(141, 225, 141);
+    padding: 5px 15px;
+    border-radius: 10px;
+    color: black;
 }
 

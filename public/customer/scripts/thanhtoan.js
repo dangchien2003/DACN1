@@ -17,6 +17,8 @@
         })
     }, false)
 }())
+
+
 var form = document.getElementById("form_pay");
 form.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -25,7 +27,7 @@ btn_pay = document.getElementById("submit");
 btn_pay.addEventListener("click", function() {
     var phuongthucthanhtoan = document.getElementsByName("phuongthucthanhtoan");
     for (var i = 0; i < phuongthucthanhtoan.length; i++) {
-        if(phuongthucthanhtoan[i].checked) {
+        if (phuongthucthanhtoan[i].checked) {
             phuongthucthanhtoan = phuongthucthanhtoan[i].value;
             break;
         }
@@ -37,35 +39,39 @@ btn_pay.addEventListener("click", function() {
         phuongthucthanhtoan
     }
 
-    fetch("/cart/checkout/done", {
-        method: 'POST', // Đặt phương thức là POST
-        headers: {
-            'Content-Type': 'application/json' // Đặt loại dữ liệu bạn gửi đi (ví dụ: JSON)
-        },
-        body: JSON.stringify({
-            input
-        }) // Gửi dữ liệu trong trường hợp POST
-    }).then (response => {
-        if (!response.ok) {
-            throw new Error("Có lỗi xảy ra");
-        }
-        return response.json();
-    }).then(message => {
-        if (message.status == 1) {
-            toastSuccess(message.message);
-            setTimeout(function() {
-                window.location.href = "/order"; // Thay thế "URL_của_trang_chủ" bằng đường dẫn đến trang chủ của bạn
-            }, 3000);
+    if (!input.ten || !input.sdt || !input.diachi || !input.phuongthucthanhtoan) {
+        return;
+    }
 
-        } else {
-            toastError(message.message);
-        }
-        // Xử lý dữ liệu đã lấy được
-        console.log(message);
-    })
-    .catch(error => {
-        // Xử lý lỗi nếu có
-        console.error('Lỗi: ' + error.message);
-        toastError(error.message);
-    });
+    fetch("/cart/checkout/done", {
+            method: 'POST', // Đặt phương thức là POST
+            headers: {
+                'Content-Type': 'application/json' // Đặt loại dữ liệu bạn gửi đi (ví dụ: JSON)
+            },
+            body: JSON.stringify({
+                input
+            }) // Gửi dữ liệu trong trường hợp POST
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error("Có lỗi xảy ra");
+            }
+            return response.json();
+        }).then(message => {
+            if (message.status == 1) {
+                toastSuccess(message.message);
+                setTimeout(function() {
+                    window.location.href = "/order"; // Thay thế "URL_của_trang_chủ" bằng đường dẫn đến trang chủ của bạn
+                }, 3000);
+
+            } else {
+                toastError(message.message);
+            }
+            // Xử lý dữ liệu đã lấy được
+            console.log(message);
+        })
+        .catch(error => {
+            // Xử lý lỗi nếu có
+            console.error('Lỗi: ' + error.message);
+            toastError(error.message);
+        });
 })

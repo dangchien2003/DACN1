@@ -1,5 +1,5 @@
 const express = require('express');
-const exphbs  = require('express-handlebars');
+const exphbs = require('express-handlebars');
 const ejs = require('ejs');
 const path = require('path');
 const port = 3000;
@@ -23,20 +23,25 @@ const routersCustomer = require("./controller/customer/apiCustomer");
 routersCustomer(app);
 // const route = require('./routes');
 const routeAdmin = require('./routes');
-const {format, addHours} = require('date-fns');
+const {
+    format,
+    addHours
+} = require('date-fns');
 const multer = require('multer');
 
 //Cấu hình nơi lưu trữ tải file lên
 const storage = multer.diskStorage({
-  destination: function (req, file, cb){
-    cb(null, './public/uploads');
-  },
-  filename: function(req, file, cb){
-    cb(null, Date.now()+'-'+file.originalname);
-  }
+    destination: function(req, file, cb) {
+        cb(null, './public/uploads');
+    },
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
 });
 
-const upload = multer({storage:storage});
+const upload = multer({
+    storage: storage
+});
 
 app.use(upload.single('anh'));
 
@@ -51,12 +56,16 @@ app.use(upload.single('anh'));
 // app.use(express.static('./public'));
 
 //Cấu hình handlebars template engine
-app.engine('hbs', exphbs.engine({extname: '.hbs', defaultLayout: 'main', helpers: {
-  format: function(date, formatString){
-    const vietnamTime = addHours(date,7);
-    return format(vietnamTime, formatString);
-  },
-}}));
+app.engine('hbs', exphbs.engine({
+    extname: '.hbs',
+    defaultLayout: 'main',
+    helpers: {
+        format: function(date, formatString) {
+            const vietnamTime = addHours(date, 7);
+            return format(vietnamTime, formatString);
+        },
+    }
+}));
 app.set('view engine', 'hbs');
 
 //use ejs engine
@@ -72,5 +81,5 @@ routeAdmin(app);
 
 
 app.listen(3000, () => {
-  console.log(`127.0.0.1:3000`);
+    console.log(`127.0.0.1:3000`);
 });

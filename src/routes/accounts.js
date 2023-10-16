@@ -8,12 +8,12 @@ const adminAccountController = require("../controllers/admin/AccountController")
 //Admin account route
 
 //Xóa admin
-router.use('/delete/admin/:id',adminAccountController.deleteAdmin);
+router.use('/delete/admin/:id', adminAccountController.deleteAdmin);
 //Xóa khách hàng
-router.use('/delete/customer/:id',adminAccountController.deleteCustomer);
+router.use('/delete/customer/:id', adminAccountController.deleteCustomer);
 
 //Band account
-router.use('/band/:id',adminAccountController.bandAccount);
+router.use('/band/:id', adminAccountController.bandAccount);
 
 //Lấy chi tiết 1 sản phẩm
 //router.get('/:id',adminProductController.show);

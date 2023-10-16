@@ -9,7 +9,9 @@ const {
     deleteCart
 } = require('./middleware');
 
-const {checkBlock} = require("../utilMiddleware");
+const {
+    checkBlock
+} = require("../utilMiddleware");
 
 router.get('/product', checkBlock, showCart)
 router.put('/delete', deleteCart)

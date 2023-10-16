@@ -14,10 +14,10 @@ const adminProductController = require("../controllers/admin/ProductController")
 router.use('/add', adminProductController.store);
 
 //Cập nhật 1 sản phẩm
-router.use('/edit/:id',adminProductController.update);
+router.use('/edit/:id', adminProductController.update);
 
 //Xóa 1 sản phẩm
-router.use('/delete/:id',adminProductController.destroyed);
+router.use('/delete/:id', adminProductController.destroyed);
 
 //Lấy chi tiết 1 sản phẩm
 //router.get('/:id',adminProductController.show);

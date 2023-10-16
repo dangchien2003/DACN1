@@ -23,7 +23,7 @@ async function login(req, res) {
         //taạ 1 biên hấng kết qua cua hamf truy vấn bằng helper
         var kq = await helpers.query(sql);
 
-        if(kq.recordset.length == 0) {
+        if (kq.recordset.length == 0) {
             res.json({
                 status: 2,
                 message: "Tài khoản hoặc mật khẩu không đúng "
@@ -32,15 +32,14 @@ async function login(req, res) {
         }
         // ếu kết quả bằng 1 thì trả về đăng nhpậ thành công
         var idKH = kq.recordset[0].idKH;
-        var khoa  = kq.recordset[0].khoa;
+        var khoa = kq.recordset[0].khoa;
 
-        if(khoa) {
+        if (khoa) {
             res.json({
                 status: 2,
                 message: "Tài khoản đã bị khoá"
             })
-        }
-        else {
+        } else {
             res.cookie('un', user);
             res.cookie('kh', idKH);
             res.json({
@@ -54,7 +53,7 @@ async function login(req, res) {
 
         res.json({
             status: 3,
-            message: "Có lỗi xảy ra: "+ err.message
+            message: "Có lỗi xảy ra: " + err.message
         })
     }
 

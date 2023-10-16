@@ -79,14 +79,14 @@ async function procedureSQL(input, procedureName) {
 function formatDate(date, format) {
     try {
         var value = date.split('-');
-        if(format == 'dd/mm/yyy')
+        if (format == 'dd/mm/yyy')
             var newValue = `${value[1]}/${value[2]}/${value[0]}`;
         return newValue
-    }catch(err) {
+    } catch (err) {
         console.log(err);
         throw err;
     }
-    
+
 }
 
 function err(status) {

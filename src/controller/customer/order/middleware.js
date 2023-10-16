@@ -1,6 +1,7 @@
 const helper = require('../../../until/helper');
 
 async function getOrder(req, res) {
+    console.log("getOrder");
     try {
         const kh = req.cookies.kh;
         if (kh == undefined) {
@@ -8,7 +9,6 @@ async function getOrder(req, res) {
             return;
         }
         var order = await helper.getOrder(kh);
-
         order = order.recordset.map(row => ({
             ...row,
             ngayTao: helper.formatDate(row.ngayTao.toISOString().slice(0, 10), "dd/mm/yyy") + " " + row.ngayTao.toISOString().slice(11, 19)
@@ -61,7 +61,34 @@ async function cancelOrder(req, res) {
 
 }
 
+
+async function showComment(req, res) {
+    try {
+        var idDH = req.body.idDH.trim();
+        var KH = req.cookies.kh;
+        if (!idDH) {
+            res.send("");
+            return;
+        }
+
+        var sql = `  select ThongTinDonHang.idSP ,SanPham.ten, ThongTinDonHang.idDH, danhGia, lanChinhSua, soSao from ThongTinDonHang
+        left join DanhGia on DanhGia.idDH = ThongTinDonHang.idDH
+        join SanPham on SanPham.idSP = ThongTinDonHang.idSP
+        where ThongTinDonHang.idDH = '${idDH}' and (lanChinhSua < 2 or lanChinhSua is NULL)`
+        var products_comment = await helper.query(sql);
+        console.log(products_comment);
+        res.render('customer/order/comment', {products: products_comment.recordset})
+    } catch (err) {
+        console.log(err);
+        res.send("")
+    }
+
+}
+
+
+
 module.exports = {
     getOrder,
-    cancelOrder
+    cancelOrder,
+    showComment
 }

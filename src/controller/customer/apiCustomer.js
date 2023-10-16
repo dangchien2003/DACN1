@@ -4,7 +4,10 @@ const routerOrder = require("./order/api");
 const routerLogin = require("./login/api");
 const routerInfoCustomer = require("./Customer/api");
 const routerCart = require("./cart/api");
-const {logOut} = require("./login/middleware")
+const {
+    logOut
+} = require("./login/middleware")
+
 function routersCustomer(app) {
     app.use("/sale", routerProduct);
     app.use("/contact", routerContact);
