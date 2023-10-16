@@ -3,8 +3,7 @@ const router = express.Router();
 const {
     returnProducts,
     returnInfoProduct,
-    moreProducts,
-    returnComment
+    moreProducts
 } = require('./middleware');
 const utilMiddleware = require('../utilMiddleware');
 //  /sale
@@ -19,5 +18,4 @@ router.post("/more", utilMiddleware.checkBlock, moreProducts);
 // /sale/product/info/:idsp
 router.get("/product/info/:idsp", returnInfoProduct);
 
-router.get("/comment", returnComment);
 module.exports = router;

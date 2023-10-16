@@ -4,46 +4,11 @@
 <div id ="cmt">
     
     <form action="#" id="send-comment" >
-        <!-- <div class="close">
-            <i class="fa-sharp fa-solid fa-x" id="close"></i>
-        </div> -->
-        <!-- <div class="cmt-sp">
-            <div class="thongtin">
-                <div class="thongtindonhang">
-                    <label for="idDH">Id đơn hàng</label>
-                    <input type="text" name="idDH" readonly id="idDH">
-                    <label for="sanpham">Sản phẩm</label>
-                    <input type="text" name="sanpham" readonly id="sanpham">
-                    <label for="idDH">Mức độ hài lòng</label>
-                    <div id="sao">
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-                
-                <div class="img">
-                    <img src="/customer/img/img-grid-2.jpg" alt="">
-                </div>
-            </div>
-            <label for="danhgia">Đánh giá sản phẩm</label>
-            <textarea name="danhgia" id="danhgia" rows="9"></textarea>
-        </div> -->
-        
-        <!-- <div class="btn-send-cmt" id="submit">
-            <button>Gửi</button>
-        </div> -->
-        
     </form>
 </div>
 
 
 <div class="container md-4">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-    <div id="toast">
-    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -114,12 +79,14 @@
                         <td>
                             <%= order[i].donViVanChuyen %>
                         </td>
-                        <td id="action">
+                        <td id="action" class="action-order">
+                            <i class="fa-solid fa-circle-info info-order"></i>
                             <% if(order[i].statusDH==1 || order[i].statusDH==6) {%>
                                 <i class="fa-solid fa-trash trash" id="cancel_order"></i>
                             <% } else if(order[i].statusDH==4) {%>
                                 <i class="fas fa-comments comment" id="comment"></i>
                             <% } %>    
+                            
                         </td>
                 </tr>
                 <% } %>

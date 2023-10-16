@@ -279,7 +279,7 @@ input.form-control {
 }
 
 #send {
-    background-color: #ffff;
+    background-color: #ffea65e8;
     min-height: 35px;
     border: 1px solid #636262;
     border-left: 0;
@@ -352,3 +352,7 @@ input.form-control {
     color: black;
 }
 
+.action-order i {
+    padding-right: 10px;
+    cursor: pointer;
+}

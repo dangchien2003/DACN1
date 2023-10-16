@@ -1,0 +1,68 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.thongTinChiTiet {
+    font-size: 18px;
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    grid-gap: 10px;
+    
+}
+
+.sanPham {
+    background-color: rgb(248, 250, 252);
+    min-height: 50px;
+    padding: 10px 5px;
+    border-bottom: 1px solid black;
+    display: grid;
+    grid-template-columns: 1.5fr 8.5fr;
+}
+
+.anhSP {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 15px;
+}
+.anhSP img {
+    min-height: 80px;
+    max-height: 100px;
+}
+
+
+ 
+.ThongTinSanPhamCuaDonHang {
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+}
+
+
+.g-sl {
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+}
+
+.gia, .soluong {
+    position: relative;
+}
+
+
+.gia span {
+    position: absolute;
+    bottom: 0;
+}
+
+.soluong span {
+    position: absolute;
+    bottom: 0;
+}
+
+.cmt {
+    display: grid;
+    grid-template-columns: 5fr 5fr;
+}
+.thongTinKhachHang {
+    border-left: 1px solid black;
+}

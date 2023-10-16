@@ -4,6 +4,9 @@ async function returnProducts(req, res) {
     console.log("list products");
     try {
         var search = req.query.search || "";
+        
+        search = search.replace(/'/g, '');
+        console.log(search);
         var numproduct = 6;
         var sql = ""
         if (search) {
@@ -14,7 +17,9 @@ async function returnProducts(req, res) {
 
 
         }
+        console.log(sql);
         var listProduct = await helpers.query(sql);
+        console.log(listProduct);
         res.cookie('search', search);
         res.cookie('lp', 1, {
             maxAge: 360000,
@@ -38,7 +43,6 @@ async function moreProducts(req, res) {
         var lp = req.cookies.lp;
         var page = req.body.page;
         var search = req.cookies.search;
-        console.log("🚀 ~ file: middleware.js:41 ~ moreProducts ~ search:", search)
 
         if (lp != page) {
             lp = page
@@ -122,6 +126,5 @@ async function returnComment(idsp) {
 module.exports = {
     returnProducts,
     returnInfoProduct,
-    moreProducts,
-    returnComment
+    moreProducts
 }

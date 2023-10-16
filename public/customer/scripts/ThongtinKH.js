@@ -46,7 +46,7 @@ btn_send.addEventListener("click", function() {
                 toastError(message.message);
             }
             // Xử lý dữ liệu đã lấy được
-            console.log(message);
+            console.log(message.message);
         })
         .catch(error => {
             // Xử lý lỗi nếu có
