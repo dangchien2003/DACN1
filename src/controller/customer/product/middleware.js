@@ -6,7 +6,6 @@ async function returnProducts(req, res) {
         var search = req.query.search || "";
         
         search = search.replace(/'/g, '');
-        console.log(search);
         var numproduct = 6;
         var sql = ""
         if (search) {
@@ -14,12 +13,8 @@ async function returnProducts(req, res) {
 
         } else {
             sql = `select top ${numproduct} idSP, anh, ten, gia from SanPham`;
-
-
         }
-        console.log(sql);
         var listProduct = await helpers.query(sql);
-        console.log(listProduct);
         res.cookie('search', search);
         res.cookie('lp', 1, {
             maxAge: 360000,

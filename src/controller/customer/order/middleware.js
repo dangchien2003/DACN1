@@ -173,17 +173,10 @@ async function showInfoOrder(req, res) {
         var sql_DanhGia = `select danhGia.danhGia as comment, danhGia.traLoiDG, soSao, danhGia.idSP from DanhGia 
         where idDH = '${idDH}' 
         order by idSP`;
-        console.log(sql_DanhGia);
         const resut_DanhGia = await helper.query(sql_DanhGia);
         
         var sql_tongGia = `select sum(gia) as tongGiaSP,sum(gia) + 30000 as tong from ThongTinDonHang where idDH = '${idDH}'`;
         const result_tongGia = await helper.query(sql_tongGia);
-        console.log(
-            result_tongGia.recordset[0],
-            resut_DonHang.recordset[0],
-            resut_SanPham.recordset,
-            resut_DanhGia.recordset
-        );
         res.render("customer/order/infoOrder", {
             title: "Thông tin Đơn hàng",
             scripts: ["infoOrder"],

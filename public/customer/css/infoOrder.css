@@ -231,7 +231,8 @@
 .thongTinKhac .info {
     border-bottom: 2px solid #d4d2d2;
     padding: 0 5px;
-    margin-bottom: 5px
+    margin-bottom: 5px;
+    /* overflow: hidden; */
 }
 
 
