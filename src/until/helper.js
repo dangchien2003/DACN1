@@ -33,9 +33,10 @@ async function query(stringQuery) {
     } catch (error) {
         console.error("Lỗi truy vấn SQL:", error);
         throw error; // Nếu bạn muốn xử lý lỗi ở lớp gọi, bạn có thể bắt lỗi ở đây và xử lý nó sau đó. //OK
-    } finally {
-        sql.close();
     }
+    //  finally {
+    //     sql.close();
+    // }
 }
 
 
@@ -80,7 +81,7 @@ function formatDate(date, format) {
     try {
         var value = date.split('-');
         if (format == 'dd/mm/yyy')
-            var newValue = `${value[1]}/${value[2]}/${value[0]}`;
+            var newValue = `${value[2]}/${value[1]}/${value[0]}`;
         return newValue
     } catch (err) {
         console.log(err);

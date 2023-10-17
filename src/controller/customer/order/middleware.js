@@ -145,26 +145,44 @@ async function showInfoOrder(req, res) {
         from DonHang
         join HinhThucThanhToan on DonHang.thanhToan = HinhThucThanhToan.id
         where DonHang.id = '${idDH}' and DonHang.idKH = '${kh}'`;
-
+        
         const resut_DonHang = await helper.query(sql_DonHang);
         if(resut_DonHang.recordset.length == 0) {
             res.render("customer/err/err", helper.err(404));
             return;
         }
 
-        var sql_SanPham = `select ThongTinDonHang.idDH, SanPham.ten as tenSP, ThongTinDonHang.idSP,
+        resut_DonHang.recordset[0].ngayTao = helper.formatDate(resut_DonHang.recordset[0].ngayTao.toISOString().slice(0, 10), "dd/mm/yyy") + " " + resut_DonHang.recordset[0].ngayTao.toISOString().slice(11, 19);
+
+        if(resut_DonHang.recordset[0].ngayHuy) {
+            resut_DonHang.recordset[0].ngayHuy = helper.formatDate(resut_DonHang.recordset[0].ngayHuy.toISOString().slice(0, 10), "dd/mm/yyy") + " " + resut_DonHang.recordset[0].ngayHuy.toISOString().slice(11, 19);
+        }
+        
+        var sql_SanPham = `select ThongTinDonHang.idDH, SanPham.ten as tenSP, ThongTinDonHang.idSP, ThongTinDonHang.gia,
         ThongTinDonHang.gia*ThongTinDonHang.soLuong as giaSP, ThongTinDonHang.soLuong, SanPham.anh
         from ThongTinDonHang 
         join SanPham on ThongTinDonHang.idSP = SanPham.idSP
         where ThongTinDonHang.idDH = '${idDH}'
         order by idSP`;
         const resut_SanPham = await helper.query(sql_SanPham);
-        var sql_DanhGia = `select danhGia.danhGia, danhGia.traLoiDG, soSao, danhGia.idSP from DanhGia 
+        var sql_DanhGia = `select danhGia.danhGia as comment, danhGia.traLoiDG, soSao, danhGia.idSP from DanhGia 
         where idDH = '${idDH}' 
         order by idSP`;
+        console.log(sql_DanhGia);
         const resut_DanhGia = await helper.query(sql_DanhGia);
-
-        res.json({
+        
+        var sql_tongGia = `select sum(gia) as tongGiaSP,sum(gia) + 30000 as tong from ThongTinDonHang where idDH = '${idDH}'`;
+        const result_tongGia = await helper.query(sql_tongGia);
+        console.log(
+            result_tongGia.recordset[0],
+            resut_DonHang.recordset[0],
+            resut_SanPham.recordset,
+            resut_DanhGia.recordset
+        );
+        res.render("customer/order/infoOrder", {
+            title: "Thông tin Đơn hàng",
+            scripts: ["infoOrder"],
+            tongDH: result_tongGia.recordset[0],
             donHang:  resut_DonHang.recordset[0],
             sanPham: resut_SanPham.recordset,
             danhGia: resut_DanhGia.recordset
@@ -175,6 +193,7 @@ async function showInfoOrder(req, res) {
     }
     
 }
+
 
 module.exports = {
     getOrder,
