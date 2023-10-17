@@ -66,17 +66,22 @@ async function showComment(req, res) {
     console.log("showComment");
     try {
         var idDH = req.body.idDH.trim();
-        var KH = req.cookies.kh;
+        var kh = req.cookies.kh;
         if (!idDH) {
             res.send("err");
             return;
         }
 
-        var sql = `  select ThongTinDonHang.idSP ,SanPham.ten, ThongTinDonHang.idDH, danhGia, lanChinhSua, soSao from ThongTinDonHang
-        left join DanhGia on DanhGia.idDH = ThongTinDonHang.idDH
+        var sql = `	  select  ThongTinDonHang.idSP ,SanPham.ten, ThongTinDonHang.idDH
+        ,danhGia, lanChinhSua, soSao , idKH
+        from ThongTinDonHang
         join SanPham on SanPham.idSP = ThongTinDonHang.idSP
-        where ThongTinDonHang.idDH = '${idDH}' and (lanChinhSua < 2 or lanChinhSua is NULL)`
+        left join DanhGia on DanhGia.idDH = ThongTinDonHang.idDH and danhGia.idSP = ThongTinDonHang.idSP
+        join DonHang on DonHang.id = ThongTinDonHang.idDH
+        where ThongTinDonHang.idDH = '${idDH}' and idKH ='${kh}' and  (lanChinhSua < 2 or lanChinhSua is NULL)`;
+        console.log(sql);
         var products_comment = await helper.query(sql);
+        console.log(products_comment);
         if(products_comment.recordset.length == 0) {
             res.send("err");
             return;
