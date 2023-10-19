@@ -1,0 +1,118 @@
+<div class="right_col" role="main">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Tạo tài khoản</h3>
+        </div>
+    </div>
+    <div class="col-md-12 mb-4 mb-md-0">
+        <div class="card">
+            <h5 class="card-header">Thêm tài khoản mới</h5>
+            <div class="card-body">
+                <form action="/admin/accounts/add-account" method="POST">
+                    <div class="row">
+                        <div class="mb-2 col-md-6">
+                            <label class="form-label" for="basic-default-name">Tên tài khoản</label>
+                            <input type="text" class="form-control" name="tai_khoan" id="basic-default-name"
+                                placeholder="" required="">
+                        </div>
+                        <div class="mb-2 col-md-6">
+                            <label class="form-label" for="basic-default-password">Mật khẩu</label>
+                            <div class="input-group input-group-merge">
+                                <input type="password" name="mat_khau" id="basic-default-password" class="form-control"
+                                    placeholder="············" aria-describedby="basic-default-password3" required="">
+                                <span class="input-group-text cursor-pointer" id="basic-default-password3"><i
+                                        class="fa-light fa-eye"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-2 col-md-6">
+                            <label class="form-label">Họ</label>
+                            <input type="text" class="form-control" name="ho" placeholder="" required="">
+                        </div>
+                        <div class="mb-2 col-md-6">
+                            <label class="form-label">Tên</label>
+                            <input type="text" name="ten" class="form-control" placeholder="" required="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-2 col-md-6">
+                            <label class="form-label" for="basic-default-name">Email</label>
+                            <input type="email" name="email" class="form-control" id="basic-default-name" placeholder=""
+                                required="">
+                        </div>
+                        <div class="mb-2 col-md-6">
+                            <label class="form-label" for="basic-default-name">Điện thoại</label>
+                            <input type="text" name="dien_thoai" class="form-control" id="basic-default-name"
+                                placeholder="" required="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-2 col-md-6">
+                            <label class="form-label" for="basic-default-name">Sinh nhật</label>
+                            <input type="date" name="sinh_nhat" class="form-control" id="basic-default-name"
+                                placeholder="" required="">
+                        </div>
+                        <div class="mb-2 col-md-6">
+                            <label class="form-label" name for="basic-default-name">Giới tính</label>
+                            <select class="form-select" name="gioi_tinh" id="">
+                                <option value="1" selected>Nam</option>
+                                <option value="0">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-2 col-md-6">
+                            <label class="form-label" for="basic-default-name">Cấp bậc</label>
+                            <input type="number" name="cap_bac" class="form-control" id="basic-default-name" value="0"
+                                required="">
+                        </div>
+                        <div class="mb-2 col-md-6">
+                            <label class="form-label" for="basic-default-name">Địa chỉ</label>
+                            <input type="text" name="dia_chi" class="form-control" id="basic-default-name"
+                                placeholder="" required="">
+                        </div>
+                    </div>
+                    <div class="mt-3 col-md-12">
+                        {{#if (eq status "failed")}}
+                        {{#if (eq code "account_exist")}}
+                        <div class="info alert alert-danger" role="alert">
+                            <span class="fw-bold">Tài khoản đã có trong hệ thống, không thể thêm tài
+                                khoản.</span>
+                        </div>
+                        {{/if}}
+                        {{#if (eq code "email_exist")}}
+                        <div class="info alert alert-danger" role="alert">
+                            <span class="fw-bold">Email đã có trong hệ thống, không thể thêm tài
+                                khoản.</span>
+                        </div>
+                        {{/if}}
+                        {{#if (eq code "phone_exist")}}
+                        <div class="info alert alert-danger" role="alert">
+                            <span class="fw-bold">Số điện thoại đã có trong hệ thống, không thể thêm tài
+                                khoản.</span>
+                        </div>
+                        {{/if}}
+                        {{#if (eq code "connect_database")}}
+                        <div class="info alert alert-danger" role="alert">
+                            <span class="fw-bold">Lỗi kết nối database, không thể thêm tài
+                                khoản.</span>
+                        </div>
+                        {{/if}}
+                        {{/if}}
+                        {{#if (eq status "success")}}
+                        <div class="info alert alert-success" role="alert">
+                            <span class="fw-bold">Thêm tài khoản admin thành công</span>
+                        </div>
+                        {{/if}}
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Lưu</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,41 +1,32 @@
-const sql = require("mssql/msnodesqlv8");
-const {
-    promises
-} = require("msnodesqlv8");
-const fs = require("fs");
+const sql = require("mssql");
+const dbConfig = require('../../config/config.json');
 
+let pool;
 
-function getConfig() {
-    return new Promise((resolve, reject) => {
-        fs.readFile('./config/config.json', 'utf8', (err, data) => {
-
-            if (err) {
-                return reject(err);
-            } else {
-                const config = JSON.parse(data);
-                resolve(config);
-            }
-        })
-    })
+async function connect() {
+    try {
+        pool = await sql.connect(dbConfig);
+        console.log("Kết nối thành công!");
+    } catch (error) {
+        console.error("Lỗi kết nối SQL:", error);
+        throw error;
+    }
 }
-
 
 async function query(stringQuery) {
     try {
-       const config = await getConfig();
-        await sql.connect(config);
-        const request = new sql.Request();
+        if (!pool) {
+            await connect();
+        }
+        const request = pool.request();
         const result = await request.query(stringQuery);
         return result;
     } catch (error) {
-        return undefined;
-    } finally {
-        sql.close();
+        console.error("Lỗi truy vấn SQL:", error);
+        throw error;
     }
-
-
-};
+}
 
 module.exports = {
     query
-}
+};
