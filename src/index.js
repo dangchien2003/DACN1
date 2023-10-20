@@ -37,8 +37,9 @@ app.use(express.static('./public'));
 //Cấu hình handlebars template engine
 app.engine('hbs', exphbs.engine({extname: '.hbs', defaultLayout: 'main', helpers: {
   format: function(date, formatString){
-    const vietnamTime = addHours(date,7);
-    return format(vietnamTime, formatString);
+    const dateString = new Date(date);
+    //const vietnamTime = addHours(dateString,7);
+    return format(dateString, formatString);
   },
   eq: function(val1, val2, options){
     return val1 === val2 ? true: false;
@@ -56,11 +57,9 @@ app.set('view engine', 'hbs');
 app.set('view engine', 'ejs');
 app.set('views', [path.join(__dirname, 'views/admin'), path.join(__dirname, 'views/admin/authentications'), path.join(__dirname, 'views')]);
 
-passportLogin(app);
+//passportLogin(app);
 // Route init
 route(app);
-
-
 
 app.listen(3000, () => {
   console.log(`127.0.0.1:3000`);

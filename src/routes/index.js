@@ -18,6 +18,7 @@ function route(app) {
     if(!isDangNhap) return res.render('login.hbs');
     return next();
    });
+  app.use("/admin/authentications", authenticationRouter);
   app.use("/admin/invoices", invoiceRouter);
   //route admin account -> accounts.js
   app.use("/admin/accounts", accountRouter);
