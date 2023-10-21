@@ -9,10 +9,10 @@ async function returnProducts(req, res) {
         var numproduct = 6;
         var sql = ""
         if (search) {
-            sql = `select top ${numproduct} idSP, anh, ten, gia from SanPham where ten LIKE N'%${search}%'`;
+            sql = `select top ${numproduct} idSP, anh, ten, gia from SanPham where ten LIKE N'%${search}%' and ngayXoa IS NULL`;
 
         } else {
-            sql = `select top ${numproduct} idSP, anh, ten, gia from SanPham`;
+            sql = `select top ${numproduct} idSP, anh, ten, gia from SanPham where ngayXoa IS NULL`;
         }
         var listProduct = await helpers.query(sql);
         res.cookie('search', search);
@@ -49,9 +49,9 @@ async function moreProducts(req, res) {
         var sql = "";
 
         if (search) {
-            sql = `SELECT idSP, anh, ten, gia FROM SanPham where ten LIKE N'%${search}%' ORDER BY idSP OFFSET ${lp*numproduct} ROWS FETCH NEXT ${numproduct} ROWS ONLY;`;
+            sql = `SELECT idSP, anh, ten, gia FROM SanPham where ten LIKE N'%${search}%' and ngayXoa IS NULL ORDER BY idSP OFFSET ${lp*numproduct} ROWS FETCH NEXT ${numproduct} ROWS ONLY;`;
         } else {
-            sql = `SELECT idSP, anh, ten, gia FROM SanPham ORDER BY idSP OFFSET ${lp*numproduct} ROWS FETCH NEXT ${numproduct} ROWS ONLY;`;
+            sql = `SELECT idSP, anh, ten, gia FROM SanPham where ngayXoa IS NULL ORDER BY idSP OFFSET ${lp*numproduct} ROWS FETCH NEXT ${numproduct} ROWS ONLY;`;
         }
         var listProduct = await helpers.query(sql);
         if (listProduct.recordset.length == 0) {
@@ -86,7 +86,7 @@ async function returnInfoProduct(req, res) {
         group by idSP) as sosao,
         (select count(*) from ThongTinDonHang
         where ThongTinDonHang.idSP = ${idsp} ) as luotmua
-        from SanPham where idSP = ${idsp}`;
+        from SanPham where idSP = ${idsp} and ngayXoa IS NULL `;
 
         var info = await helpers.query(sql);
         if (info.recordset.length == 0) {

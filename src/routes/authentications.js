@@ -10,6 +10,6 @@ const adminAuthenticationController = require("../controllers/admin/Authenticati
 //Truy cập trang đăng nhập
 router.use('/',adminAuthenticationController.getLogin);
 
-//router.use('/signin', adminAuthenticationController.login);
+// router.use('/signin', adminAuthenticationController.login);
 
 module.exports = router;

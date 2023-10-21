@@ -31,7 +31,7 @@ class ProductController {
     } catch (error) {
       res.redirect("/admin/products?status=failed&code=connect_database");
     }
-
+  }
   //[POST] /admin/product/update/:id --> Cập nhật 1 sản phẩm
   async update(req, res) {
     const product = req.body;
@@ -54,7 +54,7 @@ class ProductController {
     } catch (error) {
       res.redirect("/admin/products?status=failed&code=connect_database");
     }
-
+  }
     //[GET] /admin/products/:id
     show(req, res) {
         res.send("NEW DETAILS");

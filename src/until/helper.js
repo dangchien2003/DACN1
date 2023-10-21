@@ -19,8 +19,8 @@ function getConfig() {
         })
     })
 }
-const sql = require("mssql");
-const dbConfig = require('../../config/config.json');
+// const sql = require("mssql");
+const dbConfig = require('../../config/configdb.json');
 
 let pool;
 
@@ -36,8 +36,8 @@ async function connect() {
 
 async function query(stringQuery) {
     try {
-        await sql.connect(dbConfig);
-        const request = new sql.Request();
+        // await sql.connect(dbConfig);
+        // const request = new sql.Request();
         if (!pool) {
             await connect();
         }
@@ -65,9 +65,10 @@ async function getOrder(idkh) {
     } catch (error) {
         console.log(error);
         throw error;
-    } finally {
-        sql.close();
-    }
+    } 
+    // finally {
+    //     sql.close();
+    // }
 
 
 };
@@ -86,10 +87,8 @@ async function procedureSQL(input, procedureName) {
     } catch (error) {
         console.log(error);
         throw error;
-    } finally {
-        sql.close();
-        throw error;
-    }
+    } 
+    
 }
 
 function formatDate(date, format) {
@@ -102,7 +101,9 @@ function formatDate(date, format) {
         console.log(err);
         throw err;
     }
-
+    // finally {
+    //     sql.close();
+    // }
 }
 
 function err(status) {
