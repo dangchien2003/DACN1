@@ -2,11 +2,33 @@
   <div class="page-title">
     <div class="title_left">
       <h3>Quản lý sản phẩm</h3>
+      {{#if (eq status.status "success")}}
+      {{#if (eq status.code "delete_product")}}
+      <div class="info alert alert-success" role="alert">
+        <span class="fw-bold">Xóa sản phẩm thành công</span>
+      </div>      
+      {{/if}}
+      {{#if (eq status.code "update_product")}}
+      <div class="info alert alert-success" role="alert">
+        <span class="fw-bold">Cập nhật phẩm thành công</span>
+      </div>    
+      {{/if}}
+      {{#if (eq status.code "add_product")}}
+        <div class="info alert alert-success" role="alert">
+        <span class="fw-bold">Thêm sản phẩm thành công</span>
+      </div>   
+      {{/if}}
+      {{/if}}
+      {{#if (eq status.status "failed")}}
+       <div class="info alert alert-danger" role="alert">
+        <span class="fw-bold">Lỗi kết nối database</span>
+      </div>  
+      {{/if}}
     </div>
   </div>
   <div class="mt-3 mb-2 col-md-12">
-    <button type="button" class="add-product btn rounded-pill btn-primary btn-sm mr-2" data-toggle="tooltip" data-placement="bottom"
-      title="Thêm mới sản phẩm">
+    <button type="button" class="add-product btn rounded-pill btn-primary btn-sm mr-2" data-toggle="tooltip"
+      data-placement="bottom" title="Thêm mới sản phẩm">
       <i class="fa-regular fa-circle-plus"></i>
       <span>Thêm mới</span>
     </button>
@@ -31,9 +53,9 @@
       {{#each products}}
       <tr>
         <td>{{idSP}}</td>
-        <td><img src="/uploads/{{anh}}" alt="{{anh}}" height="80px" /></td>
+        <td><img src="/uploads/{{anh}}" alt="" height="80px" /></td>
         <td>{{ten}}</td>
-        <td>{{gia}}</td>
+        <td>{{currency gia}}</td>
         <td>{{hang}}</td>
         <td>{{loaiSanPham}}</td>
         <td>{{mauSac}}</td>
@@ -53,5 +75,5 @@
       {{/each}}
     </tbody>
   </table>
-  {{> products/addProduct  }}
+  {{> products/addProduct }}
 </div>

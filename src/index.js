@@ -28,6 +28,7 @@ const {
     addHours
 } = require('date-fns');
 const multer = require('multer');
+const passportLogin = require('./until/passportLogin');
 
 //Cấu hình nơi lưu trữ tải file lên
 const storage = multer.diskStorage({
@@ -56,23 +57,29 @@ app.use(upload.single('anh'));
 // app.use(express.static('./public'));
 
 //Cấu hình handlebars template engine
-app.engine('hbs', exphbs.engine({
-    extname: '.hbs',
-    defaultLayout: 'main',
-    helpers: {
-        format: function(date, formatString) {
-            const vietnamTime = addHours(date, 7);
-            return format(vietnamTime, formatString);
-        },
-    }
-}));
+app.engine('hbs', exphbs.engine({extname: '.hbs', defaultLayout: 'main', helpers: {
+  format: function(date, formatString){
+    const dateString = new Date(date);
+    //const vietnamTime = addHours(dateString,7);
+    return format(dateString, formatString);
+  },
+  eq: function(val1, val2, options){
+    return val1 === val2 ? true: false;
+  },
+  increase : function(val){
+    return ++val;
+  },
+  currency: function(val){
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")  + ' VNĐ';
+  }
+}}));
 app.set('view engine', 'hbs');
 
 //use ejs engine
 app.set('view engine', 'ejs');
-app.set('views', [path.join(__dirname, 'views/admin'), path.join(__dirname, 'views')]);
+app.set('views', [path.join(__dirname, 'views/admin'), path.join(__dirname, 'views/admin/authentications'), path.join(__dirname, 'views')]);
 
-
+//passportLogin(app);
 // Route init
 // route(app);
 routeAdmin(app);

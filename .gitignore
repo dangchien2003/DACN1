@@ -8,7 +8,7 @@ config/configdb.json
 
 package-lock.json
 
-config/configdb.json
+config\config.js
 
 template/customer/learning.nentang.vn-frontend-basic-master
 

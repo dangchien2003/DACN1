@@ -1,10 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const adminSiteController = require("../controllers/admin/SiteControllers")
+const reportController = require("../controllers/admin/ReportController")
 
 //Admin route
 //Đưa về trang chủ trang admin
-router.use('/', adminSiteController.index);
+
+router.use('/dashboard',reportController.report);
+
+// router.use('/',(req,res,next)=>{
+//     res.redirect('/admin/dashboard');
+// })
+
 
 module.exports = router;

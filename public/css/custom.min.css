@@ -1331,7 +1331,9 @@ body .container.body .right_col {
 }
 
 .nav-md .container.body .right_col {
-	height: 100%;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 	padding: 10px 20px 0;
 	margin-left: 230px
 }
@@ -1938,7 +1940,7 @@ a:hover, a:focus {
 }
 
 footer {
-	position: fixed;
+	position: relative;
 	bottom: 0;
 	width: 100%;
 	background: #fff;
@@ -6031,9 +6033,14 @@ ul.notifications {
 .container-wraper {
 	width: 100%;
 	height: 100%;
-	position: absolute;
 }
 
 tbody, td, tfoot, th, thead, tr{
 	vertical-align: middle;
+}
+.w-px-150{
+	width: 150px!important;
+}
+.w-px-80{
+	width: 80px!important;
 }

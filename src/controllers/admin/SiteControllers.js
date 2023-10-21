@@ -5,6 +5,8 @@ class SiteController {
     index(req, res) {
         res.render('home.hbs');
     }
+
+    //GET SETTING
 }
 
 module.exports = new SiteController;

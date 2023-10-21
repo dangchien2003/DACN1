@@ -19,15 +19,29 @@ function getConfig() {
         })
     })
 }
+const sql = require("mssql");
+const dbConfig = require('../../config/config.json');
 
-const dbConfig = require('../../config/configdb.json');
-//Hàm hết nối sql server 
+let pool;
 
-// Hàm thực hiện truy vấn SQL
+async function connect() {
+    try {
+        pool = await sql.connect(dbConfig);
+        console.log("Kết nối thành công!");
+    } catch (error) {
+        console.error("Lỗi kết nối SQL:", error);
+        throw error;
+    }
+}
+
 async function query(stringQuery) {
     try {
         await sql.connect(dbConfig);
         const request = new sql.Request();
+        if (!pool) {
+            await connect();
+        }
+        const request = pool.request();
         const result = await request.query(stringQuery);
         return result;
     } catch (error) {
@@ -74,6 +88,7 @@ async function procedureSQL(input, procedureName) {
         throw error;
     } finally {
         sql.close();
+        throw error;
     }
 }
 
