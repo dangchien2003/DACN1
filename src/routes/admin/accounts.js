@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 
-const adminAccountController = require("../controllers/admin/AccountController")
+const adminAccountController = require("../../controllers/admin/AccountController")
 
 //Admin account route
 //Tạo tài khoản

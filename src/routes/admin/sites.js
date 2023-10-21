@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const reportController = require("../controllers/admin/ReportController")
+const reportController = require("../../controllers/admin/ReportController")
 
 //Admin route
 //Đưa về trang chủ trang admin

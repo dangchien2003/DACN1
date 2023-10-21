@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 
-const adminInvoiceController = require("../controllers/admin/InvoiceController")
+const adminInvoiceController = require("../../controllers/admin/InvoiceController")
 
 //Admin account route
 

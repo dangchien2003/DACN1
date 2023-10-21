@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 //const productController = require("../controllers/ProductController");
-const adminProductController = require("../controllers/admin/ProductController")
+const adminProductController = require("../../controllers/admin/ProductController")
 
 //router.get("/", productController.getAllProduct);
 
