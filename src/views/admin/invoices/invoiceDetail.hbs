@@ -1,0 +1,159 @@
+<div class="right_col" role="main">
+    <div class="col-xl-12 col-md-12 col-12 mb-4">
+        <div class="card invoice-preview-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between flex-xl-row flex-md-column flex-sm-row flex-column">
+                    <div class="mb-xl-0 pb-3">
+                        <div class="d-flex svg-illustration align-items-center gap-2 mb-2">
+                            <span class="app-brand-logo demo">
+                                <i class="fa-regular fa-paw fa-xl" style="color: #469188;"></i>
+                            </span>
+                            <span class="h4 mb-0 app-brand-text fw-bold">Shop ĐT</span>
+                        </div>
+
+                         <div class="d-flex justify-content-between mb-1">
+                                <span class="w-px-80">Địa chỉ:</span>
+                                <span class="fw-semibold">Ngõ 103/25 Bắc Từ Liêm, Hà Nội</h6>
+                            </div>
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="w-px-80">Số điện thoại:</span>
+                                <span class="fw-semibold">0123456789</h6>
+                            </div>
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="w-px-80">Email:</span>
+                                <span class="fw-semibold">shopdt@gmail.com</h6>
+                            </div>
+                    </div>
+                    <div>
+                        <h4 class="fw-medium">Đơn hàng #{{detail.[0].id_don_hang}}</h4>
+                        <div class="mb-2">
+                            <span>Ngày đặt hàng:</span>
+                            <span>{{format detail.[0].ngay_dat_hang 'dd/MM/yyyy'}}</span>
+                        </div>      
+                        <h6 class="fw-bold">Người xác nhận</h6>
+                        <div class="mb-1">
+                            <span class="fw-regular">{{detail.[0].ten_admin}}</span>
+                        </div>                
+                    </div>
+                    
+                </div>
+            </div>
+            <hr class="my-0">
+            <div class="card-body">
+                <div class="d-flex justify-content-between flex-wrap">
+                    <div class="my-3">
+                        <h6 class="pb-2">Người đặt hàng:</h6>
+                        {{#if detail.[0].ten_khach_hang}}
+                        <p class="mb-1">{{detail.[0].ten_khach_hang}}</p>
+                        {{else}}
+                         <p class="mb-1">{{detail.[0].tai_khoan}}</p>
+                        {{/if}}
+                        <p class="mb-1">{{detail.[0].sdt_khach_hang}}</p>
+                        <p class="mb-1">{{detail.[0].dia_chi_khach_hang}}</p>
+                        <p class="mb-1">{{detail.[0].email_khach_hang}}</p>
+                    </div>
+                    <div class="my-3">
+                        <h6 class="pb-2">Người nhận hàng:</h6>
+                        <p class="mb-1">{{detail.[0].nguoi_nhan_hang}}</p>
+                        <p class="mb-1">{{detail.[0].dia_chi_nhan_hang}}</p>
+                        <p class="mb-1">{{detail.[0].so_dien_thoai}}</p>
+                    </div>
+                    <div class="my-3">
+                        <h6 class="pb-2">Tình trạng đơn hàng:</h6>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="pe-3 fw-medium">Hình thức thanh toán:</td>
+                                    <td>{{detail.[0].hinh_thuc_thanh_toan}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="pe-3 fw-medium">Tình trạng thanh toán:</td>
+                                    {{#if (eq detail.[0].id_thanh_toan 1)}}
+                                    <td>Chưa thanh toán</td>
+                                    {{else}}
+                                    <td>Đã thanh toán</td>
+                                    {{/if}}
+                                </tr>
+                                <tr>
+                                    <td class="pe-3 fw-medium">Tình trạng đơn hàng:</td>
+                                    <td>{{detail.[0].tinh_trang_don_hang}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="pe-3 fw-medium">Đơn vị vận chuyển:</td>
+                                    <td>{{detail.[0].don_vi_van_chuyen}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-responsive">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Sản phẩm</th>
+                            <th>Hình ảnh</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each products}}
+                        <tr>
+                            <td>{{increase @index}}</td>
+                            <td class="text-nowrap text-heading">{{this.ten_san_pham}}</td>
+                            {{#if this.anh_san_pham}}
+                            <td><img src="/uploads/{{this.anh_san_pham}}" alt="" style="height: 100px;"></td>
+                            {{else}}
+                             <td><img src="uploads/default-image.png" alt="" style="height: 100px;"></td>
+                             {{/if}}
+                            <td class="text-nowrap">{{currency this.gia_san_pham}}</td>
+                            <td>{{this.so_luong}}</td>
+                            <td>{{currency this.thanh_tien}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-md-0 mb-3">
+                        <div>
+                            <p class="mb-2">
+                                <span class="me-1 text-heading fw-bold">Ghi chú:</span>
+                                <span>{{detail.[0].ghi_chu_don_hang}}</span>
+                            </p>        
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-end">
+                        <div class="invoice-calculations">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="w-px-150">Thành tiền:</span>
+                                <span class="fw-semibold">{{currency total}}</h6>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="w-px-150">Giảm giá:</span>
+                                <span class="fw-semibold">0</h6>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="w-px-150">Thuế:</span>
+                                <span class="fw-semibold">0</h6>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="w-px-150">Phí vận chuyển:</span>
+                                <span class="fw-semibold">0</h6>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <span class="w-px-150">Tổng cộng:</span>
+                                <span class="fw-semibold">{{currency total}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 
     <title>SHOP ĐT | </title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
@@ -117,6 +118,8 @@
   </head>
 
   <body class="nav-md">
+    
+    
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -146,25 +149,25 @@
               <div class="menu_section">
                 
                 <ul class="nav side-menu">
-                  <li><a href="file:///D:/PHUONG%20HIEU/Downloads/templatead/production/trangchuad.html"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="file:///D:/DANC/DACN1/template/admin/templatead/production/trangchuad.html"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     
                   </li>
-                  <li><a href="file:///D:/PHUONG%20HIEU/Downloads/templatead/production/formQLTK.html"><i class="fa fa-edit"></i> Quản lý tài khoản <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="file:///D:/DANC/DACN1/template/admin/templatead/production/formQLTK.html"><i class="fa fa-edit"></i> Quản lý tài khoản <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       
                     </ul>
                   </li>
-                  <li><a href="file:///D:/PHUONG%20HIEU/Downloads/templatead/production/formQLSP.html"><i class="fa fa-desktop"></i> Quản lý sản phẩm <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="file:///D:/DANC/DACN1/template/admin/templatead/production/formQLSP.html"><i class="fa fa-desktop"></i> Quản lý sản phẩm <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       
                     </ul>
                   </li>
-                  <li><a href="file:///D:/PHUONG%20HIEU/Downloads/templatead/production/formQLDH.html"><i class="fa fa-table"></i> Quản lý đơn hàng <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="file:///D:/DANC/DACN1/template/admin/templatead/production/formQLDH.html"><i class="fa fa-table"></i> Quản lý đơn hàng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       
                     </ul>
                   </li>
-                  <li><a href="file:///D:/PHUONG%20HIEU/Downloads/templatead/production/THONGKE.html"><i class="fa fa-bar-chart-o"></i> Thống kê <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="file:///D:/DANC/DACN1/template/admin/templatead/production/THONGKE.html"><i class="fa fa-bar-chart-o"></i> Thống kê <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                      
                     </ul>
@@ -278,12 +281,13 @@
                           <div class="container-fluid al">
                              
                               <b>CHỨC NĂNG CHÍNH:</b><Br>
-                              <button class="dh btn browser" type="button" data-toggle="tooltip" data-placement="top"
-                                  title="Khóa Tài Khoản"><i class="fas fa-user-plus"></i></button>
-                              <button class="dh search" type="button" onclick="sortTable()" data-toggle="tooltip" data-placement="top"
-                                  title="Mở Tài Khoản"><i class="fa fa-filter" aria-hidden="true"></i></button>
-                              <button class="dh huy" data-toggle="tooltip" data-placement="top" title="Tạo Tài Khoản"><i
-                                      class="fas fa-file-import"></i></button>
+                              <button>
+                                <a href="file:///D:/DANC/DACN1/template/admin/templatead/dacn/doc/Kho%C3%A1TK.html">Khoá tài khoản</a>
+                              </button>
+                              <button>
+                                <a href="file:///D:/DANC/DACN1/template/admin/templatead/dacn/doc/M%E1%BB%9FTK.html">Mở tài khoản</a>
+                              </button>
+                              <button><a href="file:///D:/DANC/DACN1/template/admin/templatead/dacn/doc/T%E1%BA%A1o%20TK.html">Tạo tài khoản</a></button>
                               <div class="table-title">
                                   <div class="row">
                       
@@ -301,18 +305,13 @@
                                           <th>Ngày Tạo</th>
                                           <th>Ngày Khóa</th>
                                           <th>Người Khóa</th>
-                                          <th width="5px; !important">Tính Năng</th>
+                                         
                                       </tr>
                                   </thead>
                               </table>
                               <div id="pageNavPosition" class="text-right"></div>
-                              <script type="text/javascript">
-                                  var pager = new Pager('myTable', 5);
-                                  pager.init();
-                                  pager.showPageNav('pager', 'pageNavPosition');
-                                  pager.showPage(1);
-                              </script>
-                          </div>
+                              
+
                           <hr class="hr1">
                           <div class="container-fluid end">
                               <div class="row text-center">
@@ -324,129 +323,7 @@
                                   </div>
                               </div>
                           </div>
-                          <script src="jquery.min.js"></script>
-                          <script type="text/javascript">
-                              //Tìm kiếm
-                              function myFunction() {
-                                  var input, filter, table, tr, td, i, txtValue;
-                                  input = document.getElementById("myInput");
-                                  filter = input.value.toUpperCase();
-                                  table = document.getElementById("myTable");
-                                  tr = table.getElementsByTagName("tr");
-                                  for (i = 0; i < tr.length; i++) {
-                                      td = tr[i].getElementsByTagName("td")[0];
-                                      if (td) {
-                                          txtValue = td.textContent || td.innerText;
-                                          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                              tr[i].style.display = "";
-                                          } else {
-                                              tr[i].style.display = "none";  }}}}
-                             
-                              
-                       //Thời Gian
-                       function time() {
-                                  var today = new Date();
-                                  var weekday = new Array(7);
-                                  weekday[0] = "Chủ Nhật";
-                                  weekday[1] = "Thứ Hai";
-                                  weekday[2] = "Thứ Ba";
-                                  weekday[3] = "Thứ Tư";
-                                  weekday[4] = "Thứ Năm";
-                                  weekday[5] = "Thứ Sáu";
-                                  weekday[6] = "Thứ Bảy";
-                                  var day = weekday[today.getDay()];
-                                  var dd = today.getDate();
-                                  var mm = today.getMonth() + 1;
-                                  var yyyy = today.getFullYear();
-                                  var h = today.getHours();
-                                  var m = today.getMinutes();
-                                  var s = today.getSeconds();
-                                  m = checkTime(m);
-                                  s = checkTime(s);
-                                  nowTime = h + ":" + m + ":" + s;
-                                  if (dd < 10) {
-                                      dd = '0' + dd
-                                  }
-                                  if (mm < 10) {
-                                      mm = '0' + mm
-                                  }
-                                  today = day + ', ' + dd + '/' + mm + '/' + yyyy;
-                                  tmp = '<i class="fa fa-clock-o" aria-hidden="true"></i> <span class="date">' + today + ' | ' + nowTime +
-                                      '</span>';
-                                  document.getElementById("clock").innerHTML = tmp;
-                                  clocktime = setTimeout("time()", "1000", "Javascript");
-                      
-                                  function checkTime(i) {
-                                      if (i < 10) {
-                                          i = "0" + i;
-                                      }
-                                      return i;
-                                  }
-                              }
-                              //Thêm
-                              $(document).ready(function () {
-                                  $('[data-toggle="tooltip"]').tooltip();
-                                  var actions = $("table td:last-child").html();
-                                  $(".add-new").click(function () {
-                                      $(this).attr("disabled", "disabled");
-                                      var index = $("table tbody tr:last-child").index();
-                                      var row = '<tr>' +
-                                          '<td><input type="text" class="form-control" name="makhachhang" id="makhachhang" placeholder="Nhập Mã Khách Hàng"></td>' +
-                                          '<td><input type="text" class="form-control" name="matuihang" id="matuihang" placeholder="Nhập Mã Túi Hàng"></td>' +
-                                          '<td><input type="text" class="form-control" name="mavandon" id="mavandon" value="" placeholder="Nhập Mã Vận Đơn"></td>' +
-                                          '<td><input type="text" class="form-control" name="tinhtrangdh" id="tinhtrangdh" value="" placeholder="Nhập Tình Trạng Đơn Hàng"></td>' +
-                                          '<td><input type="text" class="form-control" name="ngaytao" id="ngaytao" value="" placeholder="Nhập Ngày Tạo"></td>' +
-                                          '<td><input type="text" class="form-control" name="ngayhuy" id="ngayhuy" value="" placeholder="Nhập Ngày Hủy"></td>' +
-                                          '<td><input type="text" class="form-control" name="nguoiduyet" id="nguoiduyet" value="" placeholder="Nhập Người Duyệt"></td>' +
-                                          '<td>' + actions + '</td>' +
-                                          '</tr>';
-                                      $("table").append(row);
-                                      $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-                                      $('[data-toggle="tooltip"]').tooltip();
-                                  });
-                                  //Kiểm tra rỗng
-                                  $(document).on("click", ".add", function () {
-                                      var empty = false;
-                                      var input = $(this).parents("tr").find('input[type="text"]');
-                                      input.each(function () {
-                                          if (!$(this).val()) {
-                                              $(this).addClass("error");
-                                              swal("Thông Báo!", "Dữ Liệu Trống Vui Lòng Kiểm Tra", "error");
-                                              empty = true;
-                                          } else {
-                                              $(this).removeClass("error");
-                                              swal("Thông Báo!", "Bạn Chưa Nhập Dữ Liệu", "warning");
-                                          }
-                                      });
-                                      $(this).parents("tr").find(".error").first().focus();
-                                      if (!empty) {
-                                          input.each(function () {
-                                              $(this).parent("td").html($(this).val());
-                                              swal("Thành Công", "Bạn Đã Cập Nhật Thành Công", "success");
-                                          });
-                                          $(this).parents("tr").find(".add, .edit").toggle();
-                                          $(".add-new").removeAttr("disabled");
-                                      }
-                                  });
-                                  
-                                  // Xóa
-                                  $(document).on("click", ".cancel", function () {
-                                      $(this).parents("tr").remove();
-                                      swal("Thành Công!", "Bạn Đã Hủy Thành Công", "success");
-                                      $(".add-new").removeAttr("disabled");
-                                  });
-                              });
-                              //Not use
-                              //jQuery(function () {
-                                  //jQuery(".cog").click(function () {
-                                      //swal("Sorry!", "Tính Năng Này Chưa Có", "error");
-                                 // });
-                              //});
-                              //Tool tip
-                              //$(document).ready(function () {
-                              //    $('[data-toggle="tooltip"]').tooltip();
-                             // });
-                          </script>
+                         
                         </div>
                     </div>
                 </div>
