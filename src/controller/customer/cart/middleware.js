@@ -60,7 +60,7 @@ async function addCart(req, res) {
             UPDATE SET target.soluong = target.soluong + source.soluong
         WHEN NOT MATCHED THEN
             INSERT (idkh, idsp, soluong) VALUES (source.idkh, source.idsp, source.soluong);`;
-
+        console.log(sql);
         var result = await helpers.query(sql);
 
         if (result.rowsAffected[0] == 1) {
