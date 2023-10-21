@@ -17,7 +17,7 @@ class InvoiceController {
                                 ad.ho + ' ' + ad.ten as ten_admin
                            FROM DonHang dh
                                 JOIN ThongTinKhachHang kh ON dh.idKH = kh.idKH
-                                JOIN HinhThucVanChuyen vc ON dh.vanChuyen = vc.id
+                                JOIN HinhThucThanhToan vc ON dh.thanhToan = vc.id
                                 JOIN TinhTrangDonHang tt ON dh.tinhTrangDonHang = tt.id
                                 LEFT JOIN admin ad ON dh.nguoiDuyet = ad.idAdmin
                            WHERE dh.ngayHuy IS NULL`;
@@ -30,12 +30,13 @@ class InvoiceController {
         if(qResult && qResult.recordset && qResult.recordset.length>0){
           statusInvoices = qResult.recordset;
         }
-        q = `SELECT * FROM HinhThucVanChuyen`;
+        q = `SELECT * FROM HinhThucThanhToan`;
+
         qResult = await query.query(q);
         let payments = [];
         if(qResult && qResult.recordset && qResult.recordset.length>0){
           payments = qResult.recordset;
-        }    
+        }
         return res.render("invoices/invoices.hbs", {'invoices': invoices, 'statusInvoices':statusInvoices, 'payments': payments, status});
       } else {
         // Xử lý trường hợp không có dữ liệu sản phẩm
@@ -51,7 +52,7 @@ class InvoiceController {
     console.log(updatedData);
     try {
       const q = `UPDATE DonHang
-                SET vanChuyen = ${updatedData.hinhThucThanhToan}, donViVanChuyen = '${updatedData.donViVanChuyen}',
+                SET thanhToan = ${updatedData.hinhThucThanhToan}, donViVanChuyen = '${updatedData.donViVanChuyen}',
                 tinhTrangDonHang = ${updatedData.tinhTrangDonHang}
                 WHERE id = '${invoiceId}'
                 ;`;
