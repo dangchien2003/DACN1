@@ -52,7 +52,6 @@
     var qldh_table = $('.qldh').dataTable(
       {
         language: {
-<<<<<<< HEAD
         url: '/json/vi.json'
       }
       }
@@ -65,21 +64,6 @@
       }
     );
 
-=======
-          url: '/json/vi.json'
-        },responsive: true,
-      }
-    );
-    var qlsp_table = $('.qlsp').DataTable(
-      {
-        language: {
-          url: '/json/vi.json'
-        }, responsive: true,
-      }
-    );
-    //qldh_table.columns.adjust().draw();
-    //qlsp_table.columns.adjust().draw();
->>>>>>> kim_anh
     function resetQlspModal() {
       $('#addProduct').find('#anh').val('');
       $('#addProduct').find('#ten').val('');
@@ -144,7 +128,6 @@
     });
 
     var prevent = false;
-<<<<<<< HEAD
   $(".edit-invoice").click(function (event) {
     event.preventDefault();
     // Lấy hàng cha của nút chỉnh sửa
@@ -184,47 +167,6 @@
     prevent = true;
 });
     $('.admins').DataTable({
-=======
-    $(".edit-invoice").click(function (event) {
-      event.preventDefault();
-      // Lấy hàng cha của nút chỉnh sửa
-      $(this).html('<i class="fa-light fa-down-to-bracket"></i>');
-      var row = $(this).closest("tr");
-      // Kích hoạt tất cả các phần tử select và input trong hàng đó
-      row.find("select").prop("disabled", false);
-      row.find("input").prop("disabled", false);
-
-      // Lấy giá trị từ các điều khiển trong hàng
-      var invoiceId = row.find("a").attr("href").split("/").pop();
-      var hinhThucThanhToan = row.find("select[name=hinhThucThanhToan]").val();
-      var donViVanChuyen = row.find("input[name=donViVanChuyen]").val();
-      var tinhTrangDonHang = row.find("select[name=tinhTrangDonHang]").val();
-
-      // Tạo đối tượng dữ liệu để gửi đi
-      var data = {
-        hinhThucThanhToan: hinhThucThanhToan,
-        donViVanChuyen: donViVanChuyen,
-        tinhTrangDonHang: tinhTrangDonHang
-      };
-
-      // Thực hiện yêu cầu Ajax để cập nhật đơn hàng
-      if (prevent) {
-        $.ajax({
-          type: "POST",
-          url: "/admin/invoices/edit/" + invoiceId,
-          data: data,
-          success: function (response) {
-            window.location.href = window.location.pathname + '?status=success&code=update_invoice';
-          },
-          error: function (error) {
-            window.location.href = window.location.pathname + '?status=failed&code=connect_database';
-          }
-        });
-      }
-      prevent = true;
-    });
-    var admin_table = $('.admins').DataTable({
->>>>>>> kim_anh
       columnDefs: [
         {
           targets: [0, 1],
@@ -233,15 +175,9 @@
       ],
       language: {
         url: '/json/vi.json'
-<<<<<<< HEAD
       }
     });
     $('.customers').DataTable({
-=======
-      }, responsive: true,
-    });
-    var customer_table = $('.customers').DataTable({
->>>>>>> kim_anh
       columnDefs: [
         {
           targets: [0, 1],
@@ -250,11 +186,7 @@
       ],
       language: {
         url: '/json/vi.json'
-<<<<<<< HEAD
       }
-=======
-      }, responsive: true,
->>>>>>> kim_anh
     });
     function canhBaoXoaItem(title, link) {
       Swal.fire({
@@ -287,21 +219,12 @@
         }
       })
     }
-<<<<<<< HEAD
      setTimeout(function() {
       $('div.info').remove();
     }, 5000);
     if (performance.navigation.type == 1) {
         history.replaceState(null, '', location.href.split('?')[0]);
       }
-=======
-    setTimeout(function () {
-      $('div.info').remove();
-    }, 5000);
-    if (performance.navigation.type == 1) {
-      history.replaceState(null, '', location.href.split('?')[0]);
-    }
->>>>>>> kim_anh
     const input = $('#anh');
     // Xử lý sự kiện khi trường input file thay đổi
     input.change(function () {

@@ -1,18 +1,11 @@
-<<<<<<< HEAD
 const sql = require("mssql/msnodesqlv8");
 const {
     promises
 } = require("msnodesqlv8");
 
 const fs = require("fs");
-=======
-const sql = require("mssql");
-const dbConfig = require('../../config/config.json');
->>>>>>> kim_anh
 
-let pool;
 
-<<<<<<< HEAD
 // không dùng đến nữa
 function getConfig() {
     return new Promise((resolve, reject) => {
@@ -25,21 +18,10 @@ function getConfig() {
             }
         })
     })
-=======
-async function connect() {
-    try {
-        pool = await sql.connect(dbConfig);
-        console.log("Kết nối thành công!");
-    } catch (error) {
-        console.error("Lỗi kết nối SQL:", error);
-        throw error;
-    }
->>>>>>> kim_anh
 }
 // const sql = require("mssql");
 const dbConfig = require('../../config/configdb.json');
 
-<<<<<<< HEAD
 let pool;
 
 async function connect() {
@@ -56,10 +38,6 @@ async function query(stringQuery) {
     try {
         // await sql.connect(dbConfig);
         // const request = new sql.Request();
-=======
-async function query(stringQuery) {
-    try {
->>>>>>> kim_anh
         if (!pool) {
             await connect();
         }
@@ -68,7 +46,6 @@ async function query(stringQuery) {
         return result;
     } catch (error) {
         console.error("Lỗi truy vấn SQL:", error);
-<<<<<<< HEAD
         throw error; // Nếu bạn muốn xử lý lỗi ở lớp gọi, bạn có thể bắt lỗi ở đây và xử lý nó sau đó. //OK
     }
     //  finally {
@@ -95,11 +72,6 @@ async function getOrder(idkh) {
 
 
 };
-=======
-        throw error;
-    }
-}
->>>>>>> kim_anh
 
 
 async function procedureSQL(input, procedureName) {
@@ -169,14 +141,9 @@ function err(status) {
 
 
 module.exports = {
-<<<<<<< HEAD
     query,
     err,
     getOrder,
     formatDate,
     procedureSQL
 }
-=======
-    query
-};
->>>>>>> kim_anh

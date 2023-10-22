@@ -32,10 +32,6 @@ class ProductController {
       res.redirect("/admin/products?status=failed&code=connect_database");
     }
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> kim_anh
   //[POST] /admin/product/update/:id --> Cập nhật 1 sản phẩm
   async update(req, res) {
     const product = req.body;
@@ -59,18 +55,10 @@ class ProductController {
       res.redirect("/admin/products?status=failed&code=connect_database");
     }
   }
-<<<<<<< HEAD
     //[GET] /admin/products/:id
     show(req, res) {
         res.send("NEW DETAILS");
     }
-=======
-
-  //[GET] /admin/products/:id
-  show(req, res) {
-    res.send("NEW DETAILS");
-  }
->>>>>>> kim_anh
 
   //[DELETE] /admin/products/delete/:id - xóa 1 sản phẩm
   async destroyed(req, res) {
@@ -86,16 +74,8 @@ class ProductController {
     }
   }
 
-<<<<<<< HEAD
 
   
 }
 
 module.exports = new ProductController();
-=======
-  
-  
-}
-
-module.exports = new ProductController();
->>>>>>> kim_anh

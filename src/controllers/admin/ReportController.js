@@ -4,10 +4,7 @@ class ReportController {
     async totalCustomers() {
         const q = `SELECT COUNT(*) FROM ThongTinKhachHang`;
         const countResult = await query.query(q);
-<<<<<<< HEAD
         console.log(countResult.recordset[0]);
-=======
->>>>>>> kim_anh
         return countResult.recordset[0];
     }
 
@@ -26,10 +23,7 @@ class ReportController {
     }
 
     async invoicesReport(req, res) {
-<<<<<<< HEAD
         console.log(req.query);
-=======
->>>>>>> kim_anh
         const startDate = req.query.startDate ? req.query.startDate : "1990-01-01";
         const endDate = req.query.endDate
             ? req.query.endDate
@@ -42,15 +36,9 @@ class ReportController {
         WHERE 
          DH.ngayTao >= '${startDate}' AND DH.ngayTao <= '${endDate}';`;
         const result = await query.query(q);
-<<<<<<< HEAD
         console.log(result.recordset);
     }
     async report(req, res) {
-=======
-    }
-    async report(req, res) {
-        const user = req.user;
->>>>>>> kim_anh
         try {
             //Lấy số lượng khách hàng
             let q = `SELECT COUNT(*) FROM ThongTinKhachHang`;
@@ -95,10 +83,7 @@ class ReportController {
             q = `SELECT SUM(soluong) AS TongSoLuong FROM SanPham WHERE ngayXoa IS NULL;`;
             let querystring = await query.query(q);
             const sum = querystring.recordset[0]['TongSoLuong'];
-<<<<<<< HEAD
             console.log(sum);
-=======
->>>>>>> kim_anh
             //Top 10 sản phẩm bán chạy
             q = `SELECT TOP 10 
         SP.ten AS TenSanPham,
@@ -136,10 +121,6 @@ class ReportController {
                 top10NewProducts: top10NewProducts,
                 startDate: startDate,
                 endDate: endDate,
-<<<<<<< HEAD
-=======
-                user: user,
->>>>>>> kim_anh
             });
         } catch (error) { }
     }
