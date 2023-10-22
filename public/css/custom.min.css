@@ -1331,8 +1331,8 @@ body .container.body .right_col {
 }
 
 .nav-md .container.body .right_col {
-	display: flex;
-	flex-direction: column;
+	/* display: flex;
+	flex-direction: column; */
 	min-height: 100vh;
 	padding: 10px 20px 0;
 	margin-left: 230px

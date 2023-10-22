@@ -34,10 +34,9 @@ async function connect() {
     }
 }
 
+
 async function query(stringQuery) {
     try {
-        // await sql.connect(dbConfig);
-        // const request = new sql.Request();
         if (!pool) {
             await connect();
         }
@@ -46,12 +45,10 @@ async function query(stringQuery) {
         return result;
     } catch (error) {
         console.error("Lỗi truy vấn SQL:", error);
-        throw error; // Nếu bạn muốn xử lý lỗi ở lớp gọi, bạn có thể bắt lỗi ở đây và xử lý nó sau đó. //OK
+        throw error;
     }
-    //  finally {
-    //     sql.close();
-    // }
 }
+
 
 
 async function getOrder(idkh) {

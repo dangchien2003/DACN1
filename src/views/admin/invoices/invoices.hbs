@@ -13,6 +13,11 @@
         <span class="fw-bold">Cập nhật đơn hàng thành công</span>
       </div>
       {{/if}}
+      {{#if (eq status.code "approval")}}
+      <div class="info alert alert-success" role="alert">
+        <span class="fw-bold">Phê duyệt đơn hàng thành công</span>
+      </div>
+      {{/if}}
       {{/if}}
       {{#if (eq status.status "failed")}}
      <div class="info alert alert-danger" role="alert">
@@ -38,7 +43,11 @@
       {{#each invoices}}
       <tr>
         <td> <a href="/admin/invoices/{{id_don_hang}}">#{{id_don_hang}}</a></td>
+        {{#if ten_khach_hang}}
         <td>{{ten_khach_hang}}</td>
+        {{else}}
+        <td>{{tai_khoan}}</td>
+        {{/if}}
         <td><select class="form-select form-select-sm" name="hinhThucThanhToan" id="payment" disabled>
             {{#each ../payments}}
             <option value="{{id}}" {{#if (eq ten ../hinh_thuc_thanh_toan)}} selected {{/if}}>{{ten}}</option>

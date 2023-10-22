@@ -11,18 +11,18 @@ const adminAccountController = require("../controllers/admin/AccountController")
 router.use('/add-account',adminAccountController.store);
 router.use('/create', adminAccountController.getViewCreateAccount);
 //Xóa admin
-router.use('/delete/admin/:id', adminAccountController.deleteAdmin);
+router.use('/delete/admin/:id',adminAccountController.deleteAdmin);
 //Xóa khách hàng
-router.use('/delete/customer/:id', adminAccountController.deleteCustomer);
+router.use('/delete/customer/:id',adminAccountController.deleteCustomer);
 
 //Band account
 router.use('/band/customer/:id',adminAccountController.bandAccount);
 
 router.use('/band/admin/:id',adminAccountController.bandAccountAdmin);
 
-//Lấy chi tiết 1 sản phẩm
-//router.get('/:id',adminProductController.show);
-
+//Cập nhật một tài khoản
+router.use('/edit-account/:idTK',adminAccountController.update);
+router.use('/:idTK',adminAccountController.getViewCreateAccount);
 //Lấy danh sách tài khoản
 router.use('/', adminAccountController.index);
 

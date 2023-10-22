@@ -59,8 +59,9 @@ app.use(upload.single('anh'));
 //Cấu hình handlebars template engine
 app.engine('hbs', exphbs.engine({extname: '.hbs', defaultLayout: 'main', helpers: {
   format: function(date, formatString){
+    if(!date) return '';
     const dateString = new Date(date);
-    //const vietnamTime = addHours(dateString,7);
+    //const vietnamTime = addHours(dateString,0);
     return format(dateString, formatString);
   },
   eq: function(val1, val2, options){
@@ -71,7 +72,7 @@ app.engine('hbs', exphbs.engine({extname: '.hbs', defaultLayout: 'main', helpers
   },
   currency: function(val){
     return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")  + ' VNĐ';
-  }
+  },
 }}));
 app.set('view engine', 'hbs');
 
@@ -79,7 +80,7 @@ app.set('view engine', 'hbs');
 app.set('view engine', 'ejs');
 app.set('views', [path.join(__dirname, 'views/admin'), path.join(__dirname, 'views/admin/authentications'), path.join(__dirname, 'views')]);
 
-//passportLogin(app);
+passportLogin(app);
 // Route init
 // route(app);
 routeAdmin(app);

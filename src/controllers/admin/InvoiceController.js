@@ -9,6 +9,7 @@ class InvoiceController {
                                 dh.id as 'id_don_hang',
                                 dh.idKH as 'id_khach_hang',
                                 dh.donViVanChuyen as don_vi_van_chuyen,
+                                tk.taiKhoan as tai_khoan,
                                 kh.ho + ' ' + kh.ten as ten_khach_hang ,
                                 vc.ten as 'hinh_thuc_thanh_toan',
                                 tt.tinhTrang as 'ten_trang_thai',
@@ -17,7 +18,8 @@ class InvoiceController {
                                 ad.ho + ' ' + ad.ten as ten_admin
                            FROM DonHang dh
                                 JOIN ThongTinKhachHang kh ON dh.idKH = kh.idKH
-                                JOIN HinhThucThanhToan vc ON dh.thanhToan = vc.id
+                                JOIN TaiKhoan tk on tk.idTK = kh.idTK
+                                JOIN HinhThucVanChuyen vc ON dh.vanChuyen = vc.id
                                 JOIN TinhTrangDonHang tt ON dh.tinhTrangDonHang = tt.id
                                 LEFT JOIN admin ad ON dh.nguoiDuyet = ad.idAdmin
                            WHERE dh.ngayHuy IS NULL`;
@@ -30,13 +32,12 @@ class InvoiceController {
         if(qResult && qResult.recordset && qResult.recordset.length>0){
           statusInvoices = qResult.recordset;
         }
-        q = `SELECT * FROM HinhThucThanhToan`;
-
+        q = `SELECT * FROM HinhThucVanChuyen`;
         qResult = await query.query(q);
         let payments = [];
         if(qResult && qResult.recordset && qResult.recordset.length>0){
           payments = qResult.recordset;
-        }
+        }    
         return res.render("invoices/invoices.hbs", {'invoices': invoices, 'statusInvoices':statusInvoices, 'payments': payments, status});
       } else {
         // Xử lý trường hợp không có dữ liệu sản phẩm
@@ -45,14 +46,24 @@ class InvoiceController {
     } catch (error) {}
   }
 
+  async approval(req, res){
+    try{
+    const idDonHang = req.params.id;
+    const nguoiDuyet = res.locals.global.user.idAdmin;
+    const q = `UPDATE DonHang SET nguoiDuyet = '${nguoiDuyet}' WHERE id = '${idDonHang}'`;
+    let result = await query.query(q);
+    return res.redirect('/admin/invoices?status=success&code=approval');
+    }catch (error){
+      return res.redirect('/admin/invoices?status=failed&code=connect_database');
+      }
+  }
   //[POST] /admin/invoices/edit/:id --> Cập nhật 1 đơn hàng
   async update(req, res) {
     const invoiceId = req.params.id;
     const updatedData = req.body;
-    console.log(updatedData);
     try {
       const q = `UPDATE DonHang
-                SET thanhToan = ${updatedData.hinhThucThanhToan}, donViVanChuyen = '${updatedData.donViVanChuyen}',
+                SET vanChuyen = ${updatedData.hinhThucThanhToan}, donViVanChuyen = '${updatedData.donViVanChuyen}',
                 tinhTrangDonHang = ${updatedData.tinhTrangDonHang}
                 WHERE id = '${invoiceId}'
                 ;`;
@@ -62,6 +73,7 @@ class InvoiceController {
       return res.status(500).json({ error: "Đã xảy ra lỗi" });
     }
   }
+
   //[DELETE] /admin/invoices/delete/:id - xóa 1 sản phẩm
   async destroyed(req, res) {
     try {
@@ -75,7 +87,6 @@ class InvoiceController {
       res.redirect("/admin/invoices?status=failed&code=connect_database");
     }
   }
-
   async getInvoiceDetail(req, res){
     try {
       const idDH = req.params.id;
@@ -87,6 +98,10 @@ class InvoiceController {
                                    dh.soDienThoai as so_dien_thoai,
                                    dh.ghiChu as ghi_chu_don_hang,
                                    kh.idKH as id_khach_hang,
+                                   tk.taiKhoan as tai_khoan,
+                                   kh.diaChi as dia_chi_khach_hang,
+                                   kh.email as email_khach_hang,
+                                   kh.sdt as sdt_khach_hang,
                                    kh.ho + ' ' + kh.ten as ten_khach_hang,
                                    ad.idAdmin as id_admin,
                                    ad.ho + ' ' + ad.ten as ten_admin,
@@ -95,6 +110,7 @@ class InvoiceController {
                                    tt.tinhTrang as tinh_trang_don_hang
                             FROM DonHang dh
                                  JOIN ThongTinKhachHang kh ON dh.idKH = kh.idKH
+                                 JOIN TaiKhoan tk on tk.idTK = kh.idTK
                                  LEFT JOIN admin ad ON dh.nguoiDuyet = ad.idAdmin
                                  LEFT JOIN HinhThucVanChuyen vc ON dh.vanChuyen = vc.id
                                  LEFT JOIN TinhTrangDonHang tt ON dh.tinhTrangDonHang = tt.id
