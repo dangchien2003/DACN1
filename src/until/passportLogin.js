@@ -1,14 +1,25 @@
 const query = require("./helper");
+<<<<<<< HEAD
 const passport = require('passport');
 const session = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
+=======
+
+const passport = require('passport');
+const session = require('express-session');
+const LocalStrategy = require('passport-local');
+>>>>>>> kim_anh
 
 function passportLogin(app) {
   //Thiết lập session
   app.use(session({
     secret: 'kim-anh',
     resave: false,
+<<<<<<< HEAD
     saveUninitialized: false
+=======
+    saveUninitialized: false,
+>>>>>>> kim_anh
   }));
 
   //khởi tạo Passport và thiết lập session cho Passport:
@@ -26,12 +37,21 @@ function passportLogin(app) {
         const adminResult = await query.query(adminString);
         if(adminResult && adminResult.recordset && adminResult.recordset.length > 0)
         {
+<<<<<<< HEAD
+=======
+            user.ten = adminResult.recordset[0].ten;
+            user.idAdmin = adminResult.recordset[0].idAdmin;
+>>>>>>> kim_anh
             user.isAdmin = true;
         }
         return done(null, user);
       }
       else {
+<<<<<<< HEAD
         return done(null, false, { message: 'username hoặc mật khẩu không chính xác!' });
+=======
+        return done(null, false);
+>>>>>>> kim_anh
       }
     }
   ))
@@ -40,6 +60,7 @@ function passportLogin(app) {
     done(null, user);
   });
 
+<<<<<<< HEAD
   passport.deserializeUser(function (id, done) {
     const queryUser = `SELECT * FROM TaiKhoan WHERE idTK = '${id}'`; // Truy vấn dựa trên ID
     const userResult = query.query(queryUser);
@@ -66,5 +87,23 @@ function passportLogin(app) {
       });
     })(req, res, next);
   });
+=======
+  passport.deserializeUser(async function (user, done) {
+    // const queryUser = `SELECT * FROM TaiKhoan WHERE idTK = '${user.idTK}'`; // Truy vấn dựa trên ID
+    // const userResult = await query.query(queryUser);
+    // if (userResult && userResult.recordset && userResult.recordset.length > 0) {
+    //   const user = userResult.recordset[0];
+    //   return done(null, user);
+    // }
+    // else return done(null,false);
+    if(user) return done(null,user);
+    return done(null, false);
+  });
+
+  app.post('/admin/login', passport.authenticate('local', {
+    successRedirect :'/admin/dashboard',
+    failureRedirect: '/admin/login?code=failed',
+  }) )
+>>>>>>> kim_anh
 }
 module.exports = passportLogin;

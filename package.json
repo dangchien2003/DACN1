@@ -20,7 +20,10 @@
   "homepage": "https://github.com/dangchien2003/DACN1#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
+<<<<<<< HEAD
     "cookie-parser": "^1.4.6",
+=======
+>>>>>>> kim_anh
     "date-fns": "^2.30.0",
     "dateformat": "^5.0.3",
     "ejs": "^3.1.9",

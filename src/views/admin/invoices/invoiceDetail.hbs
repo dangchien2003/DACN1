@@ -43,7 +43,18 @@
                 <div class="d-flex justify-content-between flex-wrap">
                     <div class="my-3">
                         <h6 class="pb-2">Người đặt hàng:</h6>
+<<<<<<< HEAD
                         <p class="mb-1">{{detail.[0].ten_khach_hang}}</p>
+=======
+                        {{#if detail.[0].ten_khach_hang}}
+                        <p class="mb-1">{{detail.[0].ten_khach_hang}}</p>
+                        {{else}}
+                         <p class="mb-1">{{detail.[0].tai_khoan}}</p>
+                        {{/if}}
+                        <p class="mb-1">{{detail.[0].sdt_khach_hang}}</p>
+                        <p class="mb-1">{{detail.[0].dia_chi_khach_hang}}</p>
+                        <p class="mb-1">{{detail.[0].email_khach_hang}}</p>
+>>>>>>> kim_anh
                     </div>
                     <div class="my-3">
                         <h6 class="pb-2">Người nhận hàng:</h6>
