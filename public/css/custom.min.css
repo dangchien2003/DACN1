@@ -1330,10 +1330,13 @@ body .container.body .right_col {
 	background: #F7F7F7
 }
 
+.main_container{
+	display: grid;
+}
 .nav-md .container.body .right_col {
 	/* display: flex;
 	flex-direction: column; */
-	min-height: 100vh;
+	min-height: 100%;
 	padding: 10px 20px 0;
 	margin-left: 230px
 }
@@ -1940,6 +1943,7 @@ a:hover, a:focus {
 }
 
 footer {
+	height: 50px;
 	position: relative;
 	bottom: 0;
 	width: 100%;

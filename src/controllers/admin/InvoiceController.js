@@ -19,26 +19,32 @@ class InvoiceController {
                            FROM DonHang dh
                                 JOIN ThongTinKhachHang kh ON dh.idKH = kh.idKH
                                 JOIN TaiKhoan tk on tk.idTK = kh.idTK
-                                JOIN HinhThucVanChuyen vc ON dh.vanChuyen = vc.id
+                                JOIN HinhThucThanhToan vc ON dh.thanhToan = vc.id
                                 JOIN TinhTrangDonHang tt ON dh.tinhTrangDonHang = tt.id
-                                LEFT JOIN admin ad ON dh.nguoiDuyet = ad.idAdmin
-                           WHERE dh.ngayHuy IS NULL`;
+                                LEFT JOIN admin ad ON dh.nguoiDuyet = ad.idAdmin                          
+                           WHERE dh.ngayHuy IS NULL
+                           ORDER BY dh.ngayTao DESC`;
       const result = await query.query(queryString);
       if (result && result.recordset) {
         const invoices = result.recordset;
         let q = `SELECT * FROM TinhTrangDonHang`;
         let qResult = await query.query(q);
         let statusInvoices = [];
-        if(qResult && qResult.recordset && qResult.recordset.length>0){
+        if (qResult && qResult.recordset && qResult.recordset.length > 0) {
           statusInvoices = qResult.recordset;
         }
-        q = `SELECT * FROM HinhThucVanChuyen`;
+        q = `SELECT * FROM HinhThucThanhToan`;
         qResult = await query.query(q);
         let payments = [];
-        if(qResult && qResult.recordset && qResult.recordset.length>0){
+        if (qResult && qResult.recordset && qResult.recordset.length > 0) {
           payments = qResult.recordset;
-        }    
-        return res.render("invoices/invoices.hbs", {'invoices': invoices, 'statusInvoices':statusInvoices, 'payments': payments, status});
+        }
+        return res.render("invoices/invoices.hbs", {
+          invoices: invoices,
+          statusInvoices: statusInvoices,
+          payments: payments,
+          status,
+        });
       } else {
         // Xử lý trường hợp không có dữ liệu sản phẩm
         res.render("invoices/invoices.hbs", { invoices: [] });
@@ -46,16 +52,18 @@ class InvoiceController {
     } catch (error) {}
   }
 
-  async approval(req, res){
-    try{
-    const idDonHang = req.params.id;
-    const nguoiDuyet = res.locals.global.user.idAdmin;
-    const q = `UPDATE DonHang SET nguoiDuyet = '${nguoiDuyet}' WHERE id = '${idDonHang}'`;
-    let result = await query.query(q);
-    return res.redirect('/admin/invoices?status=success&code=approval');
-    }catch (error){
-      return res.redirect('/admin/invoices?status=failed&code=connect_database');
-      }
+  async approval(req, res) {
+    try {
+      const idDonHang = req.params.id;
+      const nguoiDuyet = res.locals.global.user.idAdmin;
+      const q = `UPDATE DonHang SET nguoiDuyet = '${nguoiDuyet}' WHERE id = '${idDonHang}'`;
+      let result = await query.query(q);
+      return res.redirect("/admin/invoices?status=success&code=approval");
+    } catch (error) {
+      return res.redirect(
+        "/admin/invoices?status=failed&code=connect_database"
+      );
+    }
   }
   //[POST] /admin/invoices/edit/:id --> Cập nhật 1 đơn hàng
   async update(req, res) {
@@ -63,12 +71,12 @@ class InvoiceController {
     const updatedData = req.body;
     try {
       const q = `UPDATE DonHang
-                SET vanChuyen = ${updatedData.hinhThucThanhToan}, donViVanChuyen = '${updatedData.donViVanChuyen}',
+                SET thanhToan = ${updatedData.hinhThucThanhToan}, donViVanChuyen = '${updatedData.donViVanChuyen}',
                 tinhTrangDonHang = ${updatedData.tinhTrangDonHang}
                 WHERE id = '${invoiceId}'
                 ;`;
       const result = await query.query(q);
-      return res.status(200).json({message: "Update Thanh Cong"});
+      return res.status(200).json({ message: "Update Thanh Cong" });
     } catch (error) {
       return res.status(500).json({ error: "Đã xảy ra lỗi" });
     }
@@ -87,16 +95,15 @@ class InvoiceController {
       res.redirect("/admin/invoices?status=failed&code=connect_database");
     }
   }
-  async getInvoiceDetail(req, res){
+  async getInvoiceDetail(req, res) {
     try {
       const idDH = req.params.id;
       const queryGetInfo = `SELECT dh.id as id_don_hang,
                                    dh.donViVanChuyen as don_vi_van_chuyen,
                                    dh.ngayTao as ngay_dat_hang,
-                                   dh.diaChiNhanHang as dia_chi_nhan_hang,
-                                   dh.nguoiNhanHang as nguoi_nhan_hang,
-                                   dh.soDienThoai as so_dien_thoai,
-                                   dh.ghiChu as ghi_chu_don_hang,
+                                   dh.diaChi as dia_chi_nhan_hang,
+                                   dh.tenNguoiNhan as nguoi_nhan_hang,
+                                   dh.sdt as so_dien_thoai,
                                    kh.idKH as id_khach_hang,
                                    tk.taiKhoan as tai_khoan,
                                    kh.diaChi as dia_chi_khach_hang,
@@ -112,12 +119,12 @@ class InvoiceController {
                                  JOIN ThongTinKhachHang kh ON dh.idKH = kh.idKH
                                  JOIN TaiKhoan tk on tk.idTK = kh.idTK
                                  LEFT JOIN admin ad ON dh.nguoiDuyet = ad.idAdmin
-                                 LEFT JOIN HinhThucVanChuyen vc ON dh.vanChuyen = vc.id
+                                 LEFT JOIN HinhThucThanhToan vc ON dh.thanhToan = vc.id
                                  LEFT JOIN TinhTrangDonHang tt ON dh.tinhTrangDonHang = tt.id
                             WHERE dh.id = '${idDH}'  `;
       const invoiceDetailResult = await query.query(queryGetInfo);
       let invoiceDetail = [];
-      if(invoiceDetailResult && invoiceDetailResult.recordset)
+      if (invoiceDetailResult && invoiceDetailResult.recordset)
         invoiceDetail = invoiceDetailResult.recordset;
       const queryGetProducts = `SELECT ttdh.gia as gia_san_pham,
                                        ttdh.soLuong as so_luong,
@@ -130,19 +137,22 @@ class InvoiceController {
       const productsDetailResult = await query.query(queryGetProducts);
       let productsDetail = [];
       let total = 0;
-      if(productsDetailResult && productsDetailResult.recordset){
-        productsDetail =  productsDetailResult.recordset;
-        productsDetail.forEach(element => {  
+      if (productsDetailResult && productsDetailResult.recordset) {
+        productsDetail = productsDetailResult.recordset;
+        productsDetail.forEach((element) => {
           const subTotal = element.gia_san_pham * element.so_luong;
           total += subTotal;
         });
       }
-      return res.render('invoices/invoiceDetail.hbs', { 'detail': invoiceDetail, 'products': productsDetail, 'total': total }); 
-
+      return res.render("invoices/invoiceDetail.hbs", {
+        detail: invoiceDetail,
+        products: productsDetail,
+        total: total,
+      });
     } catch (error) {
       return res.status(500).send(`message: lỗi ${error}`);
+    }
   }
- }
 }
 
 module.exports = new InvoiceController();

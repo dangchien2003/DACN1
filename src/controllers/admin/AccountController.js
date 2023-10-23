@@ -42,8 +42,8 @@ class AccountController {
     const currentPath = req.originalUrl;
     const isCreate = currentPath.includes("create");
     let user = [];
-    if (!isCreate) {
-      const idTK = req.params.idTK;
+    if (!isCreate) {     
+      const idTK = res.locals.global.user ? res.locals.global.user.idTK : '';
       const q = `SELECT tk.idTK as idTK, tk.taiKhoan as tai_khoan, tk.CapBac as cap_bac, ad.ten as ten, ad.ho as ho, ad.sdt as dien_thoai, ad.email as email, ad.ngaySinh as sinh_nhat, ad.gioiTinh as gioi_tinh, ad.diaChi as dia_chi
         FROM TaiKhoan tk JOIN admin ad ON tk.taiKhoan = ad.idTK WHERE tk.idTK = '${idTK}'`;
       const tkResult = await query.query(q);
@@ -107,7 +107,7 @@ class AccountController {
   }
 
   async update(req, res) {
-    const idTK = req.params.idTK;
+    const idTK = res.locals.global.user ? res.locals.global.user.idTK : '';
     const {
       tai_khoan,
       mat_khau,

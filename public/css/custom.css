@@ -1,0 +1,12 @@
+/** @format */
+.custom-navbar-cta.navbar-nav li a i {
+    font-size: 20px;
+}
+
+
+
+.custom-social.custom-social li a i {
+    font-size: 25px;
+    text-align: center;
+    line-height: 40px;
+}

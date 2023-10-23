@@ -56,7 +56,6 @@ class ProductController {
       res.redirect("/admin/products?status=failed&code=connect_database");
     }
   }
-
   //[GET] /admin/products/:id
   show(req, res) {
     res.send("NEW DETAILS");
@@ -75,9 +74,6 @@ class ProductController {
       res.redirect("/admin/products?status=failed&code=connect_database");
     }
   }
-
-  
-  
 }
 
 module.exports = new ProductController();
