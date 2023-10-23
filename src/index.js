@@ -1,10 +1,14 @@
 const express = require('express');
-const exphbs = require('express-handlebars');
+const exphbs  = require('express-handlebars');
 const ejs = require('ejs');
 const path = require('path');
 const port = 3000;
 const app = express();
-const bodyParser = require('body-parser');
+const route = require('./routes');
+
+const bodyParser = require('body-parser')
+
+
 // Sử dụng body-parser middleware để xử lý dữ liệu JSON
 app.use(bodyParser.json());
 // Sử dụng body-parser middleware để xử lý dữ liệu từ biểu mẫu HTML

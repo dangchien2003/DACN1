@@ -25,14 +25,15 @@ function route(app) {
     if (isUser) return res.send("Bạn không có quyền truy cập");
     return res.redirect("/admin/login");
   });
+   //Route admin trang quản trị
+   app.use("/admin", siteRouter);
   //route admin trang đơn hàng -> invoices.js
   app.use("/admin/invoices", invoiceRouter);
   //route admin account -> accounts.js
   app.use("/admin/accounts", accountRouter);
   //route admin product -> products.js
   app.use("/admin/products", productRouter);
-  //Route admin trang báo cáo
-  app.use("/admin", siteRouter);
+  
   //Đăng xuất
   app.get("/admin/logout", (req, res, next) => {
     req.logout((err) => {
