@@ -6,7 +6,7 @@ async function returnProducts(req, res) {
         var search = req.query.search || "";
         
         search = search.replace(/'/g, '');
-        var numproduct = 6;
+        var numproduct = 8;
         var sql = ""
         if (search) {
             sql = `select top ${numproduct} idSP, anh, ten, gia from SanPham where ten LIKE N'%${search}%' and ngayXoa IS NULL`;
@@ -45,7 +45,7 @@ async function moreProducts(req, res) {
         if (!lp) {
             lp = 1;
         }
-        const numproduct = 6;
+        const numproduct = 8;
         var sql = "";
 
         if (search) {
