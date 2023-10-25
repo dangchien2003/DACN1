@@ -356,3 +356,7 @@ input.form-control {
     padding-right: 10px;
     cursor: pointer;
 }
+
+.height_name {
+    height: 80px;
+}

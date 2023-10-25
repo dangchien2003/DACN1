@@ -73,15 +73,13 @@ async function showComment(req, res) {
         }
 
         var sql = `	  select  ThongTinDonHang.idSP ,SanPham.ten, ThongTinDonHang.idDH
-        ,danhGia, lanChinhSua, soSao , idKH
+        ,danhGia, lanChinhSua, soSao , idKH, anh
         from ThongTinDonHang
         join SanPham on SanPham.idSP = ThongTinDonHang.idSP
         left join DanhGia on DanhGia.idDH = ThongTinDonHang.idDH and danhGia.idSP = ThongTinDonHang.idSP
         join DonHang on DonHang.id = ThongTinDonHang.idDH
         where ThongTinDonHang.idDH = '${idDH}' and idKH ='${kh}' and  (lanChinhSua < 2 or lanChinhSua is NULL)`;
-        console.log(sql);
         var products_comment = await helper.query(sql);
-        console.log(products_comment);
         if(products_comment.recordset.length == 0) {
             res.send("err");
             return;
@@ -146,9 +144,11 @@ async function showInfoOrder(req, res) {
         idDH = req.params.idDH;
         kh = req.cookies.kh;
         var sql_DonHang = `select HinhThucThanhToan.ten as hinhThucThanhToan, maVanDon, donViVanChuyen,
-        tinhTrangDonHang, ngayTao, ngayHuy, soLuongMatHang, diaChi, sdt, tenNguoiNhan as nguoiNhan 
+        tinhTrangDonHang, ngayTao, ngayHuy, soLuongMatHang, diaChi, sdt, tenNguoiNhan as nguoiNhan , anh
         from DonHang
         join HinhThucThanhToan on DonHang.thanhToan = HinhThucThanhToan.id
+		join ThongTinDonHang on DonHang.id = ThongTinDonHang.idDH 
+        join SanPham on SanPham.idSP = ThongTinDonHang.idSP 
         where DonHang.id = '${idDH}' and DonHang.idKH = '${kh}'`;
         
         const resut_DonHang = await helper.query(sql_DonHang);

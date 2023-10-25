@@ -24,7 +24,7 @@ class ProductController {
     try {
       const queryString = `
             INSERT INTO SanPham (anh, ten, gia, hang, loaiSanPham, mauSac, soluong, moTa, ngayCapNhat)
-            VALUES ('${req.file.filename}', '${product.ten}', ${product.gia}, '${product.hang}', '${product.loaiSanPham}', '${product.mauSac}', ${product.soluong}, '${product.moTa}', GETDATE() )
+            VALUES ('${req.file.filename}', N'${product.ten}', ${product.gia}, N'${product.hang}', N'${product.loaiSanPham}', N'${product.mauSac}', ${product.soluong}, N'${product.moTa}', GETDATE() )
           `;
       const result = await query.query(queryString);
       res.redirect("/admin/products?status=success&code=add_product");
