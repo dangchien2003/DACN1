@@ -360,3 +360,27 @@ input.form-control {
 .height_name {
     height: 80px;
 }
+
+.p_img {
+    width: 200px;
+    height: 250px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    background-color: white;
+    display: block;
+}
+
+.product-thumbnail {
+    width: 100%;
+    object-fit: contain;
+}
+
+.tab-pane {
+    text-align: left;
+    background-color: white;
+}
+
+.tab-pane img {
+    width: 100%;
+    object-fit: contain;
+}

@@ -1,7 +1,7 @@
 <% for(var i = 0; i < products.length; i++) {%>
     <div class="col-12 col-md-4 col-lg-3 mb-5">
         <a class="product-item" href="/sale/product/info/<%=products[i].idSP%>">
-            <img src="/uploads/<%= products[i].anh %>" class="img-fluid product-thumbnail" >
+            <div class="p_img"><img src="/uploads/<%= products[i].anh %>" class="img-fluid product-thumbnail " ></div>
             <h3 class="product-title height_name"><%= products[i].ten %></h3>
             <strong class="product-price">$<%= products[i].gia %> </strong>
 
