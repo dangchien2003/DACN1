@@ -8,11 +8,11 @@ class ReportController {
     }
 
     async top10Customers() {
-        const q = `SELECT TOP (10) DH.idKH, TK.taiKhoan, COUNT(DH.id) as SoLuongDonHang, SUM(TTDH.gia * TTDH.soLuong) as TongTienMua
-        FROM DonHang DH
+        const q = `SELECT TOP (10) DH.idKH, kh.idKH as taiKhoan, COUNT(DH.id) as SoLuongDonHang, SUM(TTDH.gia * TTDH.soLuong) as TongTienMua
+		FROM DonHang DH
         JOIN ThongTinDonHang TTDH ON DH.id = TTDH.idDH
-        JOIN TaiKhoan TK ON DH.idKH = TK.idTK
-        GROUP BY DH.idKH, TK.taiKhoan
+        JOIN ThongTinKhachHang KH ON DH.idKH = KH.idKH
+        GROUP BY DH.idKH, KH.idKH
         ORDER BY TongTienMua DESC`;
         const result = await query.query(q);
         let customers = [];
@@ -45,12 +45,12 @@ class ReportController {
             //console.log({ 'totalCustomers': total });
 
             //Lấy top10 khách hàng
-            q = `SELECT TOP (10) DH.idKH, TK.taiKhoan, COUNT(DH.id) as SoLuongDonHang, SUM(TTDH.gia * TTDH.soLuong) as TongTienMua
-        FROM DonHang DH
-        JOIN ThongTinDonHang TTDH ON DH.id = TTDH.idDH
-        JOIN TaiKhoan TK ON DH.idKH = TK.idTK
-        GROUP BY DH.idKH, TK.taiKhoan
-        ORDER BY TongTienMua DESC`;
+            q = `SELECT TOP (10) DH.idKH, kh.idKH as taiKhoan, COUNT(DH.id) as SoLuongDonHang, SUM(TTDH.gia * TTDH.soLuong) as TongTienMua
+            FROM DonHang DH
+            JOIN ThongTinDonHang TTDH ON DH.id = TTDH.idDH
+            JOIN ThongTinKhachHang KH ON DH.idKH = KH.idKH
+            GROUP BY DH.idKH, KH.idKH
+            ORDER BY TongTienMua DESC`;
             const result = await query.query(q);
             let customers = [];
             if (result && result.recordset && result.recordset.length > 0)
