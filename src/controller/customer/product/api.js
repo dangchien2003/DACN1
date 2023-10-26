@@ -7,7 +7,7 @@ const {
 } = require('./middleware');
 const utilMiddleware = require('../utilMiddleware');
 //  /sale
-router.get("/", utilMiddleware.checkBlock, returnProducts);
+router.get("/", returnProducts);
 
 // /sale/search
 router.post("/search", utilMiddleware.checkBlock, returnProducts);

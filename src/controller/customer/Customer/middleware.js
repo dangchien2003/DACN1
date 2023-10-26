@@ -53,10 +53,18 @@ async function suaThongTin(req, res) {
             gioiTinh: req.body.input.gioitinh || "",
             sdt: req.body.input.sdt || "",
         }
+        if(new Date(thongTinMoi.ngaySinh) > new Date()) {
+            res.json({
+                status: 2,
+                message: "Sửa thất bại"
+            })
+            return;
+        }
 
         // đưa vaà câu lệnh sql
         var sql = `Update ThongTinKhachHang SET bietDanh = N'${thongTinMoi.bietDanh}',ten = N'${thongTinMoi.ten}', ho = N'${thongTinMoi.ho}', diaChi = N'${thongTinMoi.diaChi}', email = '${thongTinMoi.email}', ngaysinh = '${thongTinMoi.ngaySinh}', gioiTinh = '${thongTinMoi.gioiTinh}', sdt = '${thongTinMoi.sdt}' WHERE idKH = '${thongTinMoi.idKH}'`
 
+        
         var result = await helpers.query(sql);
         //câu lệnh tipế thjeo
         var edit = result.rowsAffected[0];

@@ -59,6 +59,7 @@ async function login(req, res) {
 
 }
 async function register(req, res) {
+    var sqlde = "";
     try {
         //b1 lấy dữ liệu form đăng ký // username, password, comfirm password, email
         var user = req.body.user;
@@ -104,6 +105,7 @@ async function register(req, res) {
         } else {
             sql = `INSERT INTO TaiKhoan (idTK, taikhoan, matKhau, capBac, ngayTao ) values ('${idTK}', '${user}', '${password}', 1, '${ntn}');
             insert into ThongTinKhachHang (idKH, idTK, email) values('${idKH}', '${idTK}', '${email}')`;
+            // var sqld = `delete TaiKhoan where idTK = '${idTK}'`;
             console.log(sql);
             var insert = await helpers.query(sql);
             try {
@@ -114,6 +116,7 @@ async function register(req, res) {
                         message: "Đăng ký thành công"
                     })
                 } else {
+                    
                     res.render('customer/authen/register.ejs', {
                         message: "Đăng ký thất bại"
                     })
@@ -121,6 +124,7 @@ async function register(req, res) {
                 }
             } catch (e) {
                 console.log(e);
+                // var insert = await helpers.query(sql);
                 res.render('customer/authen/register.ejs', {
                     message: "Đăng ký thất bại"
                 })
