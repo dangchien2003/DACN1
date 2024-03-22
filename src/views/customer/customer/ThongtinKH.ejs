@@ -1,0 +1,142 @@
+<div class="container">
+
+    <form class="well form-horizontal" id="contact_form">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Thông tin cá nhân</legend>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">ID khách hàng</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="idkh" class="form-control" type="text" value="<%= info.idKH %>" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Họ</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="ho" id="ho" class="form-control" type="text" value="<%= info.ho %>">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Tên</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="ten" id="ten" class="form-control" type="text" value="<%= info.ten %>">
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Biệt danh</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="bietDanh" id="bietdanh" class="form-control" type="text" value="<%= info.bietDanh %>">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Text input-->
+
+
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Địa chỉ</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="diaChi" id="diachi" class="form-control" type="text" value="<%= info.diaChi %>">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">E-Mail</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input name="email" id="email" class="form-control" type="email" value="<%= info.email %>">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Ngày sinh</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input name="ngaysinh" id="ngaysinh" class="form-control" type="date" value="<%= info.ngaySinh %>">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">SDT</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input name="sdt" id="sdt" class="form-control" type="text" value="<%= info.sdt %>">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- radio checks -->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Giới Tính</label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label>
+                            <% if(info.gioiTinh){ %>
+                                
+                                <input type="radio" name="gioiTinh" value="0" /> Nữ
+                                <input type="radio" name="gioiTinh" value="1" checked/> Nam
+                                <% }else{ %>
+                                    
+                                    <input type="radio" name="gioiTinh" value="0" checked /> Nữ
+                                    <input type="radio" name="gioiTinh" value="1" /> Nam
+                                    <% } %>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Text area -->
+
+            <!-- Success message -->
+            <div class="alert alert-success" role="alert" id="success_message" style="display: none">Success <i
+                    class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you
+                shortly.</div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-warning" id="luu">Lưu <span
+                            class="glyphicon glyphicon-send"></span></button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+</div><!-- /.container -->

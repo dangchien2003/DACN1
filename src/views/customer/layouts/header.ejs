@@ -3,30 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="author" content="Untree.co">
-  <link rel="shortcut icon" href="favicon.png">
+  <!-- logo -->
+  <link rel="shortcut icon" href="/customer/img/logo.png">
 
-  <meta name="description" content="" />
-  <meta name="keywords" content="bootstrap, bootstrap4" />
 
 		<!-- Bootstrap CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-
+		<link href="/customer/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/customer/css/infoOrder.css">
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-xVVam1KS4+Qt2OrFa+VdRUoXygyKIuNWUUUBZYv+n27STsJ7oDOHJgfF0bNKLMJF" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- css template -->
-    <link href="css/tiny-slider.css" rel="stylesheet">
+    <link href="/customer/css/tiny-slider.css" rel="stylesheet">
 
     <!-- css teampalte  -->
-		<link href="css/style.css" rel="stylesheet">
+		<link href="/customer/css/style.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/custom.css">
+    <!-- custom css -->
+    <link rel="stylesheet" href="/customer/css/custom.css">
+    <link rel="stylesheet" href="/customer/css/product_detail.css">
+    <link rel="stylesheet" href="/customer/css/order.css">
     
-		<title>Shopping</title>
+    
+		<title> <% if(title) { %>
+      <%= title %> 
+    <% }else { %>
+      shopping
+    <% } %>
+    </title>
 	</head>
 <body>
 <header>
   <%- include('./menu.ejs') %>
 </header>
+<div id="toast">
+  
+</div>

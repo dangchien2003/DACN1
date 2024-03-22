@@ -1,0 +1,33 @@
+<div class="login_wrapper">
+    <div class="animate form login_form">
+        <section class="login_content">
+            <form action="/admin/login" method="POST">
+                <h1>Trang Đăng Nhập</h1>
+                <div>
+                    <input type="text" class="form-control" name="username" placeholder="Tài Khoản" required="" />
+                </div>
+                <div>
+                    <input type="password" class="form-control" name="password" placeholder="Mật Khẩu" required="" />
+                </div>
+                {{#if code}}
+                <div class="mb-2 d-flex justify-content-between">
+                    <span class="text-danger fw-bold">Sai tên đăng nhập hoặc mật khẩu!</span>
+                </div>
+                {{/if}}
+                <button type="submit" class="btn btn-primary">Log in</button>
+                <div class="my-2 d-flex justify-content-center">
+                    <a class="reset_pass  text-decoration-underline" href="#">Quên mật khẩu?</a>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="separator">
+
+                    <div class="clearfix"></div>
+                    <div>
+                        <h1><i class="fa fa-paw"></i> Shop ĐT</h1>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

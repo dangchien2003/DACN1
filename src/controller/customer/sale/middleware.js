@@ -8,6 +8,4 @@ async function returnProduct(req, res) {
     res.json(listProduct);
 }
 
-module.exports = {
-    returnProduct
-}
+module.exports = {returnProduct}

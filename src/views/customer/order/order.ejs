@@ -1,0 +1,96 @@
+<div class="" id="background">
+    
+</div>
+<div id ="cmt">
+    
+    <form action="#" id="send-comment" >
+    </form>
+</div>
+
+
+<div class="container md-4 site-blocks-table">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Id đơn hàng</th>
+                <th>Ngày đặt hàng</th>
+                <th>Trạng thái</th>
+                <th>Lượng mặt hàng</th>
+                <th>Giá trị đơn hàng</th>
+                <th>Mã vận đơn</th>
+                <th>Đơn vị vận chuyển</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i=0; i < order.length; i++) { if(order[i].statusDH==1) {%>
+                <tr>
+                    <td scope="row">
+                        <div class="status" style="background-color: rgb(254, 245, 76);"></div>
+                    </td>
+                    <% } else if (order[i].statusDH==2) { %>
+                <tr>
+                    <td scope="row">
+                        <div class="status" style="background-color: rgb(93, 229, 211);"></div>
+                    </td>
+                    <% } else if (order[i].statusDH==3) { %>
+                <tr>
+                    <td scope="row">
+                        <div class="status " style="background-color: rgb(96, 180, 248);"></div>
+                    </td>
+                    <% } else if (order[i].statusDH==4) { %>
+                <tr>
+                    <td scope="row">
+                        <div class="status" style="background-color: rgb(96, 248, 132);"></div>
+                    </td>
+                    </td>
+                    <% } else if (order[i].statusDH==6) { %>
+                <tr>
+                    <td scope="row">
+                        <div class="status" style="background-color: rgb(242, 65, 221);"></div>
+                    </td>
+                    <% } else{ %>
+                <tr>
+                    <td scope="row">
+                        <div class="status" style="background-color: rgb(250, 114, 102);"></div>
+                    </td>
+                    <% } %>
+
+
+                        <td>
+                            <%= order[i].idDH %>
+                        </td>
+                        <td>
+                            <%= order[i].ngayTao %>
+                        </td>
+                        <td id="trangThai">
+                            <%= order[i].tinhTrang %>
+                        </td>
+                        <td>
+                            <%= order[i].soLuong %>
+                        </td>
+                        <td>
+                            <%= order[i].gia %> vnd
+                        </td>
+                        <td>
+                            <%= order[i].maVanDon %>
+                        </td>
+                        <td>
+                            <%= order[i].donViVanChuyen %>
+                        </td>
+                        <td id="action" class="action-order">
+                            <i class="fa-solid fa-circle-info info-order"></i>
+                            <% if(order[i].statusDH==1 || order[i].statusDH==6) {%>
+                                <i class="fa-solid fa-trash trash" id="cancel_order"></i>
+                            <% } else if(order[i].statusDH==4) {%>
+                                <i class="fas fa-comments comment" id="comment"></i>
+                            <% } %>    
+                            
+                        </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,28 @@
+<div class="top_nav">
+  <div class="nav_menu">
+    <div class="nav toggle">
+      <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+    </div>
+    <nav class="nav navbar-nav">
+      <ul class="navbar-right d-flex justify-content-end">
+        <div class="btn-group ">
+          <li class="dropdown-toggle user-profile" type="button" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/images/user.png" alt="">
+            <span>Chào {{global.user.ten}}</span>
+          </li>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="/admin/accounts/{{global.user.idTK}}">
+              <i class="fa-light fa-memo-circle-info"></i>
+              <span>Thông tin tài khoản</span>
+            </a></li>
+            <li><a class="dropdown-item" href="/admin/logout">
+              <i class="fa-light fa-arrow-right-from-bracket"></i>
+              <span class="ml-5">Đăng Xuất</span>
+            </a></li>
+          </ul>
+        </div>
+      </ul>
+    </nav>
+  </div>
+</div>

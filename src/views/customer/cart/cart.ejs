@@ -1,0 +1,133 @@
+
+<div class="untree_co-section before-footer-section">
+    <div class="container">
+        <div class="row mb-5">
+            <form class="col-md-12" id="form-cart" action="/cart/update" method="post">
+                <div class="site-blocks-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="product-thumbnail">Ảnh</th>
+                                <th class="product-name">Sản phẩm</th>
+                                <th class="product-price">Giá</th>
+                                <th class="product-quantity">SL</th>
+                                <th class="product-total">Tổng</th>
+                                <th class="product-remove">Xoá</th>
+                            </tr>
+                        </thead>
+                        
+                            <% if(cart.length == 0) { %>
+                                
+                                <tr>
+                                    <td style=""><div class="">Không có sản phẩm</div></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            <% } else { 
+                             for(var i = 0; i < cart.length;i++) { %>
+                            <tr>
+                                
+                                <td class="product-thumbnail">
+                                    
+                                    <img src="/uploads/<%= cart[i].anh %>" alt="sản phẩm" class="img-fluid">
+                                </td>
+                                <td class="product-name">
+                                    <h2 class="h5 text-black"><%= cart[i].ten %></h2>
+                                </td>
+                                <td><%= cart[i].gia %></td>
+                                <td >
+                                    <div class="input-group mb-3 d-flex align-items-center quantity-container"
+                                        style="max-width: 120px; margin: 0 auto">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-black decrease"
+                                                type="button">&minus;</button>
+                                        </div>
+                                        <input type="text" class="form-control text-center quantity-amount" value="<%= cart[i].soLuong %>"
+                                            placeholder="" aria-label="Example text with button addon"
+                                            aria-describedby="button-addon1" name="soluong">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-black increase" type="button">&plus;</button>
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td><%= cart[i].tong %></td>
+                                <td>
+                                    <input type="text" name="idsp" value="<%= cart[i].idsp %>" style="display: none;" id="idsp">
+                                    <input type="text" name="ten" value="<%= cart[i].ten %>" style="display: none;">
+                                    <a href="#" class="btn btn-black btn-sm btn-delete"><i class="fas fa-trash" class="trash-product"></i></a></td>
+                            </tr>
+
+                            <% }} %>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row mb-5">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <a ><button class="btn btn-black btn-sm btn-block" id="update-cart">Lưu giỏ hàng</button></a> 
+                    </div>
+                    <div class="col-md-6">
+                        <a href="/sale"><button class="btn btn-outline-black btn-sm btn-block">Tiếp tục mua sắm</button></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="text-black h4" for="coupon">Mã giảm giá</label>
+                        <p>Nhập mã giảm giá nếu có</p>
+                    </div>
+                    <div class="col-md-8 mb-3 mb-md-0">
+                        <input type="text" class="form-control py-3" id="coupon" placeholder="Nhập mã code">
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-black">Sử dụng</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pl-5" style="padding-top: 20px">
+                <div class="row justify-content-end">
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-12 text-right border-bottom mb-5">
+                                <h3 class="text-black h4 text-uppercase">Tổng giỏ hàng</h3>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <span class="text-black">Tạm tính</span>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <strong class="text-black tongGia"><%= cartTotals %> VNĐ</strong>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-md-6">
+                                <span class="text-black ">Tổng</span>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <strong class="text-black tongGia"><%= cartTotals %> VNĐ</strong>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="/cart/checkout">
+                                    <button class="btn btn-black btn-lg py-3 btn-block"
+                                    >Thanh toán</button>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

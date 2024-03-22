@@ -1,0 +1,88 @@
+<div class="right_col" role="main">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Quản Lý Đơn Hàng</h3>
+      {{#if (eq status.status "success")}}
+      {{#if (eq status.code "delete_invoice")}}
+      <div class="info alert alert-success" role="alert">
+        <span class="fw-bold">Xóa đơn hàng thành công</span>
+      </div>
+      {{/if}}
+      {{#if (eq status.code "update_invoice")}}
+      <div class="info alert alert-success" role="alert">
+        <span class="fw-bold">Cập nhật đơn hàng thành công</span>
+      </div>
+      {{/if}}
+      {{#if (eq status.code "approval")}}
+      <div class="info alert alert-success" role="alert">
+        <span class="fw-bold">Phê duyệt đơn hàng thành công</span>
+      </div>
+      {{/if}}
+      {{/if}}
+      {{#if (eq status.status "failed")}}
+     <div class="info alert alert-danger" role="alert">
+        <span class="fw-bold">Lỗi kết nối database</span>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+  <table class="qldh table table-hover table-bordered table-responsive">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Khách hàng</th>
+        <th>Thanh Toán</th>
+        <th>Vận chuyển</th>
+        <th>Trạng thái</th>
+        <th>Ngày đặt hàng</th>
+        <th>Người duyệt</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each invoices}}
+      <tr>
+        <td> <a href="/admin/invoices/{{id_don_hang}}">#{{id_don_hang}}</a></td>
+        {{#if ten_khach_hang}}
+        <td>{{ten_khach_hang}}</td>
+        {{else}}
+        <td>{{tai_khoan}}</td>
+        {{/if}}
+        <td><select class="form-select form-select-sm" name="hinhThucThanhToan" id="payment" disabled>
+            {{#each ../payments}}
+            <option value="{{id}}" {{#if (eq ten ../hinh_thuc_thanh_toan)}} selected {{/if}}>{{ten}}</option>
+            {{/each}}
+          </select></td>
+        <td> <input disabled type="text" class="form-control form-control-sm" name="donViVanChuyen"
+            value="{{don_vi_van_chuyen}}"></td>
+        <td><select disabled class="form-select form-select-sm" name="tinhTrangDonHang" id="payment">
+            {{#each ../statusInvoices}}
+            <option value="{{id}}" {{#if (eq tinhTrang ../ten_trang_thai)}} selected {{/if}}>{{tinhTrang}}</option>
+            {{/each}}
+          </select></td>
+        <td>{{format ngay_dat_hang 'dd/MM/yyyy'}}</td>
+        {{#if ten_admin}}
+        <td>{{ten_admin}}</td>
+        {{else}}
+        <td>Chưa phê duyệt</td>
+        {{/if}}
+        <td>
+          <div id="{{id_don_hang}}" class="actions">
+            <div type="button" class="btn btn-icon btn-primary btn-sm btn-fab edit-invoice" data-toggle="tooltip"
+              data-placement="top" title="Sửa đơn hàng"><i class="fa-regular fa-pen-to-square"></i></div>
+            <a href="/admin/invoices/delete/{{id_don_hang}}" type="button"
+              class="btn btn-icon btn-secondary btn-sm btn-fab delete-invoice" data-toggle="tooltip"
+              data-placement="bottom" title="Xóa đơn hàng"><i class="fa-regular fa-trash-xmark"></i></a>
+            {{#if ten_admin}}
+            {{else}}
+            <a href="/admin/invoices/approval/{{id_don_hang}}" type="button"
+              class="btn btn-icon btn-primary btn-sm btn-fab approval-invoice" data-toggle="tooltip"
+              data-placement="bottom" title="Phê duyệt"><i class="fa-light fa-person-circle-check"></i></a>
+            {{/if}}
+          </div>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

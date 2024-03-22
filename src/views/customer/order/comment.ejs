@@ -1,0 +1,39 @@
+<% for(var j = 0; j < products.length; j++) {%>
+    <div class="cmt-sp">
+        <div class="thongtin">
+            
+            <div class="thongtindonhang">
+                <label for="idDH">Id đơn hàng</label>
+                <input type="text" name="idDH" readonly id="idDH" value="<%= products[j].idDH%>">
+                <label for="sanpham">Sản phẩm</label>
+                <input type="text" name="sanpham" readonly id="sanpham" value="<%= products[j].ten%>">
+                <input type="text" name="id" readonly id="idSP" value="<%= products[j].idSP%>" style="display: none">
+                <label for="idDH">Mức độ hài lòng</label>
+                <div id="sao">
+                    <% if(products[j].soSao) {
+                        for(var i=0; i< 5; i++) {
+                            if(i < products[j].soSao) {%>
+                            <span class="fa fa-star checked"></span>
+                            <% }else { %>
+                            <span class="fa fa-star"></span>
+                            <%}
+                        }
+                    } else { %>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <% } %>
+                    
+                </div>
+            </div>
+            
+            <div class="img">
+                <img src="/uploads/<%=products[j].anh%>" alt="">
+            </div>
+        </div>
+        <label for="danhgia">Đánh giá sản phẩm <%= products[j].danhGia %></label>
+        <textarea name="danhgia" id="danhgia" rows="9"><%= products[j].danhGia %></textarea>
+    </div>     
+<% } %>

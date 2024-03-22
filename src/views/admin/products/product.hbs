@@ -1,0 +1,79 @@
+<div class="right_col" role="main">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Quản lý sản phẩm</h3>
+      {{#if (eq status.status "success")}}
+      {{#if (eq status.code "delete_product")}}
+      <div class="info alert alert-success" role="alert">
+        <span class="fw-bold">Xóa sản phẩm thành công</span>
+      </div>      
+      {{/if}}
+      {{#if (eq status.code "update_product")}}
+      <div class="info alert alert-success" role="alert">
+        <span class="fw-bold">Cập nhật phẩm thành công</span>
+      </div>    
+      {{/if}}
+      {{#if (eq status.code "add_product")}}
+        <div class="info alert alert-success" role="alert">
+        <span class="fw-bold">Thêm sản phẩm thành công</span>
+      </div>   
+      {{/if}}
+      {{/if}}
+      {{#if (eq status.status "failed")}}
+       <div class="info alert alert-danger" role="alert">
+        <span class="fw-bold">Lỗi kết nối database</span>
+      </div>  
+      {{/if}}
+    </div>
+  </div>
+  <div class="mt-3 mb-2 col-md-12">
+    <button type="button" class="add-product btn rounded-pill btn-primary btn-sm mr-2" data-toggle="tooltip"
+      data-placement="bottom" title="Thêm mới sản phẩm">
+      <i class="fa-regular fa-circle-plus"></i>
+      <span>Thêm mới</span>
+    </button>
+  </div>
+  <table class="qlsp table table-hover table-bordered table-responsive">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Ảnh</th>
+        <th>Tên</th>
+        <th>Giá</th>
+        <th>Hãng</th>
+        <th>Loại Sản phẩm</th>
+        <th>Màu sắc</th>
+        <th>Số lượng</th>
+        <th>Mô tả</th>
+        <th>Cập nhật</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each products}}
+      <tr>
+        <td>{{idSP}}</td>
+        <td><img src="/uploads/{{anh}}" alt="" height="80px" /></td>
+        <td>{{ten}}</td>
+        <td><span value="{{gia}}">{{currency gia}}</span></td>
+        <td>{{hang}}</td>
+        <td>{{loaiSanPham}}</td>
+        <td>{{mauSac}}</td>
+        <td>{{soluong}}</td>
+        <td>{{moTa}}</td>
+        <td>{{format ngayCapNhat "dd/MM/yyyy"}}</td>
+        <td>
+          <div id="{{idSP}}" class="actions">
+            <button type="button" class="btn btn-icon btn-primary btn-sm btn-fab edit-item" data-toggle="tooltip"
+              data-placement="top" title="Sửa sản phẩm"><i class="fa-regular fa-pen-to-square"></i></button>
+            <button link="/admin/products/delete/{{idSP}}" type="button"
+              class="btn btn-icon btn-secondary btn-sm btn-fab delete-item" data-toggle="tooltip"
+              data-placement="bottom" title="Xóa sản phẩm"><i class="fa-regular fa-trash-xmark"></i></button>
+          </div>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{> products/addProduct }}
+</div>

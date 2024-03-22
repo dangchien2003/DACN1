@@ -1,0 +1,53 @@
+#action i:hover {
+    color: rgb(242, 62, 62);
+}
+
+.status {
+    background-color: aqua;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 100%;
+    border: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.wapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control {
+    display: flex;
+    justify-content: space-between;
+    width: 500px
+}
+
+.control .btn{
+    width: 120px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.control .btn.btn-success {
+    background-color: greenyellow
+}
+
+
+.control .btn.btn-error {
+    background-color: rgb(255, 89, 47)
+}
+
+.control .btn.btn-info {
+    background-color: blue
+}
+
+

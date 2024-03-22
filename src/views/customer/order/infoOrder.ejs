@@ -1,0 +1,157 @@
+<%- include("../layouts/header") %>
+<style>
+    body {
+        background-color: white;
+    }
+</style>
+<script>
+    var tinhTrangDon = <%= donHang.tinhTrangDonHang %>;
+</script>
+<div class="container" >
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,500;1,600&display=swap" rel="stylesheet"> -->
+        <div class="tinhTrangDonHang">
+            <div class="line" id="line"></div>
+            <div class="dot">
+                <img src="/customer/img/box.png" alt="box" id="order-box">
+            </div>
+            <div class="icon">
+                <img src="/customer/img/close.png" alt="">
+                <img src="/customer/img/stopwatch.png" alt="">
+                <img src="/customer/img/clipboard.png" alt="">
+                <img src="/customer/img/delivery-bike.png" alt="">
+                <img src="/customer/img/giving.png" alt="">
+                <img src="/customer/img/correct.png" alt="">
+            </div>
+        </div>
+        <div class="thongTinChiTiet">
+            <div class="cacSanPham">
+                <% for(var i = 0; i < donHang.soLuongMatHang; i++) { %> 
+                    <div class="sanPham">
+                        <div class="anhSP">
+                            <img src="/uploads/<%= sanPham[i].anh %>" alt="ảnh sản phẩm">
+                        </div>
+                        <div class="thongTinSanPham">
+                            <div class="ten">
+                                <%= sanPham[i].tenSP %>
+                            </div>
+                            <div class="ThongTinSanPhamCuaDonHang">
+                                <div class="g-sl">
+                                    <div class="gia">
+                                        <span>Giá: <%= sanPham[i].gia %> đ</span>
+                                    </div>
+                                    <div class="soluong">
+                                        <span>Số lượng: <%= sanPham[i].soLuong %></span>
+                                    </div>
+                                </div>
+                                <div class="tg">
+                                    <span>Tổng</span>
+                                    <div class="tongGia">
+                                        <%= sanPham[i].giaSP %> đ
+                                    </div>
+                                </div>
+                                
+                                <div class="cmt">
+                                    <div class="customer">
+                                        <i class="fas fa-user"></i>
+                                        <% if(danhGia[i]) { %>
+                                        <span class="stars">
+                                            <% 
+                                            var count = 1;
+                                            for(var j = 1; j <= 5; j++) { 
+                                                if(count <= danhGia[i].soSao){ %>
+                                                    <span class="fa fa-star checked"></span>
+                                                <% } else {%>
+                                                    <span class="fa fa-star"></span>
+                                                <%} 
+                                                count ++; 
+                                            } %>
+                                        </span>
+                                        <br>
+                                        <span><%= danhGia[i].comment %> </span>
+                                        <% } %> 
+                                    </div>
+                                    <div class="admin">
+                                        <i class="fas fa-comment-dots"></i>
+                                        <% if(danhGia[i]) { %>
+                                            <br>
+                                            <span><%= danhGia[i].TraLoiDG%> </span>
+                                        <% } %> 
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                <% } %> 
+            </div>
+            <div class="thongTinKhac">
+                <div class="khachHang cap1">
+                    <div>Thông tin khách hàng</div>
+                    <div class="t-sdt">
+                        <div class="ten">
+                            <span>Người nhận</span>
+                            <div class="info"><%= donHang.nguoiNhan %> </div>
+                        </div>
+                        <div class="sdt">
+                            <span>Số điện thoại</span>
+                            <div class="info"><%= donHang.sdt %></div>
+                        </div>
+                    </div>
+                    <div class="diachi">
+                        <div>Địa chỉ</div>
+                        <div class="info"><%= donHang.diaChi %></div>
+                    </div>
+                    <div class="httt">
+                        <input type="radio" name="" id="" checked>
+                        <span><%= donHang.hinhThucThanhToan %></span>
+                    </div>
+                </div>
+                <div class="donHang cap1">
+                    <div>Đơn hàng </div>
+                    <div class="ngayDat">
+                        <span>Ngày đặt:</span>
+                        <span class="info"><%= donHang.ngayTao %> <i class="fas fa-table"></i> </span>
+                    </div>
+                    <% if(donHang.ngayHuy) { %>
+                        <div class="ngayHuy">
+                            <span>Ngày huỷ:</span>
+                            <span class="info"><%= donHang.ngayHuy %> <i class="fas fa-table"></i> </span>
+                        </div>    
+                    <% } %> 
+                    <div class="vanDon">
+                        <div class="mavan">
+                            Mã Vận đơn
+                            <div class="info">
+                                <%= donHang.maVanDon %>
+                            </div>
+                        </div>
+                        <div class="DVVC">
+                            <div>Đơn vị</div>
+                            <div class="info">
+                                <%= donHang.donViVanChuyen %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="GiaTien cap1">
+                    <div class="sp">
+                        <span>Sản phẩm: </span>
+                        <span class="tien"><%= tongDH.tongGiaSP %> đ</span>
+                    </div>
+                    <div class="ship">
+                        <span>Phí vận chuyển:</span>
+                        <span class="tien">30000 đ</span>
+                    </div>
+                    <div class="tong">
+                        <h4>Tổng:</h4>
+                        <h4><%= tongDH.tong %> đ</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include("../layouts/footer") %>
