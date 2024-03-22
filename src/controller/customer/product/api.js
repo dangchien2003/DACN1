@@ -1,13 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const {
-    returnProducts,
-    returnInfoProduct,
-    moreProducts
-} = require('./middleware');
-const utilMiddleware = require('../utilMiddleware');
+  returnProducts,
+  returnInfoProduct,
+  moreProducts,
+} = require("./middleware");
+const utilMiddleware = require("../utilMiddleware");
 //  /sale
-router.get("/", returnProducts);
+router.get("/", utilMiddleware.checkBlock, returnProducts);
 
 // /sale/search
 router.post("/search", utilMiddleware.checkBlock, returnProducts);
