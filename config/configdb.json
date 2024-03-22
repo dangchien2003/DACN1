@@ -1,0 +1,8 @@
+{
+    "database": "QLBH",
+    "server": "??",
+    "driver": "msnodesqlv8",
+    "options": {
+        "trustedConnection": true
+    }
+}
