@@ -1,8 +1,12 @@
 {
-    "database": "QLBH",
-    "server": "??",
+   
+    "database": "DACN1_QLBH",
+    "server": "DANGCHIEN\\SQLEXPRESS",
     "driver": "msnodesqlv8",
+    "user" : "DANGCHIEN\\chien",
+    "password": "",
     "options": {
-        "trustedConnection": true
+        "trustedConnection": true,
+        "trustServerCertificate":true
     }
 }
